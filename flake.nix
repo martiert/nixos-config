@@ -2,12 +2,24 @@
   description = "images for creation";
 
   inputs = {
-    nixos.url = "github:nixos/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    openconnect-sso = {
+      url = "github:vlaci/openconnect-sso";
+      flake = false;
+    };
+    martiert = {
+      url = "github:martiert/nix-overlay";
+      flake = false;
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixos, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, openconnect-sso, martiert, ... }@inputs: {
     nixosConfigurations = {
-      octoprint = nixos.lib.nixosSystem {
+      octoprint = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           ({modulesPath, ...}: {
@@ -31,19 +43,44 @@
         ];
       };
 
-      moghedien = nixos.lib.nixosSystem {
+      moghedien = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ({modulesPath, ...}: {
+            nixpkgs.overlays = [
+              (import "${openconnect-sso}/overlay.nix")
+              (import "${martiert}")
+            ];
+
             imports = [
               ./machines/laptop.nix
-              ./users/martin.nix
-              ./users/root.nix
-              ./secrets/moghedien_network.nix
-              ./configs/common.nix
             ];
             networking.hostName = "moghedien";
           })
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.martin = {
+              imports = [
+                ./home-manager/all.nix
+              ];
+
+              martiert = {
+                i3status = {
+                  enable = true;
+                  wireless = {
+                    wlp1s0 = 1;
+                  };
+                  battery = true;
+                };
+                i3 = {
+                  enable = true;
+                  barSize = 10.0;
+                };
+              };
+            };
+          }
         ];
       };
     };

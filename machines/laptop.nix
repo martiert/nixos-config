@@ -7,6 +7,10 @@ in
 {
   imports = [
     ./x86_64.nix
+    ../users/martin.nix
+    ../users/root.nix
+    ../secrets/moghedien_network.nix
+    ../configs/common.nix
   ];
 
   boot.initrd.availableKernelModules = [ "vfat" "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];

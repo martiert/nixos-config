@@ -1,9 +1,11 @@
+{ pkgs, ... }:
+
 {
   imports = [
     ./timezone.nix
     ./fonts.nix
     ./xorg.nix
-    ./printing.xorg
+    ./printing.nix
   ];
 
   sound.enable = true;

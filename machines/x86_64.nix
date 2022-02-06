@@ -10,7 +10,14 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "cnijfilter2"
+    "google-chrome"
+    "skypeforlinux"
+    "steam"
+    "steam-original"
+    "steam-runtime"
   ];
 
   hardware.enableRedistributableFirmware = true;
+
+  services.udev.packages = [ pkgs.projecteur ];
 }
