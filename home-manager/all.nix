@@ -32,5 +32,7 @@
 
     cura
     git-crypt
+
+    vysor
   ];
 }

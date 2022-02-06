@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "cisco": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1644152607,
+        "narHash": "sha256-T7VQQDPtGggNtMnZ+9+SX3WSY7bcwoKJHDTC7JIjcg0=",
+        "ref": "main",
+        "rev": "9a2837b96b721e5561ee057e8104e021d5fb62fb",
+        "revCount": 16,
+        "type": "git",
+        "url": "ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -36,6 +53,23 @@
         "type": "github"
       }
     },
+    "nixGL": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1633350348,
+        "narHash": "sha256-rfA7lqV+cR3bQt4lT2F+6qrIzJSPloJaGVATR9u+5yY=",
+        "owner": "guibou",
+        "repo": "nixGL",
+        "rev": "c4aa5aa15af5d75e2f614a70063a2d341e8e3461",
+        "type": "github"
+      },
+      "original": {
+        "owner": "guibou",
+        "ref": "main",
+        "repo": "nixGL",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1644125761,
@@ -48,6 +82,22 @@
       "original": {
         "owner": "nixos",
         "ref": "nixos-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1635350005,
+        "narHash": "sha256-tAMJnUwfaDEB2aa31jGcu7R7bzGELM9noc91L2PbVjg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1c1f5649bb9c1b0d98637c8c365228f57126f361",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-20.09",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -70,10 +120,32 @@
     },
     "root": {
       "inputs": {
+        "cisco": "cisco",
         "home-manager": "home-manager",
         "martiert": "martiert",
         "nixpkgs": "nixpkgs",
-        "openconnect-sso": "openconnect-sso"
+        "openconnect-sso": "openconnect-sso",
+        "webex-linux": "webex-linux"
+      }
+    },
+    "webex-linux": {
+      "inputs": {
+        "nixGL": "nixGL",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1644177227,
+        "narHash": "sha256-sTLAPcmYBx+9vx7HTM2wwrFnzpkoDP9dSo4ELEJrzv8=",
+        "ref": "main",
+        "rev": "2d79d4aa8fcdb5f7b1ae27cc9f87a0223948e787",
+        "revCount": 49,
+        "type": "git",
+        "url": "file:///home/martin/Cisco/nix/webex-linux-nix"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "file:///home/martin/Cisco/nix/webex-linux-nix"
       }
     }
   },

@@ -15,15 +15,20 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    cisco = {
+      url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay?ref=main";
+      flake = false;
+    };
+    webex-linux.url = "git+file:///home/martin/Cisco/nix/webex-linux-nix?ref=main";
   };
 
-  outputs = { self, nixpkgs, home-manager, openconnect-sso, martiert, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, openconnect-sso, martiert, cisco, webex-linux, ... }@inputs: {
     nixosConfigurations = {
       octoprint = import ./hosts/octoprint.nix {
         inherit nixpkgs;
       };
       moghedien = import ./hosts/moghedien.nix {
-        inherit nixpkgs home-manager openconnect-sso martiert;
+        inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux;
       };
     };
   };

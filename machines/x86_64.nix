@@ -15,6 +15,9 @@
     "steam"
     "steam-original"
     "steam-runtime"
+    "teamctl"
+    "roomctl"
+    "webex-linux"
   ];
 
   hardware.enableRedistributableFirmware = true;

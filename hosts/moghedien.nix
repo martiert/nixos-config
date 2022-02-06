@@ -1,12 +1,16 @@
-{ nixpkgs, home-manager, openconnect-sso, martiert, ...}:
+{ nixpkgs, home-manager, openconnect-sso, martiert, cisco, webex-linux, ...}:
 
-nixpkgs.lib.nixosSystem {
+let
   system = "x86_64-linux";
+in nixpkgs.lib.nixosSystem {
+  inherit system;
+
   modules = [
     ({modulesPath, ...}: {
       nixpkgs.overlays = [
         (import "${openconnect-sso}/overlay.nix")
         (import "${martiert}")
+        (import "${cisco}")
       ];
 
       imports = [
@@ -21,6 +25,10 @@ nixpkgs.lib.nixosSystem {
       home-manager.users.martin = {
         imports = [
           ../home-manager/all.nix
+        ];
+
+        home.packages = [
+          webex-linux.packages."${system}".webexWayland
         ];
 
         martiert = {
