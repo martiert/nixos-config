@@ -125,7 +125,24 @@
         "martiert": "martiert",
         "nixpkgs": "nixpkgs",
         "openconnect-sso": "openconnect-sso",
+        "vysor": "vysor",
         "webex-linux": "webex-linux"
+      }
+    },
+    "vysor": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1643899317,
+        "narHash": "sha256-TQXoALyIZOBwfTgdvm9N2DSkRyFv45/tdN1LVdW2vn8=",
+        "ref": "master",
+        "rev": "752bf5a273ea422d9e4883c9741ede423c9c4e48",
+        "revCount": 125,
+        "type": "git",
+        "url": "ssh://git@sqbu-github.cisco.com/CE/vysor"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@sqbu-github.cisco.com/CE/vysor"
       }
     },
     "webex-linux": {

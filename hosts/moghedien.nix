@@ -1,4 +1,11 @@
-{ nixpkgs, home-manager, openconnect-sso, martiert, cisco, webex-linux, ...}:
+{ nixpkgs
+, home-manager
+, openconnect-sso
+, martiert
+, cisco
+, webex-linux
+, vysor
+, ...}:
 
 let
   system = "x86_64-linux";
@@ -9,8 +16,11 @@ in nixpkgs.lib.nixosSystem {
     ({modulesPath, ...}: {
       nixpkgs.overlays = [
         (import "${openconnect-sso}/overlay.nix")
-        (import "${martiert}")
-        (import "${cisco}")
+        (import martiert)
+        (import cisco)
+        (self: super: {
+          vysor = super.callPackage vysor {};
+        })
       ];
 
       imports = [

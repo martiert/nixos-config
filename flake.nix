@@ -20,15 +20,19 @@
       flake = false;
     };
     webex-linux.url = "git+file:///home/martin/Cisco/nix/webex-linux-nix?ref=main";
+    vysor = {
+      url = "git+ssh://git@sqbu-github.cisco.com/CE/vysor";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, openconnect-sso, martiert, cisco, webex-linux, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs: {
     nixosConfigurations = {
       octoprint = import ./hosts/octoprint.nix {
         inherit nixpkgs;
       };
       moghedien = import ./hosts/moghedien.nix {
-        inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux;
+        inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
       };
     };
   };
