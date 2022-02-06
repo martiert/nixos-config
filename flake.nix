@@ -23,9 +23,26 @@
               ./users/root.nix
               ./services/openssh.nix
               ./services/octoprint.nix
+              ./configs/timezone.nix
             ];
 
             networking.hostName = "octoprint";
+          })
+        ];
+      };
+
+      moghedien = nixos.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ({modulesPath, ...}: {
+            imports = [
+              ./machines/laptop.nix
+              ./users/martin.nix
+              ./users/root.nix
+              ./secrets/moghedien_network.nix
+              ./configs/common.nix
+            ];
+            networking.hostName = "moghedien";
           })
         ];
       };
