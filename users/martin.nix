@@ -1,5 +1,7 @@
 { pkgs, config, lib, ... }:
 
+with lib;
+
 let
   cfg = config.martiert.sshd;
 in {
