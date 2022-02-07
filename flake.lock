@@ -151,18 +151,18 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1644177227,
+        "lastModified": 1644231125,
         "narHash": "sha256-sTLAPcmYBx+9vx7HTM2wwrFnzpkoDP9dSo4ELEJrzv8=",
         "ref": "main",
-        "rev": "2d79d4aa8fcdb5f7b1ae27cc9f87a0223948e787",
+        "rev": "0894953fa568eacc8c6691826c51f05acacd0128",
         "revCount": 49,
         "type": "git",
-        "url": "file:///home/martin/Cisco/nix/webex-linux-nix"
+        "url": "ssh://git@sqbu-github.cisco.com/mmyrseth/webex-linux-nix"
       },
       "original": {
         "ref": "main",
         "type": "git",
-        "url": "file:///home/martin/Cisco/nix/webex-linux-nix"
+        "url": "ssh://git@sqbu-github.cisco.com/mmyrseth/webex-linux-nix"
       }
     }
   },
