@@ -1,5 +1,4 @@
 { nixpkgs
-, home-manager
 , openconnect-sso
 , martiert
 , cisco
@@ -9,52 +8,49 @@
 
 let
   system = "x86_64-linux";
-in nixpkgs.lib.nixosSystem {
+in {
   inherit system;
+  nixos = ({modulesPath, ...}: {
+    nixpkgs.overlays = [
+      (import "${openconnect-sso}/overlay.nix")
+      (import martiert)
+      (import cisco)
+      (self: super: {
+        vysor = super.callPackage vysor {};
+      })
+    ];
 
-  modules = [
-    ({modulesPath, ...}: {
-      nixpkgs.overlays = [
-        (import "${openconnect-sso}/overlay.nix")
-        (import martiert)
-        (import cisco)
-        (self: super: {
-          vysor = super.callPackage vysor {};
-        })
-      ];
+    imports = [
+      ../machines/laptop.nix
+    ];
+    networking.hostName = "moghedien";
+  });
 
+  home-manager = {
+    home-manager.useGlobalPkgs = true;
+    home-manager.useUserPackages = true;
+    home-manager.users.martin = {
       imports = [
-        ../machines/laptop.nix
+        ../home-manager/all.nix
       ];
-      networking.hostName = "moghedien";
-    })
-    home-manager.nixosModules.home-manager
-    {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.martin = {
-        imports = [
-          ../home-manager/all.nix
-        ];
 
-        home.packages = [
-          webex-linux.packages."${system}".webexWayland
-        ];
+      home.packages = [
+        webex-linux.packages."${system}".webexWayland
+      ];
 
-        martiert = {
-          i3status = {
-            enable = true;
-            wireless = {
-              wlp1s0 = 1;
-            };
-            battery = true;
+      martiert = {
+        i3status = {
+          enable = true;
+          wireless = {
+            wlp1s0 = 1;
           };
-          i3 = {
-            enable = true;
-            barSize = 10.0;
-          };
+          battery = true;
+        };
+        i3 = {
+          enable = true;
+          barSize = 10.0;
         };
       };
-    }
-  ];
+    };
+  };
 }

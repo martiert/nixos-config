@@ -26,17 +26,28 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs: 
+    let
+      mkHost = filename:
+        let
+          config = import filename {
+            inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
+          };
+        in nixpkgs.lib.nixosSystem {
+          system = config.system;
+          modules = [
+            ./configs/timezone.nix
+            ./configs/fonts.nix
+            config.nixos
+            home-manager.nixosModules.home-manager
+            config.home-manager
+          ];
+        };
+    in {
     nixosConfigurations = {
-      octoprint = import ./hosts/octoprint.nix {
-        inherit nixpkgs;
-      };
-      pihole = import ./hosts/pihole.nix {
-        inherit nixpkgs;
-      };
-      moghedien = import ./hosts/moghedien.nix {
-        inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
-      };
+      octoprint = mkHost ./hosts/octoprint.nix;
+      pihole = mkHost ./hosts/pihole.nix;
+      moghedien = mkHost ./hosts/moghedien.nix;
     };
   };
 }

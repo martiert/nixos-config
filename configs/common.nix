@@ -2,8 +2,6 @@
 
 {
   imports = [
-    ./timezone.nix
-    ./fonts.nix
     ./xorg.nix
     ./printing.nix
   ];
