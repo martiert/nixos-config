@@ -31,6 +31,9 @@
       octoprint = import ./hosts/octoprint.nix {
         inherit nixpkgs;
       };
+      pihole = import ./hosts/pihole.nix {
+        inherit nixpkgs;
+      };
       moghedien = import ./hosts/moghedien.nix {
         inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
       };
