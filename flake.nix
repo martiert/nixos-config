@@ -48,6 +48,7 @@
       octoprint = mkHost ./hosts/octoprint.nix;
       pihole = mkHost ./hosts/pihole.nix;
       moghedien = mkHost ./hosts/moghedien.nix;
+      moridin = mkHost ./hosts/moridin.nix;
     };
   };
 }
