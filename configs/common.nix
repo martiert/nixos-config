@@ -7,10 +7,11 @@
   ];
 
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
-
-  services.printing.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+    extraConfig = ''unload-module module-switch-on-port-available'';
+  };
 
   documentation.dev.enable = true;
 
