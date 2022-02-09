@@ -14,8 +14,8 @@
       ../secrets/home_wireless.nix
       ../users/martin.nix
       ../users/root.nix
-      ../services/openssh.nix
-      ../services/octoprint.nix
+      ../nixos/services/openssh.nix
+      ../nixos/services/octoprint.nix
     ];
 
     networking.hostName = "octoprint";

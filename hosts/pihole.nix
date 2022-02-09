@@ -10,8 +10,8 @@
       ../secrets/home_wireless.nix
       ../users/martin.nix
       ../users/root.nix
-      ../services/openssh.nix
-      ../services/pihole.nix
+      ../nixos/services/openssh.nix
+      ../nixos/services/pihole.nix
     ];
 
     networking.hostName = "pihole2";

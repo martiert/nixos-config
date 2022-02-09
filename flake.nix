@@ -36,8 +36,8 @@
         in nixpkgs.lib.nixosSystem {
           system = config.system;
           modules = [
-            ./configs/timezone.nix
-            ./configs/fonts.nix
+            ./nixos/configs/timezone.nix
+            ./nixos/configs/fonts.nix
             config.nixos
             home-manager.nixosModules.home-manager
             config.home-manager

@@ -11,7 +11,7 @@ in
     ../users/martin.nix
     ../users/root.nix
     ../secrets/moghedien_network.nix
-    ../configs/common.nix
+    ../nixos/configs/common.nix
   ];
 
   boot.initrd.availableKernelModules = [ "vfat" "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
