@@ -31,6 +31,10 @@ in {
     enable = mkEnableOption "enable hidpi mode";
   };
 
+  imports = [
+    ./mountpoints.nix
+  ];
+
   config = {
     boot.initrd.availableKernelModules = [
       "vfat"

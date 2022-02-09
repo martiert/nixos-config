@@ -21,7 +21,11 @@ in {
     ];
 
     imports = [
-      ../machines/laptop.nix
+      ../machines/x86_64.nix
+      ../users/martin.nix
+      ../users/root.nix
+      ../nixos/configs/common.nix
+      ../secrets/moghedien_network.nix
     ];
     networking.hostName = "moghedien";
     martiert.mountpoints = {
