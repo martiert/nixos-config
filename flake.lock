@@ -157,12 +157,12 @@
         "rev": "0894953fa568eacc8c6691826c51f05acacd0128",
         "revCount": 49,
         "type": "git",
-        "url": "ssh://git@sqbu-github.cisco.com/mmyrseth/webex-linux-nix"
+        "url": "ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix"
       },
       "original": {
         "ref": "main",
         "type": "git",
-        "url": "ssh://git@sqbu-github.cisco.com/mmyrseth/webex-linux-nix"
+        "url": "ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix"
       }
     }
   },

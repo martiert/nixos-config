@@ -19,7 +19,7 @@
       url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay?ref=main";
       flake = false;
     };
-    webex-linux.url = "git+ssh://git@sqbu-github.cisco.com/mmyrseth/webex-linux-nix?ref=main";
+    webex-linux.url = "git+ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix?ref=main";
     vysor = {
       url = "git+ssh://git@sqbu-github.cisco.com/CE/vysor";
       flake = false;
