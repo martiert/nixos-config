@@ -38,6 +38,9 @@
           modules = [
             ./nixos/configs/timezone.nix
             ./nixos/configs/fonts.nix
+            ./nixos/users/martin.nix
+            ./nixos/users/root.nix
+
             config.nixos
             home-manager.nixosModules.home-manager
             config.home-manager

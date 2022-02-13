@@ -12,8 +12,6 @@
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
       ../machines/rpi3.nix
       ../secrets/home_wireless.nix
-      ../users/martin.nix
-      ../users/root.nix
       ../nixos/services/openssh.nix
       ../nixos/services/octoprint.nix
     ];

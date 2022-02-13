@@ -22,8 +22,6 @@ in {
 
     imports = [
       ../machines/x86_64.nix
-      ../users/martin.nix
-      ../users/root.nix
       ../nixos/configs/common.nix
       ../secrets/moghedien_network.nix
     ];
