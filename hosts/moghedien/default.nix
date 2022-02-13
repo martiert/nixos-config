@@ -21,9 +21,9 @@ in {
     ];
 
     imports = [
-      ../machines/x86_64.nix
-      ../nixos/configs/common.nix
-      ../secrets/moghedien_network.nix
+      ../../machines/x86_64.nix
+      ../../nixos/configs/common.nix
+      ../../secrets/moghedien_network.nix
     ];
     networking.hostName = "moghedien";
     martiert.mountpoints = {
@@ -42,7 +42,7 @@ in {
     home-manager.useUserPackages = true;
     home-manager.users.martin = {
       imports = [
-        ../home-manager/all.nix
+        ../../home-manager/all.nix
       ];
 
       home.packages = [

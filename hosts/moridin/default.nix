@@ -21,10 +21,10 @@ in {
     ];
 
     imports = [
-      ../machines/x86_64.nix
-      ../nixos/configs/common.nix
-      ../nixos/services/openssh.nix
-      ../secrets/moridin_networking.nix
+      ../../machines/x86_64.nix
+      ../../nixos/configs/common.nix
+      ../../nixos/services/openssh.nix
+      ../../secrets/moridin_networking.nix
     ];
     networking.hostName = "moridin";
     martiert = {
@@ -51,7 +51,7 @@ in {
     home-manager.useUserPackages = true;
     home-manager.users.martin = {
       imports = [
-        ../home-manager/all.nix
+        ../../home-manager/all.nix
       ];
 
       home.packages = [

@@ -48,10 +48,10 @@
         };
     in {
     nixosConfigurations = {
-      octoprint = mkHost ./hosts/octoprint.nix;
-      pihole = mkHost ./hosts/pihole.nix;
-      moghedien = mkHost ./hosts/moghedien.nix;
-      moridin = mkHost ./hosts/moridin.nix;
+      octoprint = mkHost ./hosts/octoprint;
+      pihole = mkHost ./hosts/pihole;
+      moghedien = mkHost ./hosts/moghedien;
+      moridin = mkHost ./hosts/moridin;
     };
   };
 }
