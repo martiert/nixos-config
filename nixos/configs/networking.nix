@@ -4,6 +4,9 @@ with lib;
 
 let
   tables = config.martiert.networking.tables;
+  wireless = config.martiert.networking.wireless;
+  wifi_networks = import ../../secrets/wifi_networks.nix;
+
   createTableEntry = name: data: (toString data.number) + " ${name}";
   makeIfCheck = command: ''
       if out=$(${command} 2>&1); then
@@ -29,6 +32,19 @@ let
 in {
   options = {
     martiert.networking = {
+      wireless = mkOption {
+        default = {};
+        type = types.submodule {
+          options = {
+            enable = mkEnableOption "wireless config";
+            interfaces = mkOption {
+              type = types.listOf types.str;
+              default = [];
+              description = "Interfaces to enable wireless for";
+            };
+          };
+        };
+      };
       tables = mkOption {
         default = {};
         description = "Tables to set up";
@@ -86,6 +102,13 @@ in {
     };
   };
   config = {
+    networking.wireless = {
+      enable = wireless.enable;
+      interfaces = wireless.interfaces;
+      userControlled.enable = true;
+      networks = wifi_networks;
+    };
+
     networking.iproute2 = {
       enable = true;
       rttablesExtraConfig = concatStringsSep "\n" (mapAttrsToList createTableEntry tables) + "\n";
