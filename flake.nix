@@ -2,7 +2,7 @@
   description = "images for creation";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     openconnect-sso = {
       url = "github:vlaci/openconnect-sso";
       flake = false;
