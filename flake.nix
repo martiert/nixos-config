@@ -44,6 +44,9 @@
 
             config.nixos
             home-manager.nixosModules.home-manager
+            {
+              nix.registry.nixpkgs.flake = nixpkgs;
+            }
             config.home-manager
           ];
         };
