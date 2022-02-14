@@ -15,10 +15,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    cisco = {
-      url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay?ref=main";
-      flake = false;
-    };
+    cisco.url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay?ref=main";
     webex-linux.url = "git+ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix?ref=main";
     vysor = {
       url = "git+ssh://git@sqbu-github.cisco.com/CE/vysor";

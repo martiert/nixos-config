@@ -56,16 +56,16 @@ in {
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
       "cnijfilter2"
       "google-chrome"
       "skypeforlinux"
       "steam"
       "steam-original"
       "steam-runtime"
+      "webex-linux"
       "teamctl"
       "roomctl"
-      "webex-linux"
     ];
 
     hardware.enableRedistributableFirmware = true;

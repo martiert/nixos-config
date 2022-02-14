@@ -34,5 +34,7 @@
     git-crypt
 
     vysor
+    teamctl
+    roomctl
   ];
 }

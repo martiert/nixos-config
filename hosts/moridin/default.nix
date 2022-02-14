@@ -14,9 +14,10 @@ in {
     nixpkgs.overlays = [
       (import "${openconnect-sso}/overlay.nix")
       (import martiert)
-      (import cisco)
       (self: super: {
         vysor = super.callPackage vysor {};
+        teamctl = cisco.outputs.packages."${system}".teamctl;
+        roomctl = cisco.outputs.packages."${system}".roomctl;
       })
     ];
 
