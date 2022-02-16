@@ -20,6 +20,14 @@ in {
     networking.useDHCP = false;
     networking.interfaces.wlan0.useDHCP = true;
     martiert = {
+      sshd = {
+        enable = true;
+        authorizedKeyFiles = [
+          ../../public_keys/octoprint/moghedien.pub
+          ../../public_keys/octoprint/moridin.pub
+          ../../public_keys/octoprint/perrin.pub
+        ];
+      };
       networking.wireless = {
         enable = true;
         interfaces = [ "wlan0" ];
