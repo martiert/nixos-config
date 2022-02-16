@@ -28,6 +28,9 @@ in {
       ../../secrets/moridin_networking.nix
     ];
     networking.hostName = "moridin";
+
+    virtualisation.virtualbox.host.enable = true;
+
     martiert = {
       mountpoints = {
         keyDisk.keyFile = "luks/moridin.key";
