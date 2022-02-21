@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +37,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-generators, deploy-rs, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs:
     let
       mkHost = filename:
         let
@@ -64,6 +68,15 @@
         moghedien = mkHost ./hosts/moghedien;
         moridin = mkHost ./hosts/moridin;
         aginor = mkHost ./hosts/aginor;
+      };
+      packages.x86_64-linux = {
+        usbinstaller = nixos-generators.nixosGenerate {
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          modules = [
+            ./tools/usbinstaller
+          ];
+          format = "install-iso";
+        };
       };
       deploy.nodes = 
         let
