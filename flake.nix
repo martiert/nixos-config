@@ -55,15 +55,31 @@
         moghedien = mkHost ./hosts/moghedien;
         moridin = mkHost ./hosts/moridin;
       };
-      deploy.nodes = {
-        octoprint = {
-          hostname = "octoprint.localdomain";
-          profiles.system = {
-            sshUser = "root";
-            path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.octoprint;
-            user = "root";
+      deploy.nodes = 
+        let
+          nodeSetup = name: {
+            hostname = "${name}.localdomain";
+            profiles.system = {
+              sshUser = "root";
+              path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations."${name}";
+              user = "root";
+            };
           };
+        in {
+          octoprint = nodeSetup "octoprint";
+          pihole = nodeSetup "pihole";
         };
+      apps."x86_64-linux" = {
+        deploy = 
+          let
+            pkgs = import nixpkgs { system = "x86_64-linux"; };
+            deploy = deploy_name: pkgs.writeShellScriptBin "deploy" ''
+                LOCAL_KEY=/etc/keys/binarycache-priv.pem ${deploy-rs.packages.x86_64-linux.deploy-rs}/bin/deploy .#${deploy_name}
+              '';
+          in {
+            octoprint = deploy "octoprint";
+            pihole = deploy "pihole";
+          };
       };
 
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
