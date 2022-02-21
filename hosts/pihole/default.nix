@@ -10,7 +10,7 @@ in {
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
       ../../machines/rpi3.nix
       ../../nixos/services/openssh.nix
-      ../../nixos/services/pihole.nix
+      ../../nixos/services/pihole
     ];
 
     networking.useDHCP = false;
