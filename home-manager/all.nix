@@ -14,6 +14,7 @@
     ./mail.nix
     ./irssi.nix
     ./direnv.nix
+    ./weechat.nix
   ];
 
   home.packages = with pkgs; [
