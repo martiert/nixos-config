@@ -4,7 +4,6 @@
   services.octoprint = {
     enable = true;
     plugins = plugins: with plugins; [
-      stlviewer
       firmwareupdater
     ];
     extraConfig = {
