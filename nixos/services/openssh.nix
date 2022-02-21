@@ -6,7 +6,7 @@ in {
   services.openssh = {
     enable = cfg.enable;
     allowSFTP = false;
-    permitRootLogin = "no";
+    permitRootLogin = "yes";
     hostKeys = [ { type = "ed25519"; path = "/etc/ssh/ssh_host_ed25519_key"; }];
     passwordAuthentication = false;
   };

@@ -59,8 +59,9 @@
         octoprint = {
           hostname = "octoprint.localdomain";
           profiles.system = {
-            user = "root";
+            sshUser = "root";
             path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.octoprint;
+            user = "root";
           };
         };
       };
