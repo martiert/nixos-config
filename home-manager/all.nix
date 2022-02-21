@@ -22,6 +22,7 @@
     firefox
     skype
     steam
+    gimp
 
     #tools
     wget

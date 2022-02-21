@@ -29,8 +29,6 @@ in {
         menu = "${pkgs.bemenu}/bin/bemenu-run";
         keybindings = mkOptionDefault {
           "${modifier}+Shift+l"     = "exec ${cfg.lockCmd}";
-          "${modifier}+0"           = "nop";
-          "${modifier}+Shift+0"     = "nop";
         };
         bars = [
           {
