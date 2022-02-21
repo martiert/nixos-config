@@ -2,7 +2,7 @@ self: super: {
   octoprint = super.octoprint.override {
       packageOverrides = self: super: {
         firmwareupdater = let
-            version = "1.13.0";
+            version = "1.13.1";
             name = "FirmwareUpdater";
           in self.buildPythonPackage {
             pname = "OctoPrintPlugin-${name}";
@@ -13,7 +13,7 @@ self: super: {
 
             src = fetchTarball {
               url = "https://github.com/OctoPrint/OctoPrint-${name}/archive/refs/tags/${version}.tar.gz";
-              sha256 = "1b3v32apzj51pwh5jh11a0gxf6hj6xlp6lirlgqwjkvx04x6q955";
+              sha256 = "0nzlpf7868cs7grcrs21wkak94rxj0ay1s2bggywlkc8mmp9kf3x";
             };
 
             doCheck = false;
