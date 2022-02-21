@@ -75,5 +75,10 @@ in {
     hardware.video.hidpi.enable = mkDefault hardwareCfg.hidpi.enable;
 
     services.udev.packages = [ pkgs.projecteur ];
+
+    nix.settings.trusted-users = [
+      "root"
+      "martin"
+    ];
   };
 }
