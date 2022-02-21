@@ -7,6 +7,7 @@
       url = "github:vlaci/openconnect-sso";
       flake = false;
     };
+    deploy-rs.url = "github:serokell/deploy-rs";
     martiert = {
       url = "github:martiert/nix-overlay";
       flake = false;
@@ -23,12 +24,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs: 
+  outputs = { self, nixpkgs, deploy-rs, home-manager, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs: 
     let
       mkHost = filename:
         let
           config = import filename {
-            inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
+            inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor deploy-rs;
           };
         in nixpkgs.lib.nixosSystem {
           system = config.system;
@@ -48,11 +49,22 @@
           ];
         };
     in {
-    nixosConfigurations = {
-      octoprint = mkHost ./hosts/octoprint;
-      pihole = mkHost ./hosts/pihole;
-      moghedien = mkHost ./hosts/moghedien;
-      moridin = mkHost ./hosts/moridin;
+      nixosConfigurations = {
+        octoprint = mkHost ./hosts/octoprint;
+        pihole = mkHost ./hosts/pihole;
+        moghedien = mkHost ./hosts/moghedien;
+        moridin = mkHost ./hosts/moridin;
+      };
+      deploy.nodes = {
+        octoprint = {
+          hostname = "octoprint.localdomain";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.octoprint;
+          };
+        };
+      };
+
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
-  };
 }
