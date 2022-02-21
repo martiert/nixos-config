@@ -3,28 +3,37 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    openconnect-sso = {
-      url = "github:vlaci/openconnect-sso";
-      flake = false;
-    };
-    deploy-rs.url = "github:serokell/deploy-rs";
-    martiert = {
-      url = "github:martiert/nix-overlay";
-      flake = false;
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    cisco.url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay?ref=main";
-    webex-linux.url = "git+ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix?ref=main";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    cisco = {
+      url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    webex-linux = {
+      url = "git+ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    openconnect-sso = {
+      url = "github:vlaci/openconnect-sso";
+      flake = false;
+    };
+    martiert = {
+      url = "github:martiert/nix-overlay";
+      flake = false;
+    };
     vysor = {
       url = "git+ssh://git@sqbu-github.cisco.com/CE/vysor";
       flake = false;
     };
   };
 
-  outputs = { self, nixpkgs, deploy-rs, home-manager, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, deploy-rs, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs:
     let
       mkHost = filename:
         let
