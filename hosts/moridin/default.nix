@@ -29,7 +29,10 @@ in {
     ];
     networking.hostName = "moridin";
 
-    virtualisation.virtualbox.host.enable = true;
+    virtualisation.virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
 
     martiert = {
       mountpoints = {

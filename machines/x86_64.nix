@@ -66,6 +66,7 @@ in {
       "webex-linux"
       "teamctl"
       "roomctl"
+      "Oracle_VM_VirtualBox_Extension_Pack"
     ];
 
     hardware.enableRedistributableFirmware = true;
