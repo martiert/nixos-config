@@ -14,9 +14,10 @@ in {
     ];
 
     networking.useDHCP = false;
-    networking.interfaces.wlan0.useDHCP = true;
+    networking.interfaces.eth0.useDHCP = true;
 
-    networking.hostName = "pihole2";
+    networking.hostName = "pihole";
+
     martiert = {
       sshd = {
         enable = true;
@@ -25,10 +26,6 @@ in {
           ../../public_keys/pihole/moridin.pub
           ../../public_keys/pihole/perrin.pub
         ];
-      };
-      networking.wireless = {
-        enable = true;
-        interfaces = [ "wlan0" ];
       };
     };
   });
