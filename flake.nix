@@ -29,7 +29,7 @@
       mkHost = filename:
         let
           config = import filename {
-            inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor deploy-rs;
+            inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
           };
         in nixpkgs.lib.nixosSystem {
           system = config.system;

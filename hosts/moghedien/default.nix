@@ -4,7 +4,6 @@
 , cisco
 , webex-linux
 , vysor
-, deploy-rs
 , ...}:
 
 let
@@ -60,7 +59,6 @@ in {
 
       home.packages = [
         webex-linux.packages."${system}".webexWayland
-        deploy-rs.packages."${system}".deploy-rs
       ];
 
       martiert = {
