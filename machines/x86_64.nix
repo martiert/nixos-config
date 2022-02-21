@@ -49,8 +49,15 @@ in {
     boot.kernelModules = bootCfg.kernelModules;
     boot.extraModulePackages = [ ];
 
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+        version = 2;
+      };
+    };
 
     services.pcscd.enable = true;
 
