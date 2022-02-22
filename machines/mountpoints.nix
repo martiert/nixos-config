@@ -41,10 +41,10 @@ in {
       description = "device to mount to /boot";
     };
     swap = mkOption {
-      type = types.str;
+      type = types.nullOr types.str;
       description = "swap device to mount";
+      default = null;
     };
-
   };
 
   config = {
@@ -67,7 +67,7 @@ in {
       device = cfg.boot;
       fsType = "vfat";
     };
-    swapDevices = [{
+    swapDevices = mkIf (cfg.swap != null) [{
       device = cfg.swap;
       randomEncryption = true;
     }];
