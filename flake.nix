@@ -63,6 +63,7 @@
         pihole = mkHost ./hosts/pihole;
         moghedien = mkHost ./hosts/moghedien;
         moridin = mkHost ./hosts/moridin;
+        aginor = mkHost ./hosts/aginor;
       };
       deploy.nodes = 
         let
