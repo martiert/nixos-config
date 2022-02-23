@@ -22,9 +22,9 @@ in {
       sshd = {
         enable = true;
         authorizedKeyFiles = [
-          ../../public_keys/pihole/moghedien.pub
-          ../../public_keys/pihole/moridin.pub
-          ../../public_keys/pihole/perrin.pub
+          ./public_keys/moghedien.pub
+          ./public_keys/moridin.pub
+          ./public_keys/perrin.pub
         ];
       };
     };

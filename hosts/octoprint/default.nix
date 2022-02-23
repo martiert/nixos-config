@@ -23,9 +23,9 @@ in {
       sshd = {
         enable = true;
         authorizedKeyFiles = [
-          ../../public_keys/octoprint/moghedien.pub
-          ../../public_keys/octoprint/moridin.pub
-          ../../public_keys/octoprint/perrin.pub
+          ./public_keys/moghedien.pub
+          ./public_keys/moridin.pub
+          ./public_keys/perrin.pub
         ];
       };
       networking.wireless = {
