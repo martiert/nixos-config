@@ -11,18 +11,12 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    deploy-rs.url = "github:serokell/deploy-rs";
     cisco = {
       url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    webex-linux = {
-      url = "git+ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    webex-linux.url = "git+ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix?ref=main";
     openconnect-sso = {
       url = "github:vlaci/openconnect-sso";
       flake = false;
