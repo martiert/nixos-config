@@ -98,11 +98,11 @@
     "martiert": {
       "flake": false,
       "locked": {
-        "lastModified": 1637070789,
-        "narHash": "sha256-b16pDVNT6GCQkOy37xgrJvoh+JZF8kJLd8DciE6yCfw=",
+        "lastModified": 1645795260,
+        "narHash": "sha256-hTQT59U8cSVPelv+0uKhAVoszhNsd092KVBgTOLiGCs=",
         "owner": "martiert",
         "repo": "nix-overlay",
-        "rev": "ee07a6f07f06bdfdf5f318add2b56110b8d4debb",
+        "rev": "dbe2265262f484597ee08d07ed776c138a1c6780",
         "type": "github"
       },
       "original": {
