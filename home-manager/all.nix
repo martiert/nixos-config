@@ -38,5 +38,7 @@
     vysor
     teamctl
     roomctl
+
+    projecteur
   ];
 }
