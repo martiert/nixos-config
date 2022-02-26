@@ -8,6 +8,33 @@
 
 let
   system = "x86_64-linux";
+  swayi3Config = {
+    startup = [
+      { command = "alacritty"; }
+      { command = "firefox"; }
+      { command = "CiscoCollabHost"; }
+    ];
+    assigns = {
+      "2" = [{ class = "^Firefox$"; }];
+      "3" = [{ class = "^webex$"; }];
+      "10" = [{ class = "^Gimp$"; }];
+    };
+    workspaceOutputAssign = [
+      {
+        output = "eDP-1";
+        workspace = "1";
+      }
+      {
+        output = "eDP-1";
+        workspace = "2";
+      }
+      {
+        output = "eDP-1";
+        workspace = "3";
+      }
+    ];
+  };
+
 in {
   inherit system;
   nixos = ({modulesPath, ...}: {
@@ -62,6 +89,16 @@ in {
       home.packages = [
         webex-linux.packages."${system}".webexWayland
       ];
+
+      xsession.windowManager.i3.config = swayi3Config;
+      wayland.windowManager.sway.config = swayi3Config //
+        {
+          input = {
+            "type:tablet_tool" = {
+              map_to_output = "HDMI-A-1";
+            };
+          };
+        };
 
       martiert = {
         i3status = {
