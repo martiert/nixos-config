@@ -30,9 +30,12 @@ in {
     networking.useDHCP = false;
     networking.interfaces.eno2.useDHCP = true;
 
-    virtualisation.virtualbox.host = {
-      enable = true;
-      enableExtensionPack = true;
+    virtualisation = {
+      virtualbox.host = {
+        enable = true;
+        enableExtensionPack = true;
+      };
+      docker.enableNvidia = true;
     };
 
     services.xserver = {

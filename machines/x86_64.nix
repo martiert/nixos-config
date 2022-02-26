@@ -76,12 +76,42 @@ in {
       "Oracle_VM_VirtualBox_Extension_Pack"
       "nvidia-x11"
       "nvidia-settings"
+      "nvidia-persistenced"
     ];
 
     hardware.enableRedistributableFirmware = true;
     powerManagement.cpuFreqGovernor = mkDefault "powersave";
     hardware.cpu.intel.updateMicrocode = mkDefault true;
     hardware.video.hidpi.enable = mkDefault hardwareCfg.hidpi.enable;
+
+    virtualisation.docker = {
+      enable = true;
+      daemon.settings = {
+        "userns-remap" = "default";
+      };
+    };
+
+    users.groups.dockremap.gid = 10000;
+
+    users.users = {
+      dockremap = {
+        isSystemUser = true;
+        uid = 10000;
+        group = "dockremap";
+        subUidRanges = [
+          {
+            startUid = 10000;
+            count = 65536;
+          }
+        ];
+        subGidRanges = [
+          {
+            startGid = 10000;
+            count = 65536;
+          }
+        ];
+      };
+    };
 
     services.udev.packages = [ pkgs.projecteur ];
 
