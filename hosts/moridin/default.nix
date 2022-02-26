@@ -8,6 +8,41 @@
 
 let
   system = "x86_64-linux";
+  swayi3Config = left: middle: right: {
+    startup = [
+      { command = "firefox"; }
+      { command = "alacritty"; }
+      { command = "CiscoCollabHost"; }
+      { command = "gimp"; }
+    ];
+    assigns = {
+      "2" = [{ class = "^Firefox$"; }];
+      "3" = [{ class = "^webex$"; }];
+      "10" = [{ class = "^Gimp$"; }];
+    };
+    workspaceOutputAssign = [
+      {
+        output = left;
+        workspace = "9";
+      }
+      {
+        output = right;
+        workspace = "10";
+      }
+      {
+        output = middle;
+        workspace = "1";
+      }
+      {
+        output = middle;
+        workspace = "2";
+      }
+      {
+        output = middle;
+        workspace = "3";
+      }
+    ];
+  };
 in {
   inherit system;
   nixos = ({modulesPath, ...}: {
@@ -75,42 +110,20 @@ in {
         webex-linux.packages."${system}".webexWayland
       ];
 
-      xsession.windowManager.i3.config = {
-        startup = [
-          { command = "firefox"; }
-          { command = "alacritty"; }
-          { command = "CiscoCollabHost"; }
-          { command = "gimp"; }
-        ];
-        assigns = {
-          "2" = [{ class = "^Firefox$"; }];
-          "3" = [{ class = "^webex$"; }];
-          "10" = [{ class = "^Gimp$"; }];
+      xsession.windowManager.i3.config = swayi3Config "DP-2-2" "DP-2-1" "DP-1";
+      wayland.windowManager.sway.config = (swayi3Config "DP-4" "DP-3" "DP-1") //
+        {
+          output = {
+            "DP-4" = { pos = "0 0"; };
+            "DP-3" = { pos = "3840 0"; };
+            "DP-1" = { pos = "7680 540"; };
+          };
+          input = {
+            "type:tablet_tool" = {
+              map_to_output = "DP-1";
+            };
+          };
         };
-        workspaceOutputAssign = [
-          {
-            output = "DP-2-2";
-            workspace = "9";
-          }
-          {
-            output = "DP-1";
-            workspace = "10";
-          }
-          {
-            output = "DP-2-1";
-            workspace = "1";
-          }
-          {
-            output = "DP-2-1";
-            workspace = "2";
-          }
-          {
-            output = "DP-2-1";
-            workspace = "3";
-          }
-        ];
-      };
-
 
       martiert = {
         i3status = {
