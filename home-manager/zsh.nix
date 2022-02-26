@@ -4,7 +4,7 @@
   programs.zsh = {
     enable = true;
     sessionVariables = {
-      EDITOR = "${pkgs.vim}/bin/vim";
+      EDITOR = "vim";
     };
     oh-my-zsh = {
       enable = true;
