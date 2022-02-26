@@ -1,11 +1,26 @@
-{
-  programs.alacritty = {
+{ config, lib, ... }:
+
+with lib;
+
+let
+  cfg = config.martiert.alacritty;
+in {
+  options.martiert.alacritty = {
+    fontSize = mkOption {
+      type = types.int;
+      default = 10;
+      description = "Fontsize to use";
+    };
+  };
+
+
+  config.programs.alacritty = {
     enable = true;
     settings = {
       window.decorations = "none";
 
       font = {
-        size = 10;
+        size = cfg.fontSize;
       };
 
       colors = {

@@ -126,6 +126,7 @@ in {
         };
 
       martiert = {
+        alacritty.fontSize = 14;
         i3status = {
           enable = true;
           ethernet = {
