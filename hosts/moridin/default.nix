@@ -13,11 +13,13 @@ in {
   nixos = ({modulesPath, ...}: {
     nixpkgs.overlays = [
       (import "${openconnect-sso}/overlay.nix")
-      (import martiert)
       (self: super: {
         vysor = super.callPackage vysor {};
         teamctl = cisco.outputs.packages."${system}".teamctl;
         roomctl = cisco.outputs.packages."${system}".roomctl;
+        projecteur = martiert.outputs.packages."${system}".projecteur;
+        mutt-ics = martiert.outputs.packages."${system}".mutt-ics;
+        generate_ssh_key = martiert.outputs.packages."${system}".generate_ssh_key;
       })
     ];
 
@@ -32,6 +34,14 @@ in {
     virtualisation.virtualbox.host = {
       enable = true;
       enableExtensionPack = true;
+    };
+
+    services.xserver = {
+      xrandrHeads = [
+        "DP-2-2"
+        "DP-2-1"
+        "DP-1"
+      ];
     };
 
     martiert = {
@@ -64,6 +74,43 @@ in {
       home.packages = [
         webex-linux.packages."${system}".webexWayland
       ];
+
+      xsession.windowManager.i3.config = {
+        startup = [
+          { command = "firefox"; }
+          { command = "alacritty"; }
+          { command = "CiscoCollabHost"; }
+          { command = "gimp"; }
+        ];
+        assigns = {
+          "2" = [{ class = "^Firefox$"; }];
+          "3" = [{ class = "^webex$"; }];
+          "10" = [{ class = "^Gimp$"; }];
+        };
+        workspaceOutputAssign = [
+          {
+            output = "DP-2-2";
+            workspace = "9";
+          }
+          {
+            output = "DP-1";
+            workspace = "10";
+          }
+          {
+            output = "DP-2-1";
+            workspace = "1";
+          }
+          {
+            output = "DP-2-1";
+            workspace = "2";
+          }
+          {
+            output = "DP-2-1";
+            workspace = "3";
+          }
+        ];
+      };
+
 
       martiert = {
         i3status = {

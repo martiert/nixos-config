@@ -16,13 +16,13 @@
       url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    martiert = {
+      url = "github:martiert/nix-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     webex-linux.url = "git+ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix?ref=main";
     openconnect-sso = {
       url = "github:vlaci/openconnect-sso";
-      flake = false;
-    };
-    martiert = {
-      url = "github:martiert/nix-overlay";
       flake = false;
     };
     vysor = {

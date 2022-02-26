@@ -190,7 +190,7 @@ in {
     };
 
     home.file.".mailcap".text = ''
-      text/calendar; ${pkgs.mutt_ics}/bin/mutt-ics %s; copiousoutput
+      text/calendar; ${pkgs.mutt-ics}/bin/mutt-ics %s; copiousoutput
       text/html; ${pkgs.links}/bin/links -dump %s; copiousoutput
     '';
 

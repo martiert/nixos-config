@@ -75,6 +75,21 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "locked": {
+        "lastModified": 1644229661,
+        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -96,18 +111,41 @@
       }
     },
     "martiert": {
-      "flake": false,
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "mutt-ics": "mutt-ics",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "projecteur": "projecteur"
+      },
       "locked": {
-        "lastModified": 1645795260,
-        "narHash": "sha256-hTQT59U8cSVPelv+0uKhAVoszhNsd092KVBgTOLiGCs=",
+        "lastModified": 1645889368,
+        "narHash": "sha256-xEKMSBQ9JJAkSKPv9WbTCSKExd21X1ZkMiej6FRyLmk=",
         "owner": "martiert",
         "repo": "nix-overlay",
-        "rev": "dbe2265262f484597ee08d07ed776c138a1c6780",
+        "rev": "f67f86a48865ec22be20a4fc24c1812a104e7fdc",
         "type": "github"
       },
       "original": {
         "owner": "martiert",
         "repo": "nix-overlay",
+        "type": "github"
+      }
+    },
+    "mutt-ics": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1574432179,
+        "narHash": "sha256-6NYs/JpcOhkeCGqm9pEFJjFBbA0+S1X7dfbggyZJ/t4=",
+        "owner": "dmedvinsky",
+        "repo": "mutt-ics",
+        "rev": "ac54116be429cb92230f03ec8d3cdbdceaf8f008",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dmedvinsky",
+        "repo": "mutt-ics",
         "type": "github"
       }
     },
@@ -225,6 +263,22 @@
       "original": {
         "owner": "vlaci",
         "repo": "openconnect-sso",
+        "type": "github"
+      }
+    },
+    "projecteur": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1633633504,
+        "narHash": "sha256-6h97ZwHXUnhQ9lJYCExeH179L8p2C9aSIPXxuwNW5E0=",
+        "owner": "jahnf",
+        "repo": "Projecteur",
+        "rev": "21e5e606ff2fb5daf712d66fc2a77cdb7aa3cdde",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jahnf",
+        "repo": "Projecteur",
         "type": "github"
       }
     },
