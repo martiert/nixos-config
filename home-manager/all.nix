@@ -21,7 +21,7 @@
     silver-searcher
     google-chrome
     firefox
-    skype
+    skypeforlinux
     steam
     gimp
 
