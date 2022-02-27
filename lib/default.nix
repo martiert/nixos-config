@@ -12,6 +12,9 @@ let
 
   hosts = builtins.map (x: x.name) (nixFiles ../hosts);
 in rec {
+  runForEach = names: func:
+    lib.listToAttrs (builtins.map (name: { inherit name; value = func name; }) names);
+
   forAllNixHosts = func:
     let
       content = builtins.map (name: {

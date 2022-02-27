@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +32,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-generators, deploy-rs, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs:
+  outputs = { self, nixpkgs, flake-utils, home-manager, nixos-generators, deploy-rs, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { lib = super; });
 
@@ -63,17 +64,9 @@
             }
           ];
         };
+      deployments = [ "octoprint" "pihole" ];
     in {
       nixosConfigurations = lib.forAllNixHosts mkHost;
-      packages.x86_64-linux = {
-        usbinstaller = nixos-generators.nixosGenerate {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
-          modules = [
-            ./tools/usbinstaller
-          ];
-          format = "install-iso";
-        };
-      };
       deploy.nodes = 
         let
           nodeSetup = name: {
@@ -84,23 +77,34 @@
               user = "root";
             };
           };
-        in {
-          octoprint = nodeSetup "octoprint";
-          pihole = nodeSetup "pihole";
-        };
-      apps."x86_64-linux" = {
-        deploy = 
-          let
-            pkgs = import nixpkgs { system = "x86_64-linux"; };
-            deploy = deploy_name: pkgs.writeShellScriptBin "deploy" ''
-                LOCAL_KEY=/etc/keys/binarycache-priv.pem ${deploy-rs.packages.x86_64-linux.deploy-rs}/bin/deploy .#${deploy_name}
-              '';
-          in {
-            octoprint = deploy "octoprint";
-            pihole = deploy "pihole";
-          };
-      };
-
+        in 
+          lib.runForEach deployments nodeSetup;
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-    };
+    }
+    // flake-utils.lib.eachSystem [ "aarch64-linux" "x86_64-linux" "i686-linux" ] (system:
+      {
+        packages = {
+           usbinstaller = nixos-generators.nixosGenerate {
+             pkgs = import nixpkgs { inherit system; };
+             modules = [
+               ./tools/usbinstaller
+             ];
+             format = "install-iso";
+           };
+         };
+       })
+    // flake-utils.lib.eachDefaultSystem (system:
+      {
+        apps = 
+          let
+            pkgs = import nixpkgs { inherit system; };
+            deploy = deploy_name: {
+              type = "app";
+              program = pkgs.writeShellScriptBin "deploy" ''
+                LOCAL_KEY=/etc/keys/binarycache-priv.pem ${deploy-rs.packages.${system}.deploy-rs}/bin/deploy .#${deploy_name}
+              '';
+            };
+          in 
+            lib.runForEach deployments deploy;
+        });
 }
