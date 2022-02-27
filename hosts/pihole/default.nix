@@ -16,8 +16,6 @@ in {
     networking.useDHCP = false;
     networking.interfaces.eth0.useDHCP = true;
 
-    networking.hostName = "pihole";
-
     martiert = {
       sshd = {
         enable = true;

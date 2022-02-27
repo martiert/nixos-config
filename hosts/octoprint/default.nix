@@ -33,7 +33,5 @@ in {
         interfaces = [ "wlan0" ];
       };
     };
-
-    networking.hostName = "octoprint";
   });
 }

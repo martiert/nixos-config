@@ -64,7 +64,6 @@ in {
       ../../nixos/services/openssh.nix
       ../../secrets/moridin_networking.nix
     ];
-    networking.hostName = "moridin";
 
     virtualisation.virtualbox.host = {
       enable = true;
