@@ -51,6 +51,8 @@
             config.nixos
             home-manager.nixosModules.home-manager
             {
+              environment.variables.EDITOR = "vim";
+
               networking.hostName = name;
 
               home-manager.useGlobalPkgs = true;

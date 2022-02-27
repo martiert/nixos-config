@@ -17,6 +17,10 @@
     ./weechat.nix
   ];
 
+  home.sessionVariables = {
+    EDITOR = "vim";
+  };
+
   home.packages = with pkgs; [
     silver-searcher
     google-chrome
