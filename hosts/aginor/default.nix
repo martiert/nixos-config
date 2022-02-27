@@ -10,7 +10,7 @@ let
   system = "x86_64-linux";
 in {
   inherit system;
-  nixos = ({modulesPath, ...}: {
+  nixos = {
     nixpkgs.overlays = [
       (import "${openconnect-sso}/overlay.nix")
       (self: super: {
@@ -28,7 +28,6 @@ in {
       ../../nixos/configs/common.nix
       ../../nixos/services/openssh.nix
     ];
-    networking.hostName = "aginor";
     networking.useDHCP = false;
     networking.interfaces.eno2.useDHCP = true;
 
@@ -74,11 +73,7 @@ in {
       };
       sshd.enable = true;
     };
-  });
 
-  home-manager = {
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
     home-manager.users.martin = {
       imports = [
         ../../home-manager/all.nix

@@ -45,7 +45,7 @@ let
   };
 in {
   inherit system;
-  nixos = ({modulesPath, ...}: {
+  nixos = {
     nixpkgs.overlays = [
       (import "${openconnect-sso}/overlay.nix")
       (self: super: {
@@ -96,9 +96,7 @@ in {
       };
       sshd.enable = true;
     };
-  });
 
-  home-manager = {
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.users.martin = {

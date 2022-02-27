@@ -48,14 +48,17 @@
             ./nixos/configs/networking.nix
             ./nixos/users/martin.nix
             ./nixos/users/root.nix
-
             config.nixos
             home-manager.nixosModules.home-manager
             {
               networking.hostName = name;
+
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
               nix.registry.nixpkgs.flake = nixpkgs;
             }
-            config.home-manager
           ];
         };
     in {

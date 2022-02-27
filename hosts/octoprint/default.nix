@@ -36,6 +36,4 @@ in {
 
     networking.hostName = "octoprint";
   });
-
-  home-manager = {};
 }

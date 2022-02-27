@@ -37,7 +37,7 @@ let
 
 in {
   inherit system;
-  nixos = ({modulesPath, ...}: {
+  nixos = {
     nixpkgs.overlays = [
       (import "${openconnect-sso}/overlay.nix")
       (self: super: {
@@ -60,7 +60,6 @@ in {
 
     networking.interfaces.wlp1s0.useDHCP = true;
 
-    networking.hostName = "moghedien";
     martiert = {
       mountpoints = {
         keyDisk.keyFile = "luks/moghedien.key";
@@ -76,11 +75,7 @@ in {
         interfaces = [ "wlp1s0" ];
       };
     };
-  });
 
-  home-manager = {
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
     home-manager.users.martin = {
       imports = [
         ../../home-manager/all.nix
