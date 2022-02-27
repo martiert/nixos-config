@@ -95,14 +95,20 @@
        })
     // flake-utils.lib.eachDefaultSystem (system:
       {
-        apps = 
+        packages =
           let
             pkgs = import nixpkgs { inherit system; };
-            deploy = deploy_name: {
-              type = "app";
-              program = pkgs.writeShellScriptBin "deploy" ''
+            deploy = deploy_name: pkgs.writeShellScriptBin "deploy" ''
                 LOCAL_KEY=/etc/keys/binarycache-priv.pem ${deploy-rs.packages.${system}.deploy-rs}/bin/deploy .#${deploy_name}
               '';
+          in 
+            lib.runForEach deployments deploy;
+
+        apps = 
+          let
+            deploy = deploy_name: {
+              type = "app";
+              program = "${self.packages.${system}.${deploy_name}}/bin/deploy";
             };
           in 
             lib.runForEach deployments deploy;
