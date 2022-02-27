@@ -33,7 +33,9 @@
 
   outputs = { self, nixpkgs, home-manager, nixos-generators, deploy-rs, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs:
     let
-      mkHost = filename:
+      lib = nixpkgs.lib.extend(self: super: (import ./lib) { lib = super; });
+
+      mkHost = name: filename:
         let
           config = import filename {
             inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
@@ -50,19 +52,14 @@
             config.nixos
             home-manager.nixosModules.home-manager
             {
+              networking.hostName = name;
               nix.registry.nixpkgs.flake = nixpkgs;
             }
             config.home-manager
           ];
         };
     in {
-      nixosConfigurations = {
-        octoprint = mkHost ./hosts/octoprint;
-        pihole = mkHost ./hosts/pihole;
-        moghedien = mkHost ./hosts/moghedien;
-        moridin = mkHost ./hosts/moridin;
-        aginor = mkHost ./hosts/aginor;
-      };
+      nixosConfigurations = lib.forAllNixHosts mkHost;
       packages.x86_64-linux = {
         usbinstaller = nixos-generators.nixosGenerate {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
