@@ -111,9 +111,9 @@ in {
       wayland.windowManager.sway.config = (swayi3Config "DP-4" "DP-3" "DP-1") //
         {
           output = {
-            "DP-4" = { pos = "0 0"; };
-            "DP-3" = { pos = "3840 0"; };
-            "DP-1" = { pos = "7680 540"; };
+            "DP-4" = { pos = "0 0"; mode = "3840x2160@30Hz"; };
+            "DP-3" = { pos = "3840 0"; mode = "3840x2160@30Hz"; };
+            "DP-1" = { pos = "7680 540"; mode = "1920x1080@30Hz"; };
           };
           input = {
             "type:tablet_tool" = {
