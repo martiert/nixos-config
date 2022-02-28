@@ -7,6 +7,11 @@ let
   hardwareCfg = config.martiert.hardware;
 in {
   options.martiert.boot = {
+    efi.removable = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Install boot loader as removable";
+    };
     initrd = mkOption {
       type = types.submodule {
         options = {
@@ -50,11 +55,12 @@ in {
     boot.extraModulePackages = [ ];
 
     boot.loader = {
-      efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = !bootCfg.efi.removable;
       grub = {
         enable = true;
         device = "nodev";
         efiSupport = true;
+        efiInstallAsRemovable = bootCfg.efi.removable;
         version = 2;
       };
     };
