@@ -14,11 +14,6 @@ let
       { command = "firefox"; }
       { command = "CiscoCollabHost"; }
     ];
-    assigns = {
-      "2" = [{ class = "^Firefox$"; }];
-      "3" = [{ class = "^webex$"; }];
-      "10" = [{ class = "^Gimp$"; }];
-    };
     workspaceOutputAssign = [
       {
         output = "eDP-1";
@@ -85,13 +80,26 @@ in {
         webex-linux.packages."${system}".webexWayland
       ];
 
-      xsession.windowManager.i3.config = swayi3Config;
+      xsession.windowManager.i3.config = swayi3Config //
+        {
+          assigns = {
+            "2" = [{ class = "^Firefox$"; }];
+            "3" = [{ class = "^webex$"; }];
+            "10" = [{ class = "^Gimp$"; }];
+          };
+        };
+
       wayland.windowManager.sway.config = swayi3Config //
         {
           input = {
             "type:tablet_tool" = {
               map_to_output = "HDMI-A-1";
             };
+          };
+          assigns = {
+            "2" = [{ app_id = "^firefox$"; }];
+            "3" = [{ app_id = "^CiscoCollabHost$"; }];
+            "10" = [{ class = "^Gimp$"; }];
           };
         };
 
