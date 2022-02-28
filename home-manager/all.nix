@@ -44,5 +44,6 @@
     roomctl
 
     projecteur
+    tmate
   ];
 }
