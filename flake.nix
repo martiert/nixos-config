@@ -78,7 +78,16 @@
               user = "root";
             };
           };
-        in 
+        in {
+          tmate = {
+            hostname = "tmate.martiert.com";
+            profiles.system = {
+              sshUser = "root";
+              path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.tmate;
+              user = "root";
+            };
+          };
+        } //
           lib.runForEach deployments nodeSetup;
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     }
@@ -103,15 +112,6 @@
                 LOCAL_KEY=/etc/keys/binarycache-priv.pem ${deploy-rs.packages.${system}.deploy-rs}/bin/deploy .#${deploy_name}
               '';
           in 
-            lib.runForEach deployments deploy;
-
-        apps = 
-          let
-            deploy = deploy_name: {
-              type = "app";
-              program = "${self.packages.${system}.${deploy_name}}/bin/deploy";
-            };
-          in 
-            lib.runForEach deployments deploy;
-        });
+            lib.runForEach (deployments ++ [ "tmate" ]) deploy;
+      });
 }
