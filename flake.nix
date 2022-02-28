@@ -53,6 +53,7 @@
             home-manager.nixosModules.home-manager
             {
               environment.variables.EDITOR = "vim";
+              environment.variables.MOZ_ENABLE_WAYLAND = "1";
 
               networking.hostName = name;
 
