@@ -65,30 +65,40 @@
             }
           ];
         };
-      deployments = [ "octoprint" "pihole" ];
+      toDeploy = [
+        {
+          name = "tmate";
+          hostname = "tmate.martiert.com";
+          arch = "x86_64-linux";
+        }
+        {
+          name = "octoprint";
+          hostname = "octoprint.localdomain";
+          arch = "aarch64-linux";
+        }
+        {
+          name = "pihole";
+          hostname = "pihole.localdomain";
+          arch = "aarch64-linux";
+        }
+      ];
     in {
       nixosConfigurations = lib.forAllNixHosts mkHost;
       deploy.nodes = 
         let
-          nodeSetup = name: {
-            hostname = "${name}.localdomain";
+          deployment = config: {
+            hostname = config.hostname;
             profiles.system = {
-              sshUser = "root";
-              path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations."${name}";
+              sshUser = "martin";
+              sshOpts = [ "-t" ];
+              magicRollback = false;
+              path = deploy-rs.lib."${config.arch}".activate.nixos self.nixosConfigurations."${config.name}";
               user = "root";
             };
           };
-        in {
-          tmate = {
-            hostname = "tmate.martiert.com";
-            profiles.system = {
-              sshUser = "root";
-              path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.tmate;
-              user = "root";
-            };
-          };
-        } //
-          lib.runForEach deployments nodeSetup;
+        in
+          lib.forEachEntry deployment toDeploy;
+
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     }
     // flake-utils.lib.eachSystem [ "aarch64-linux" "x86_64-linux" "i686-linux" ] (system:
@@ -102,16 +112,5 @@
              format = "install-iso";
            };
          };
-       })
-    // flake-utils.lib.eachDefaultSystem (system:
-      {
-        packages =
-          let
-            pkgs = import nixpkgs { inherit system; };
-            deploy = deploy_name: pkgs.writeShellScriptBin "deploy" ''
-                LOCAL_KEY=/etc/keys/binarycache-priv.pem ${deploy-rs.packages.${system}.deploy-rs}/bin/deploy .#${deploy_name}
-              '';
-          in 
-            lib.runForEach (deployments ++ [ "tmate" ]) deploy;
-      });
+       });
 }
