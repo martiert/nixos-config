@@ -34,70 +34,28 @@
 
   outputs = { self, nixpkgs, flake-utils, home-manager, nixos-generators, deploy-rs, openconnect-sso, martiert, cisco, webex-linux, vysor, ... }@inputs:
     let
-      lib = nixpkgs.lib.extend(self: super: (import ./lib) { lib = super; });
+      lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
+        inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
+        lib = super;
+      });
 
-      mkHost = name: filename:
-        let
-          config = import filename {
-            inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
+      mkDeploy = name: filename: config:
+        {
+          hostname = config.deployTo;
+          profiles.system = {
+            sshUser = "martin";
+            sshOpts = [ "-t" ];
+            magicRollback = false;
+            path = deploy-rs.lib."${config.system}".activate.nixos self.nixosConfigurations."${name}";
+            user = "root";
           };
-        in nixpkgs.lib.nixosSystem {
-          system = config.system;
-          modules = [
-            ./nixos/configs/timezone.nix
-            ./nixos/configs/fonts.nix
-            ./nixos/configs/networking.nix
-            ./nixos/users/martin.nix
-            ./nixos/users/root.nix
-            config.nixos
-            home-manager.nixosModules.home-manager
-            {
-              environment.variables.EDITOR = "vim";
-              environment.variables.MOZ_ENABLE_WAYLAND = "1";
-
-              networking.hostName = name;
-
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-              nix.registry.nixpkgs.flake = nixpkgs;
-            }
-          ];
         };
-      toDeploy = [
-        {
-          name = "tmate";
-          hostname = "tmate.martiert.com";
-          arch = "x86_64-linux";
-        }
-        {
-          name = "octoprint";
-          hostname = "octoprint.localdomain";
-          arch = "aarch64-linux";
-        }
-        {
-          name = "pihole";
-          hostname = "pihole.localdomain";
-          arch = "aarch64-linux";
-        }
-      ];
     in {
-      nixosConfigurations = lib.forAllNixHosts mkHost;
+      nixosConfigurations = lib.forAllNixHosts lib.makeNixosConfig;
       deploy.nodes = 
-        let
-          deployment = config: {
-            hostname = config.hostname;
-            profiles.system = {
-              sshUser = "martin";
-              sshOpts = [ "-t" ];
-              magicRollback = false;
-              path = deploy-rs.lib."${config.arch}".activate.nixos self.nixosConfigurations."${config.name}";
-              user = "root";
-            };
-          };
-        in
-          lib.forEachEntry deployment toDeploy;
+        lib.forNixHostsWhere
+          (config: builtins.hasAttr "deployTo" config)
+          mkDeploy;
 
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     }

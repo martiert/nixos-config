@@ -4,6 +4,7 @@ let
   wifi_networks = import ../../secrets/wifi_networks.nix;
 in {
   system = "aarch64-linux";
+  deployTo = "pihole.localdomain";
 
   nixos = ({modulesPath, ...}: {
     imports = [

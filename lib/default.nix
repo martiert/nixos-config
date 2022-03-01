@@ -1,5 +1,12 @@
-{ nixpkgs ? import <nixpkgs> {}
-, lib ? nixpkgs.lib}:
+{ nixpkgs
+, lib
+, home-manager
+, openconnect-sso
+, martiert
+, cisco
+, webex-linux
+, vysor
+, ...}:
 
 let
   isNixFile = {name, type}: type == "directory" || lib.strings.hasSuffix ".nix" name;
@@ -11,16 +18,55 @@ let
     builtins.filter isNixFile contentList;
 
   hosts = builtins.map (x: x.name) (nixFiles ../hosts);
-in rec {
-  forEachEntry = func: entries:
-    lib.listToAttrs (builtins.map (entry: { name = "${entry.name}"; value = func entry; }) entries);
-
-  forAllNixHosts = func:
+  importConfig = name:
     let
-      content = builtins.map (name: {
-        name = name;
-        value = func name ../hosts/${name};
-      }) hosts;
+      filename = ../hosts/${name};
+      config = import filename {
+        inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
+      };
+    in {
+      name = name;
+      config = config;
+      filename = filename;
+    };
+in rec {
+  forNixHostsWhere = predicate: func:
+    let
+      predicateCheck = entry: predicate entry.config;
+      makeAttr = entry: {
+        name = entry.name;
+        value = func entry.name entry.filename entry.config;
+      };
+
+      configs = builtins.map importConfig hosts;
+      acceptedConfigs = builtins.filter predicateCheck configs;
     in
-      lib.listToAttrs content;
+      lib.listToAttrs (builtins.map makeAttr acceptedConfigs);
+
+  forAllNixHosts = forNixHostsWhere (_: true);
+
+  makeNixosConfig = name: filename: config:
+    nixpkgs.lib.nixosSystem {
+      system = config.system;
+      modules = [
+        ../nixos/configs/timezone.nix
+        ../nixos/configs/fonts.nix
+        ../nixos/configs/networking.nix
+        ../nixos/users/martin.nix
+        ../nixos/users/root.nix
+        config.nixos
+        home-manager.nixosModules.home-manager
+        {
+          environment.variables.EDITOR = "vim";
+          environment.variables.MOZ_ENABLE_WAYLAND = "1";
+
+          networking.hostName = name;
+
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+          nix.registry.nixpkgs.flake = nixpkgs;
+        }
+      ];
+    };
 }

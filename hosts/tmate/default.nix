@@ -2,6 +2,7 @@
 
 {
   system = "x86_64-linux";
+  deployTo = "tmate.martiert.com";
 
   nixos = ({modulesPath, pkgs, ...}: {
     imports = [
