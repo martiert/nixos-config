@@ -40,7 +40,10 @@
     martiert.sshd = {
       enable = true;
       authorizedKeyFiles = [
-        ./public_keys/moghedien.nix
+        ./public_keys/moghedien.pub
+        ./public_keys/moridin.pub
+        ./public_keys/aginor.pub
+        ./public_keys/perrin.pub
       ];
     };
   });
