@@ -33,6 +33,7 @@ in {
       ../../machines/x86_64.nix
       ../../nixos/configs/common.nix
       ../../nixos/services/openssh.nix
+      ../../nixos/services/nginx.nix
       ../../secrets/perrin_networking.nix
     ];
 
