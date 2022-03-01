@@ -83,6 +83,8 @@ in {
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced"
+      "spotify"
+      "spotify-unwrapped"
     ];
 
     hardware.enableRedistributableFirmware = true;
