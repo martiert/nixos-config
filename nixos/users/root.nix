@@ -5,7 +5,6 @@ let
 in  {
   users.users.root = {
     password = "changeme";
-    openssh.authorizedKeys.keyFiles = cfg.authorizedKeyFiles;
   };
 
   security.sudo.extraConfig = ''
