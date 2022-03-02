@@ -69,6 +69,13 @@
              ];
              format = "install-iso";
            };
+           digitalOcean = nixos-generators.nixosGenerate {
+             pkgs = import nixpkgs { inherit system; };
+             modules = [
+               ./tools/digitalOcean
+             ];
+             format = "do";
+           };
          };
        });
 }
