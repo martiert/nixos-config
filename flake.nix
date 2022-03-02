@@ -59,7 +59,7 @@
 
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     }
-    // flake-utils.lib.eachSystem [ "aarch64-linux" "x86_64-linux" "i686-linux" ] (system:
+    // flake-utils.lib.eachSystem [ "aarch64-linux" "x86_64-linux" ] (system:
       {
         packages = {
            usbinstaller = nixos-generators.nixosGenerate {
