@@ -66,6 +66,21 @@ in {
       services.xserver = {
         defaultSession = "none+i3";
       };
+      networking.interfaces = {
+        "eno1" = {
+          enable = true;
+          useDHCP = true;
+        };
+        "enp3s0" = {
+          enable = true;
+          useDHCP = true;
+          staticRoutes = true;
+          supplicant = {
+            enable = true;
+            wired = true;
+          };
+        };
+      };
       sshd.enable = true;
     };
 
