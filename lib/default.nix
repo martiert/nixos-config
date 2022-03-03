@@ -52,9 +52,9 @@ in rec {
       modules = [
         ../nixos/configs/timezone.nix
         ../nixos/configs/fonts.nix
-        ../nixos/configs/networking.nix
         ../nixos/users/martin.nix
         ../nixos/users/root.nix
+        ../nixos/configs/networking
         config.nixos
         agenix.nixosModule
         home-manager.nixosModules.home-manager
