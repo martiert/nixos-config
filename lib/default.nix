@@ -1,5 +1,6 @@
 { nixpkgs
 , lib
+, agenix
 , home-manager
 , openconnect-sso
 , martiert
@@ -55,10 +56,12 @@ in rec {
         ../nixos/users/martin.nix
         ../nixos/users/root.nix
         config.nixos
+        agenix.nixosModule
         home-manager.nixosModules.home-manager
         {
           environment.variables.EDITOR = "vim";
           environment.variables.MOZ_ENABLE_WAYLAND = "1";
+          environment.systemPackages = [ agenix.defaultPackage."${config.system}" ];
 
           networking.hostName = name;
 
