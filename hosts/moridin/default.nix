@@ -71,6 +71,8 @@ in {
       ];
     };
 
+    age.secrets."wpa_supplicant.conf".file = ../../secrets/wpa_supplicant_wired.age;
+
     martiert = {
       mountpoints = {
         keyDisk.keyFile = "luks/moridin.key";
