@@ -32,7 +32,7 @@ let
 
 in {
   inherit system;
-  nixos = {
+  nixos = ({ config, ... }: {
     nixpkgs.overlays = [
       (import "${openconnect-sso}/overlay.nix")
       (import ../../overlay { inherit cisco vysor martiert system; })
@@ -47,6 +47,19 @@ in {
     networking.dhcpcd.extraConfig = "resolv.conf";
 
     networking.interfaces.wlp1s0.useDHCP = true;
+    age.identityPaths = [ "/etc/ssh/ssh_host_ed25591_key" ];
+    age.secrets."wpa_supplicant".file = ../../secrets/wpa_supplicant_wireless.age;
+
+    networking.supplicant = {
+      "wlp1s0" = {
+        configFile.path = config.age.secrets."wpa_supplicant".path;
+        userControlled.enable = true;
+        extraConf = ''
+          ap_scan=1
+          p2p_disabled=1
+        '';
+      };
+    };
 
     martiert = {
       mountpoints = {
@@ -110,5 +123,5 @@ in {
         };
       };
     };
-  };
+  });
 }

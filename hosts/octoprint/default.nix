@@ -6,7 +6,7 @@ in {
   system = "aarch64-linux";
   deployTo = "octoprint.localdomain";
 
-  nixos = ({modulesPath, ...}: {
+  nixos = ({modulesPath, config, ...}: {
     nixpkgs.overlays = [
       (import ./overlays/octoprint.nix)
     ];
@@ -20,6 +20,18 @@ in {
 
     networking.useDHCP = false;
     networking.interfaces.wlan0.useDHCP = true;
+    age.secrets."wpa_supplicant".file = ../../secrets/wpa_supplicant_wireless.age;
+    networking.supplicant = {
+      "wlan0" = {
+        configFile.path = config.age.secrets."wpa_supplicant".path;
+        userControlled.enable = true;
+        extraConf = ''
+          ap_scan=1
+          p2p_disabled=1
+        '';
+      };
+    };
+
     martiert = {
       sshd = {
         enable = true;

@@ -102,13 +102,6 @@ in {
     };
   };
   config = {
-    networking.wireless = {
-      enable = wireless.enable;
-      interfaces = wireless.interfaces;
-      userControlled.enable = true;
-      networks = wifi_networks;
-    };
-
     networking.iproute2 = {
       enable = true;
       rttablesExtraConfig = concatStringsSep "\n" (mapAttrsToList createTableEntry tables) + "\n";
