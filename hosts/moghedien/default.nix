@@ -46,20 +46,8 @@ in {
     networking.resolvconf.enable = true;
     networking.dhcpcd.extraConfig = "resolv.conf";
 
-    networking.interfaces.wlp1s0.useDHCP = true;
     age.identityPaths = [ "/etc/ssh/ssh_host_ed25591_key" ];
-    age.secrets."wpa_supplicant".file = ../../secrets/wpa_supplicant_wireless.age;
-
-    networking.supplicant = {
-      "wlp1s0" = {
-        configFile.path = config.age.secrets."wpa_supplicant".path;
-        userControlled.enable = true;
-        extraConf = ''
-          ap_scan=1
-          p2p_disabled=1
-        '';
-      };
-    };
+    age.secrets."wpa_supplicant_wlp1s0".file = ../../secrets/wpa_supplicant_wireless.age;
 
     martiert = {
       mountpoints = {
@@ -71,9 +59,14 @@ in {
         boot = "/dev/disk/by-uuid/C414-3256";
         swap = "/dev/disk/by-partuuid/813b7f11-8581-4af9-839c-c46e0be03f39";
       };
-      networking.wireless = {
-        enable = true;
-        interfaces = [ "wlp1s0" ];
+      networking.interfaces = {
+        "wlp1s0" = {
+          enable = true;
+          supplicant = {
+            enable = true;
+          };
+          useDHCP = true;
+        };
       };
     };
 

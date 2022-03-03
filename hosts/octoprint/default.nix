@@ -18,19 +18,7 @@ in {
       ../../nixos/services/octoprint.nix
     ];
 
-    networking.useDHCP = false;
-    networking.interfaces.wlan0.useDHCP = true;
-    age.secrets."wpa_supplicant".file = ../../secrets/wpa_supplicant_wireless.age;
-    networking.supplicant = {
-      "wlan0" = {
-        configFile.path = config.age.secrets."wpa_supplicant".path;
-        userControlled.enable = true;
-        extraConf = ''
-          ap_scan=1
-          p2p_disabled=1
-        '';
-      };
-    };
+    age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
 
     martiert = {
       sshd = {
@@ -41,9 +29,14 @@ in {
           ./public_keys/perrin.pub
         ];
       };
-      networking.wireless = {
-        enable = true;
-        interfaces = [ "wlan0" ];
+      networking.interfaces = {
+        "wlan0" = {
+          enable = true;
+          supplicant = {
+            enable = true;
+          };
+          useDHCP = true;
+        };
       };
     };
   });

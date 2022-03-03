@@ -71,7 +71,7 @@ in {
       ];
     };
 
-    age.secrets."wpa_supplicant.conf".file = ../../secrets/wpa_supplicant_wired.age;
+    age.secrets."wpa_supplicant_enp0s20f0u3".file = ../../secrets/wpa_supplicant_wired.age;
 
     martiert = {
       mountpoints = {
@@ -89,6 +89,21 @@ in {
         defaultSession = "none+i3";
       };
       sshd.enable = true;
+      networking.interfaces = {
+        "eno1" = {
+          enable = true;
+          useDHCP = true;
+        };
+        "enp0s20f0u3" = {
+          enable = true;
+          useDHCP = true;
+          staticRoutes = true;
+          supplicant = {
+            enable = true;
+            wired = true;
+          };
+        };
+      };
     };
 
     home-manager.useGlobalPkgs = true;
