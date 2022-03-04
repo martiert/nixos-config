@@ -54,6 +54,21 @@ let
     ];
   };
   interface_config = builtins.mapAttrs ifaceConfig enabled_interfaces;
+
+  disableDHCPGatewayFor = iface: _: ''
+    interface ${iface}
+    nogateway'';
+  static_routed_interfaces = lib.filterAttrs (_: value: value.staticRoutes) enabled_interfaces;
+  disabledDHCPGateways = lib.concatStrings (lib.mapAttrsToList disableDHCPGatewayFor static_routed_interfaces);
+
+  globalDHCPConfig = if config.martiert.networking.dhcpcd.leaveResolveConf then
+    "nohook resolv.conf" else "";
+
+  extraDHCPConfig = lib.concatStringsSep "\n" [
+    globalDHCPConfig
+    disabledDHCPGateways
+  ];
+
 in {
   options = with lib; {
     martiert.networking = {
@@ -77,11 +92,22 @@ in {
           };
         });
       };
+      dhcpcd = mkOption {
+        default = {};
+        description = "Configurations for dhcp";
+        type = types.submodule {
+          options = {
+            leaveResolveConf = mkEnableOption "turning off messing with resolve conf";
+          };
+        };
+      };
     };
   };
   config = {
     networking.useDHCP = false;
     networking.interfaces = interface_config;
     networking.supplicant = supplicant_config;
+
+    networking.dhcpcd.extraConfig = extraDHCPConfig;
   };
 }

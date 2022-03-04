@@ -55,7 +55,6 @@ in {
       ../../machines/x86_64.nix
       ../../nixos/configs/common.nix
       ../../nixos/services/openssh.nix
-      ../../secrets/moridin_networking.nix
     ];
 
     virtualisation.virtualbox.host = {
@@ -72,6 +71,21 @@ in {
     };
 
     age.secrets."wpa_supplicant_enp0s20f0u3".file = ../../secrets/wpa_supplicant_wired.age;
+    services.dnsmasq = 
+      let
+        dnsServers = import ../../secrets/dns_servers.nix;
+      in {
+        enable = true;
+        resolveLocalQueries = true;
+        servers = dnsServers.home ++ dnsServers.cisco;
+      };
+
+      networking.networkmanager = {
+        enable = true;
+        unmanaged = [ "enp0s20f0u3" ];
+        dns = "dnsmasq";
+        dhcp = "dhcpcd";
+      };
 
     martiert = {
       mountpoints = {
@@ -89,18 +103,37 @@ in {
         defaultSession = "none+i3";
       };
       sshd.enable = true;
-      networking.interfaces = {
-        "eno1" = {
-          enable = true;
-          useDHCP = true;
-        };
-        "enp0s20f0u3" = {
-          enable = true;
-          useDHCP = true;
-          staticRoutes = true;
-          supplicant = {
+      networking = {
+        dhcpcd.leaveResolveConf = true;
+        interfaces = {
+          "eno1" = {
             enable = true;
-            wired = true;
+            useDHCP = true;
+          };
+          "enp0s20f0u3" = {
+            enable = true;
+            useDHCP = true;
+            staticRoutes = true;
+            supplicant = {
+              enable = true;
+              wired = true;
+            };
+          };
+        };
+        tables = {
+          cisco = {
+            number = 42;
+            enable = true;
+            rules = [
+              {
+                from = "192.168.1.1/24";
+              }
+            ];
+            routes = {
+              default = {
+                value = "via 192.168.1.1";
+              };
+            };
           };
         };
       };

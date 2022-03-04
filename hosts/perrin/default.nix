@@ -34,7 +34,6 @@ in {
       ../../nixos/configs/common.nix
       ../../nixos/services/openssh.nix
       ../../nixos/services/nginx.nix
-      ../../secrets/perrin_networking.nix
     ];
 
     virtualisation.virtualbox.host = {
@@ -46,7 +45,23 @@ in {
       videoDrivers = [ "nvidia" ];
     };
 
-    age.secrets."wpa_supplicant.conf".file = ../../secrets/wpa_supplicant_wired.age;
+    services.dnsmasq = 
+      let
+        dnsServers = import ../../secrets/dns_servers.nix;
+      in {
+        enable = true;
+        resolveLocalQueries = true;
+        servers = dnsServers.home ++ dnsServers.cisco;
+      };
+
+      networking.networkmanager = {
+        enable = true;
+        unmanaged = [ "enp3s0" ];
+        dns = "dnsmasq";
+        dhcp = "dhcpcd";
+      };
+
+    age.secrets."wpa_supplicant_enp3s0".file = ../../secrets/wpa_supplicant_wired.age;
 
     martiert = {
       mountpoints = {
@@ -66,18 +81,37 @@ in {
       services.xserver = {
         defaultSession = "none+i3";
       };
-      networking.interfaces = {
-        "eno1" = {
-          enable = true;
-          useDHCP = true;
-        };
-        "enp3s0" = {
-          enable = true;
-          useDHCP = true;
-          staticRoutes = true;
-          supplicant = {
+      networking = {
+        dhcpcd.leaveResolveConf = true;
+        interfaces = {
+          "eno1" = {
             enable = true;
-            wired = true;
+            useDHCP = true;
+          };
+          "enp3s0" = {
+            enable = true;
+            useDHCP = true;
+            staticRoutes = true;
+            supplicant = {
+              enable = true;
+              wired = true;
+            };
+          };
+        };
+        tables = {
+          cisco = {
+            number = 42;
+            enable = true;
+            rules = [
+              {
+                from = "192.168.1.1/24";
+              }
+            ];
+            routes = {
+              default = {
+                value = "via 192.168.1.1";
+              };
+            };
           };
         };
       };
