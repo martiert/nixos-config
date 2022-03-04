@@ -132,11 +132,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1645970334,
-        "narHash": "sha256-6nn4YF9bPtkxkB7bM6yJO3m//p3sGilxNQFjm1epLEM=",
+        "lastModified": 1646364779,
+        "narHash": "sha256-481vkO9b3h++bHzLbGDDhgpBoXQ0Wlo4lm4h5/EJMO4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "ea85f4b1fdf3f25cf97dc49f4a9ec4eafda2ea25",
+        "rev": "d119cea3763977801ad66330668c1ab4346cb7f7",
         "type": "github"
       },
       "original": {
@@ -255,11 +255,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1645937171,
-        "narHash": "sha256-n9f9GZBNMe8UMhcgmmaXNObkH01jjgp7INMrUgBgcy4=",
+        "lastModified": 1646331602,
+        "narHash": "sha256-cRuytTfel52z947yKfJcZU7zbQBgM16qqTf+oJkVwtg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "22dc22f8cedc58fcb11afe1acb08e9999e78be9c",
+        "rev": "ad267cc9cf3d5a6ae63940df31eb31382d6356e6",
         "type": "github"
       },
       "original": {
@@ -402,11 +402,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1645105283,
-        "narHash": "sha256-YUdozpn+6Q0fNbKYOdSNcunRmNQuGbIfhh2ZSW/su/I=",
+        "lastModified": 1646321337,
+        "narHash": "sha256-L5tMPbXEbliKo40HCZIFN+GG5jofoTAM/3BgGR9GaSI=",
         "ref": "main",
-        "rev": "138df110d1d150954c15aee9a17956a13a99cdd0",
-        "revCount": 51,
+        "rev": "aae19e3bf3a65e06a8b30021b955d4cc0e287ea7",
+        "revCount": 52,
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix"
       },
