@@ -39,7 +39,7 @@ in {
     services.xserver = {
       videoDrivers = [ "nvidia" ];
       xrandrHeads = [
-        "DP-2"
+        "USB-C-0"
         "DP-0"
       ];
     };
@@ -116,7 +116,7 @@ in {
         };
         workspaceOutputAssign = [
           {
-            output = "DP-2";
+            output = "USB-C-0";
             workspace = "9";
           }
           {
