@@ -28,9 +28,6 @@ in {
       ../../nixos/configs/common.nix
       ../../nixos/services/openssh.nix
     ];
-    networking.useDHCP = false;
-    networking.interfaces.eno2.useDHCP = true;
-
     virtualisation = {
       virtualbox.host = {
         enable = true;
@@ -58,6 +55,15 @@ in {
     };
 
     martiert = {
+      networking = {
+        interfaces = {
+          "br0" = {
+            enable = true;
+            useDHCP = true;
+            bridgedInterfaces = [ "eno2" ];
+          };
+        };
+      };
       mountpoints = {
         keyDisk.keyFile = "luks/aginor.key";
         root = {
@@ -86,7 +92,7 @@ in {
       martiert = {
         i3status = {
           enable = true;
-          ethernet.eno2 = 1;
+          ethernet.br0 = 1;
         };
         i3 = {
           enable = true;
