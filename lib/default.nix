@@ -3,7 +3,6 @@
 , agenix
 , home-manager
 , openconnect-sso
-, martiert
 , cisco
 , webex-linux
 , vysor
@@ -23,7 +22,7 @@ let
     let
       filename = ../hosts/${name};
       config = import filename {
-        inherit nixpkgs home-manager openconnect-sso martiert cisco webex-linux vysor;
+        inherit nixpkgs home-manager openconnect-sso cisco webex-linux vysor;
       };
     in {
       name = name;

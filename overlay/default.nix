@@ -1,7 +1,6 @@
 { nixpkgs
 , cisco
 , vysor
-, martiert
 , system
 }:
 
