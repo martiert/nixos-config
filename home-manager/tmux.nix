@@ -18,9 +18,9 @@ let
         ];
       }
       {
-        window_name = "2:irssi";
+        window_name = "2:weechat";
         panes = [
-          "irssi"
+          "weechat"
         ];
       }
       {
