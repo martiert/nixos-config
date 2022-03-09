@@ -28,6 +28,7 @@
     skypeforlinux
     steam
     gimp
+    flashPrint
 
     #tools
     wget
