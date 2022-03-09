@@ -1,14 +1,18 @@
-{ cisco
+{ nixpkgs
+, cisco
 , vysor
 , martiert
 , system
 }:
 
-self: super: {
+let
+  pkgs = import nixpkgs { inherit system; };
+  inherit (pkgs.libsForQt5) callPackage;
+in self: super: {
   vysor = super.callPackage vysor {};
   teamctl = cisco.outputs.packages."${system}".teamctl;
   roomctl = cisco.outputs.packages."${system}".roomctl;
-  projecteur = martiert.outputs.packages."${system}".projecteur;
+  projecteur = callPackage ./projecteur.nix { };
   mutt-ics = martiert.outputs.packages."${system}".mutt-ics;
   generate_ssh_key = martiert.outputs.packages."${system}".generate_ssh_key;
 
