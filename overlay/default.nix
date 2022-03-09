@@ -14,7 +14,7 @@ in self: super: {
   roomctl = cisco.outputs.packages."${system}".roomctl;
   projecteur = callPackage ./projecteur.nix {};
   mutt-ics = callPackage ./mutt-ics.nix {};
-  generate_ssh_key = martiert.outputs.packages."${system}".generate_ssh_key;
+  generate_ssh_key = callPackage ./generate_ssh_key {};
 
   tmate = super.tmate.overrideAttrs (old: rec {
     version = "2.3.0";

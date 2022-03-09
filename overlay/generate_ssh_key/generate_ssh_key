@@ -1,0 +1,223 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import json
+import pathlib
+import subprocess
+
+
+def read_file(config_file):
+    if not config_file.exists():
+        return {}
+
+    with config_file.open('r') as fd:
+        splitted = ''.join(fd.readlines()).strip().split('\n\n')
+
+    entries = {}
+    for entry in splitted:
+        lines = entry.split('\n')
+        map_entry = {}
+        for line in lines:
+            key, value = line.strip().split(' ', 1)
+            map_entry[key.strip()] = value.strip()
+        host = map_entry['Host']
+        del map_entry['Host']
+        entries[host] = map_entry
+
+    return entries
+
+
+def write_file(content, config_file):
+    with config_file.open('w') as fd:
+        for host, entry in content.items():
+            fd.write('Host {}\n'.format(host))
+            for key, value in entry.items():
+                fd.write('  {} {}\n'.format(key, value))
+            fd.write('\n')
+
+
+def read_write_to_file(func):
+    def inner(args):
+        configFile = args.directory / 'config'
+        content = read_file(configFile)
+
+        content = func(content, args.directory / args.target, args)
+
+        write_file(content, configFile)
+    return inner
+
+
+def check_exists(func):
+    def inner(content, folder, args):
+        if not folder.parent.exists():
+            folder.parent.mkdir()
+
+        if args.target in content:
+            raise KeyError(f'{args.target} already present in config file')
+
+        if folder.exists():
+            raise OSError(f'directory {args.target} already exists')
+
+        return func(content, folder, args)
+    return inner
+
+
+def create_ssh_keys(folder):
+    folder.mkdir()
+    keyFile = folder / 'id_ed25519'
+    subprocess.check_call(['ssh-keygen', '-q', '-a', '100', '-t', 'ed25519', '-f', str(keyFile)])
+    return keyFile
+
+
+def run_remote_command(args, command):
+    hostname = args.hostname if args.hostname else args.target
+    arguments = ['ssh', '-F', str(args.directory.resolve() / 'config')]
+    if args.port:
+        arguments.append('-p')
+        arguments.append(args.port)
+    if args.user:
+        hostname = f'{args.user}@{hostname}'
+
+    arguments.append(hostname)
+    arguments.append(command)
+    subprocess.check_output(arguments)
+
+
+def copy_key(args, keyFile):
+    publicKeyFile = keyFile.with_suffix('.pub')
+    keyContent = publicKeyFile.open('r').read()[:-1]
+    run_remote_command(args, f'echo "{keyContent}" >> .ssh/authorized_keys')
+
+
+def remove_remote_key(args, old_keyFile, new_keyFile):
+    active_public_key = old_keyFile.with_suffix('.pub')
+    keyContent = active_public_key.open('r').read()
+    removeCommand = f'sed --in-place "s#{keyContent}##" .ssh/authorized_keys'
+    cleanCommand = 'sed --in-place "/^$/d" .ssh/authorized_keys'
+    run_remote_command(args, f'{removeCommand} && {cleanCommand}')
+
+
+def replace_remote_key(args, keyFile, active_key):
+    copy_key(args, keyFile)
+    remove_remote_key(args, active_key, keyFile)
+
+
+@read_write_to_file
+@check_exists
+def create_key(content, folder, args):
+    keyFile = create_ssh_keys(folder)
+    if not args.no_copy:
+        copy_key(args, keyFile)
+
+    entry = {
+        'IdentityFile': str(keyFile.resolve()),
+    }
+
+    if args.port:
+        entry['Port'] = args.port
+    if args.hostname:
+        entry['HostName'] = args.hostname
+    if args.user:
+        entry['User'] = args.user
+
+    content[args.target] = entry
+    return content
+
+
+@read_write_to_file
+def replace_key(content, folder, args):
+    tmp_folder = folder.with_suffix('.tmp')
+    keyFile = create_ssh_keys(tmp_folder)
+    if not args.no_copy:
+        replace_remote_key(args, keyFile, pathlib.Path(content[args.target]['IdentityFile']))
+
+    for file in folder.iterdir():
+        file.unlink()
+    folder.rmdir()
+    tmp_folder.rename(folder)
+
+    del content[args.target]
+    entry = {
+        'IdentityFile': str(folder.resolve() / keyFile.name),
+    }
+
+    if args.port:
+        entry['Port'] = args.port
+    if args.hostname:
+        entry['HostName'] = args.hostname
+    if args.user:
+        entry['User'] = args.user
+
+    content[args.target] = entry
+    return content
+
+
+@read_write_to_file
+def remove_info(content, folder, args):
+    if args.target not in content:
+        raise KeyError(f'{args.target} not present in config file')
+
+    for file in folder.iterdir():
+        file.unlink()
+    folder.rmdir()
+    del content[args.target]
+    return content
+
+
+def create_parser():
+    parser = argparse.ArgumentParser('Add info to the ssh config')
+    parser.add_argument('--directory', '-d',
+            default=pathlib.Path(f'{os.path.expanduser("~")}/.ssh'),
+            type=pathlib.Path,
+            help='ssh directory')
+
+    subparsers = parser.add_subparsers(help='sub-command help')
+
+    create = subparsers.add_parser('create', help='Create new ssh key')
+    create.add_argument('--port', '-p',
+            default=None,
+            help='Port to use for this ssh entry')
+    create.add_argument('--hostname', '-H',
+            default=None,
+            help='Hostname alias to use for this ssh entry')
+    create.add_argument('--user', '-u',
+            default=None,
+            help='user to use for this ssh entry')
+    create.add_argument('--no-copy',
+            default=False, action='store_true',
+            help='Avoid copying ssh key to target')
+    create.add_argument('target', type=str)
+    create.set_defaults(func=create_key)
+
+    replace = subparsers.add_parser('replace', help='Replace existing ssh key')
+    replace.add_argument('--port', '-p',
+            default=None,
+            help='Port to use for this ssh entry')
+    replace.add_argument('--hostname', '-H',
+            default=None,
+            help='Hostname alias to use for this ssh entry')
+    replace.add_argument('--user', '-u',
+            default=None,
+            help='user to use for this ssh entry')
+    replace.add_argument('--no-copy',
+            default=False, action='store_true',
+            help='Avoid copying ssh key to target')
+    replace.add_argument('target', type=str)
+    replace.set_defaults(func=replace_key)
+
+    remove = subparsers.add_parser('remove', help='Remove key info from ssh config')
+    remove.add_argument('target', type=str)
+    remove.set_defaults(func=remove_info)
+
+    return parser
+
+
+def main():
+    parser = create_parser()
+    args = parser.parse_args()
+
+    args.func(args)
+
+
+if __name__ == '__main__':
+    main()
