@@ -25,7 +25,6 @@ in {
   nixos = {
     nixpkgs.overlays = [
       (import "${openconnect-sso}/overlay.nix")
-      (import ../../overlay { inherit nixpkgs cisco vysor system; })
     ];
 
     imports = [

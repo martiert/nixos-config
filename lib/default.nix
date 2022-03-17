@@ -68,6 +68,9 @@ in rec {
           home-manager.useUserPackages = true;
 
           nix.registry.nixpkgs.flake = nixpkgs;
+          nixpkgs.overlays = [
+            (import ../overlay { inherit nixpkgs cisco vysor; system = config.system; })
+          ];
         }
       ];
     };
