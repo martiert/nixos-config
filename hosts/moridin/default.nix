@@ -15,8 +15,8 @@ let
       { command = "gimp"; }
     ];
     assigns = {
-      "2" = [{ class = "^Firefox$"; }];
-      "3" = [{ class = "^webex$"; }];
+      "9" = [{ class = "^Firefox$"; }];
+      "2" = [{ class = "^webex$"; }];
       "10" = [{ class = "^Gimp$"; }];
     };
     workspaceOutputAssign = [
