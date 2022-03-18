@@ -85,6 +85,7 @@ in {
       "nvidia-persistenced"
       "spotify"
       "spotify-unwrapped"
+      "zoom"
     ];
 
     hardware.enableRedistributableFirmware = true;

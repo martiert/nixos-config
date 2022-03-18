@@ -47,5 +47,6 @@
     projecteur
     tmate
     spotify
+    zoom-us
   ];
 }
