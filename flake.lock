@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1646800063,
-        "narHash": "sha256-4UDjnX0DAy9nniGKCX7JlVXi2YrdvCfflwEKfaZAOWU=",
+        "lastModified": 1646845404,
+        "narHash": "sha256-JENXFCI2HVqi0whBzt7MAW9PX3ziEaYqBhMux+4g+VM=",
         "owner": "ryantm",
         "repo": "agenix",
-        "rev": "25b5bcfce91f99bd9cad8680b3671da181e6ab85",
+        "rev": "764c975e74bce2f89a5106b68ec48e2b586f893c",
         "type": "github"
       },
       "original": {
@@ -117,11 +117,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1646559628,
-        "narHash": "sha256-WDoqxH/IPTV8CkI15wwzvXYgXq9UPr8xd8WKziuaynw=",
+        "lastModified": 1647521104,
+        "narHash": "sha256-H9D0fxuwsXNmN3AXCH2EmhcVvOqhVb49TUP3AVpDdCk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "afe96e7433c513bf82375d41473c57d1f66b4e68",
+        "rev": "970b57fd3c93f6c76d5cdfb4da23a5b4010b9e8b",
         "type": "github"
       },
       "original": {
@@ -170,11 +170,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1646658584,
-        "narHash": "sha256-si7SXX8yO2sF/StgNJad5xOndekhsY4jL7++FNm+QuQ=",
+        "lastModified": 1647521142,
+        "narHash": "sha256-ZwK8n5yCYHjmSLPqwXiebUyQxSHQ3HyKAxs4psksuVc=",
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "aa5e966498a2bc4aaeb8fd979ccec985f85c5f75",
+        "rev": "9f56b704ff3073436c3b93d63669ee773c592aa3",
         "type": "github"
       },
       "original": {
@@ -201,11 +201,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1646506091,
-        "narHash": "sha256-sWNAJE2m+HOh1jtXlHcnhxsj6/sXrHgbqVNcVRlveK4=",
+        "lastModified": 1647350163,
+        "narHash": "sha256-OcMI+PFEHTONthXuEQNddt16Ml7qGvanL3x8QOl2Aao=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "3e644bd62489b516292c816f70bf0052c693b3c7",
+        "rev": "3eb07eeafb52bcbf02ce800f032f18d666a9498d",
         "type": "github"
       },
       "original": {
@@ -312,11 +312,11 @@
     "vysor": {
       "flake": false,
       "locked": {
-        "lastModified": 1644243259,
-        "narHash": "sha256-6d19DLBR+fpSHPWWOrbiAgDCOgStkyhdH/5w6qHOuFg=",
+        "lastModified": 1647358366,
+        "narHash": "sha256-nJHeEclLSRc/eMrLgsRb9Bxjq+S5I0YmG3NfSYAP/Qc=",
         "ref": "master",
-        "rev": "c11da8c5b74938b4b8a2abb418803da2e2eaab70",
-        "revCount": 126,
+        "rev": "9369fddf6a9c88602fb7a9626d5c491b6ff0848d",
+        "revCount": 127,
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/CE/vysor"
       },
@@ -331,11 +331,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1646321337,
-        "narHash": "sha256-L5tMPbXEbliKo40HCZIFN+GG5jofoTAM/3BgGR9GaSI=",
+        "lastModified": 1647534604,
+        "narHash": "sha256-CCOYbZSH/NEIo9iKDI6lO96N8tt/sZX3kPL4Sbbiu+A=",
         "ref": "main",
-        "rev": "aae19e3bf3a65e06a8b30021b955d4cc0e287ea7",
-        "revCount": 52,
+        "rev": "46f6f6b20bd75164b2c2141e76cad0c7ea265dcf",
+        "revCount": 53,
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix"
       },
