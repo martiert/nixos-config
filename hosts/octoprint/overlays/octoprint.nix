@@ -2,11 +2,10 @@ self: super: {
   octoprint = super.octoprint.override {
       packageOverrides = self: super: {
         firmwareupdater = let
-            version = "1.13.1";
             name = "FirmwareUpdater";
-          in self.buildPythonPackage {
+          in self.buildPythonPackage rec {
             pname = "OctoPrintPlugin-${name}";
-            version = "${version}";
+            version = "1.13.2";
             propagatedBuildInputs = [
               self.octoprint
             ];
