@@ -48,10 +48,9 @@ in {
     martiert = {
       networking = {
         interfaces = {
-          "br0" = {
+          "eno2" = {
             enable = true;
             useDHCP = true;
-            bridgedInterfaces = [ "eno2" ];
           };
         };
       };
@@ -83,7 +82,7 @@ in {
       martiert = {
         i3status = {
           enable = true;
-          ethernet.br0 = 1;
+          ethernet.eno2 = 1;
         };
         i3 = {
           enable = true;
