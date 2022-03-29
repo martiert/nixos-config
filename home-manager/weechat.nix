@@ -5,6 +5,7 @@ let
     configure = { availablePlugins, ... }: {
       scripts = with pkgs.weechatScripts; [
         weechat-matrix
+        wee-slack
       ];
     };
   };
