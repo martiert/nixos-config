@@ -104,10 +104,9 @@ in {
       networking = {
         dhcpcd.leaveResolveConf = true;
         interfaces = {
-          "br0" = {
+          "eno1" = {
             enable = true;
             useDHCP = true;
-            bridgedInterfaces = [ "eno1" ];
           };
           "enp0s20f0u3" = {
             enable = true;
@@ -169,7 +168,7 @@ in {
         i3status = {
           enable = true;
           ethernet = {
-            br0 = 2;
+            eno1 = 2;
             enp0s20f0u3 = 3;
           };
         };
