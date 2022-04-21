@@ -87,10 +87,6 @@ in {
           barSize = 12.0;
         };
         email.enable = true;
-        irssi = {
-          enable = true;
-          nick = "martiert_work";
-        };
       };
       xsession.windowManager.i3.config = {
         startup = [

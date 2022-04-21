@@ -12,7 +12,6 @@
     ./git.nix
     ./gpg.nix
     ./mail.nix
-    ./irssi.nix
     ./direnv.nix
     ./weechat.nix
   ];

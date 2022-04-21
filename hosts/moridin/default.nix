@@ -174,7 +174,6 @@ in {
           enable = true;
         };
         email.enable = true;
-        irssi.enable = true;
       };
     };
   };
