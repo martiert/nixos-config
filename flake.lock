@@ -117,11 +117,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1650301786,
-        "narHash": "sha256-9rz9NqL+mC+BIggn2emuzZ+3MYogxVBTdsFK7E3Vv1k=",
+        "lastModified": 1651415224,
+        "narHash": "sha256-O/EzwxUMa1OawWEwhS10Xki7RX3+hSgaJJziHeI4d7c=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8d38ca886880265d523a66fe3da4d42e92ab0748",
+        "rev": "26858fc0dbed71fa0609490fc2f2643e0d175328",
         "type": "github"
       },
       "original": {
@@ -170,11 +170,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1649849466,
-        "narHash": "sha256-b+yl0uRd0KHB9X6TkL+6zOXUfLd7QDNnyqbL0G5WZsU=",
+        "lastModified": 1650997411,
+        "narHash": "sha256-r4a3qsSv5UTtx+pxTUEdOphBkwTx1+AAVog3c457A0M=",
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "adeb359baddfa336a59824237a6067dd9f59c51b",
+        "rev": "3cdf22c79bc80910e2b610cd59fcb8408354ddbc",
         "type": "github"
       },
       "original": {
@@ -201,16 +201,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1650194139,
-        "narHash": "sha256-kurZsqeOw5fpqA/Ig+8tHvbjwzs5P9AE6WUKOX1m6qM=",
+        "lastModified": 1651007983,
+        "narHash": "sha256-GNay7yDPtLcRcKCNHldug85AhAvBpTtPEJWSSDYBw8U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "bd4dffcdb7c577d74745bd1eff6230172bd176d5",
+        "rev": "e10da1c7f542515b609f8dfbcf788f3d85b14936",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixpkgs-unstable",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -312,11 +312,11 @@
     "vysor": {
       "flake": false,
       "locked": {
-        "lastModified": 1649933795,
-        "narHash": "sha256-6GB1jdGc2fOf5ajxQCjnGVudmoSsf/SWDVqFjEIaSP4=",
+        "lastModified": 1651239199,
+        "narHash": "sha256-dHo7Svo8OWmCAQy8NLL+qRKpyx19SoWnpRjBN+tFWKk=",
         "ref": "master",
-        "rev": "c3194c39d75294247ef5404052e50f1e88a68c64",
-        "revCount": 133,
+        "rev": "06cd27f635cc10163f2c2c6f06e69141df608354",
+        "revCount": 135,
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/CE/vysor"
       },
