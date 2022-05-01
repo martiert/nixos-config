@@ -1,5 +1,5 @@
 self: super: {
-  octoprint = super.octoprint.override {
+  octoprint = (super.callPackage ./default.nix {}).override {
       packageOverrides = self: super: {
         firmwareupdater = let
             name = "FirmwareUpdater";
@@ -12,7 +12,7 @@ self: super: {
 
             src = fetchTarball {
               url = "https://github.com/OctoPrint/OctoPrint-${name}/archive/refs/tags/${version}.tar.gz";
-              sha256 = "0nzlpf7868cs7grcrs21wkak94rxj0ay1s2bggywlkc8mmp9kf3x";
+              sha256 = "0zjy2mr2h44n14f66336lzf9ksx0yb6l678l81vc9rwxl8p56zrm";
             };
 
             doCheck = false;
