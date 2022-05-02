@@ -36,7 +36,7 @@ in {
 
     imports = [
       ../../machines/x86_64.nix
-      ../../nixos/configs/common.nix
+      ../../settings/nixos/configs/common.nix
     ];
     networking.useDHCP = false;
     networking.resolvconf.enable = true;
@@ -68,7 +68,7 @@ in {
 
     home-manager.users.martin = {
       imports = [
-        ../../home-manager/all.nix
+        ../../settings/home-manager/all.nix
       ];
 
       home.packages = [

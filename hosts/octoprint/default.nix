@@ -12,8 +12,8 @@
     imports = [
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
       ../../machines/rpi3.nix
-      ../../nixos/services/openssh.nix
-      ../../nixos/services/octoprint.nix
+      ../../settings/nixos/services/openssh.nix
+      ../../settings/nixos/services/octoprint.nix
     ];
 
     age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;

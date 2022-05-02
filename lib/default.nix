@@ -50,11 +50,11 @@ in rec {
     nixpkgs.lib.nixosSystem {
       system = config.system;
       modules = [
-        ../nixos/configs/timezone.nix
-        ../nixos/configs/fonts.nix
-        ../nixos/users/martin.nix
-        ../nixos/users/root.nix
-        ../nixos/configs/networking
+        ../settings/nixos/configs/timezone.nix
+        ../settings/nixos/configs/fonts.nix
+        ../settings/nixos/users/martin.nix
+        ../settings/nixos/users/root.nix
+        ../settings/nixos/configs/networking
         config.nixos
         agenix.nixosModule
         home-manager.nixosModules.home-manager

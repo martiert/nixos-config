@@ -79,7 +79,7 @@ in {
 
   imports = [
     ./davmail.nix
-    ../secrets/mail_setup.nix
+    ../../secrets/mail_setup.nix
   ];
 
   config = mkIf cfg.enable {

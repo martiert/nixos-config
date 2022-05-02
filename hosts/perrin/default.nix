@@ -27,9 +27,9 @@ in {
 
     imports = [
       ../../machines/x86_64.nix
-      ../../nixos/configs/common.nix
-      ../../nixos/services/openssh.nix
-      ../../nixos/services/nginx.nix
+      ../../settings/nixos/configs/common.nix
+      ../../settings/nixos/services/openssh.nix
+      ../../settings/nixos/services/nginx.nix
     ];
 
     virtualisation.virtualbox.host = {
@@ -118,7 +118,7 @@ in {
     home-manager.useUserPackages = true;
     home-manager.users.martin = {
       imports = [
-        ../../home-manager/all.nix
+        ../../settings/home-manager/all.nix
       ];
 
       home.packages = [

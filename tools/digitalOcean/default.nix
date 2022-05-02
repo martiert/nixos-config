@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ../../nixos/users/root.nix
-    ../../nixos/users/martin.nix
-    ../../nixos/services/openssh.nix
+    ../../settings/nixos/users/root.nix
+    ../../settings/nixos/users/martin.nix
+    ../../settings/nixos/services/openssh.nix
     ../../machines/nixos-cache.nix
   ];
   virtualisation.digitalOcean = {

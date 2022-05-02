@@ -9,7 +9,7 @@
       "${modulesPath}/profiles/qemu-guest.nix"
       ./networking.nix
       ./foundry.nix
-      ../../nixos/services/openssh.nix
+      ../../settings/nixos/services/openssh.nix
       ../../machines/nixos-cache.nix
     ];
 

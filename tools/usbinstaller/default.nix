@@ -42,7 +42,7 @@ in {
     };
   };
 
-  environment.etc."gnupg/keys.pub".source = ../../home-manager/keys.pub;
+  environment.etc."gnupg/keys.pub".source = ../../settings/home-manager/keys.pub;
 
   environment.loginShellInit = ''
     ${pkgs.gnupg}/bin/gpg --import /etc/gnupg/keys.pub
