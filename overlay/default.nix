@@ -1,6 +1,7 @@
 { nixpkgs
 , cisco
 , vysor
+, bedlevel
 , system
 }:
 
@@ -16,6 +17,8 @@ in self: super: {
   mutt-ics = callPackage ./mutt-ics.nix {};
   generate_ssh_key = callPackage ./generate_ssh_key {};
   flashPrint = callPackage ./flashPrint.nix {};
+
+  bedlevel = bedlevel.outputs.packages."${system}".server;
 
   tmate = super.tmate.overrideAttrs (old: rec {
     version = "2.3.0";

@@ -4,7 +4,7 @@
   system = "aarch64-linux";
   deployTo = "octoprint.localdomain";
 
-  nixos = ({modulesPath, config, ...}: {
+  nixos = ({modulesPath, pkgs, config, ...}: {
     nixpkgs.overlays = [
       (import ./overlays/octoprint.nix)
     ];
@@ -17,6 +17,14 @@
     ];
 
     age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
+    systemd.services.bedlevel = {
+      enable = true;
+      description = "bedlevel";
+      after = [ "network-online.target" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.bedlevel}/bin/bedlevel";
+      };
+    };
 
     martiert = {
       sshd = {

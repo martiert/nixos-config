@@ -30,12 +30,13 @@
       url = "git+ssh://git@sqbu-github.cisco.com/CE/vysor";
       flake = false;
     };
+    bedlevel.url = "github:martiert/bedlevel";
   };
 
-  outputs = { self, nixpkgs, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, openconnect-sso, cisco, webex-linux, vysor, ... }@inputs:
+  outputs = { self, nixpkgs, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, openconnect-sso, cisco, webex-linux, vysor, bedlevel, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
-        inherit nixpkgs home-manager agenix openconnect-sso cisco webex-linux vysor;
+        inherit nixpkgs home-manager agenix openconnect-sso cisco webex-linux vysor bedlevel;
         lib = super;
       });
 

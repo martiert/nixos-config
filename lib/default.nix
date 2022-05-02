@@ -6,6 +6,7 @@
 , cisco
 , webex-linux
 , vysor
+, bedlevel
 , ...}:
 
 let
@@ -22,7 +23,7 @@ let
     let
       filename = ../hosts/${name};
       config = import filename {
-        inherit nixpkgs home-manager openconnect-sso cisco webex-linux vysor;
+        inherit nixpkgs home-manager openconnect-sso webex-linux;
       };
     in {
       name = name;
@@ -69,7 +70,7 @@ in rec {
 
           nix.registry.nixpkgs.flake = nixpkgs;
           nixpkgs.overlays = [
-            (import ../overlay { inherit nixpkgs cisco vysor; system = config.system; })
+            (import ../overlay { inherit nixpkgs cisco vysor bedlevel; system = config.system; })
           ];
         }
       ];
