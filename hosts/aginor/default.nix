@@ -1,8 +1,6 @@
 { nixpkgs
 , openconnect-sso
-, cisco
 , webex-linux
-, vysor
 , ...}:
 
 let
