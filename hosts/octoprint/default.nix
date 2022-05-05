@@ -17,6 +17,7 @@
     ];
 
     age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
+    networking.firewall.allowedTCPPorts = [ 3001 ];
     systemd.services.bedlevel = {
       enable = true;
       description = "bedlevel";
