@@ -1,5 +1,5 @@
 self: super: {
-  octoprint = (super.callPackage ./default.nix {}).override {
+  octoprint = super.octoprint.override {
       packageOverrides = self: super: {
         firmwareupdater = let
             name = "FirmwareUpdater";
