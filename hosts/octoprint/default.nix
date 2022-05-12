@@ -18,14 +18,6 @@
 
     age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
     networking.firewall.allowedTCPPorts = [ 3001 ];
-    systemd.services.bedlevel = {
-      enable = true;
-      description = "bedlevel";
-      after = [ "network-online.target" ];
-      serviceConfig = {
-        ExecStart = "${pkgs.bedlevel}/bin/bedlevel";
-      };
-    };
 
     martiert = {
       sshd = {

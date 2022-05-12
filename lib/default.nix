@@ -6,7 +6,6 @@
 , cisco
 , webex-linux
 , vysor
-, bedlevel
 , ...}:
 
 let
@@ -71,7 +70,7 @@ in rec {
 
           nix.registry.nixpkgs.flake = nixpkgs;
           nixpkgs.overlays = [
-            (import ../overlay { inherit nixpkgs cisco vysor bedlevel; system = config.system; })
+            (import ../overlay { inherit nixpkgs cisco vysor; system = config.system; })
           ];
         }
       ];
