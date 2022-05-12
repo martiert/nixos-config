@@ -20,24 +20,25 @@
         "type": "github"
       }
     },
-    "bedlevel": {
+    "beltsearch": {
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1651215039,
-        "narHash": "sha256-zIr6Goj5Vke3JXCI/e760NK4LEkieIORb7ce224XnKc=",
-        "owner": "martiert",
-        "repo": "bedlevel",
-        "rev": "ddb7b0a1cd0fcfe5668f298a648344da8719b142",
-        "type": "github"
+        "lastModified": 1652336025,
+        "narHash": "sha256-xTPFjxZNBFJ5Z2eOjxYMYs6IE+VTfsQNygdm+84e+sQ=",
+        "ref": "main",
+        "rev": "7fdfd969ac41c37a69031965b6ed8bdfa4d7eaae",
+        "revCount": 6,
+        "type": "git",
+        "url": "ssh://git@sqbu-github.cisco.com/mertsas/beltsearch"
       },
       "original": {
-        "owner": "martiert",
-        "repo": "bedlevel",
-        "type": "github"
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@sqbu-github.cisco.com/mertsas/beltsearch"
       }
     },
     "cisco": {
@@ -102,11 +103,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1649676176,
-        "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
+        "lastModified": 1644229661,
+        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
+        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
         "type": "github"
       },
       "original": {
@@ -117,11 +118,11 @@
     },
     "flake-utils_2": {
       "locked": {
-        "lastModified": 1649676176,
-        "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
+        "lastModified": 1610051610,
+        "narHash": "sha256-U9rPz/usA1/Aohhk7Cmc2gBrEEKRzcW4nwPWMPwja4Y=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
+        "rev": "3982c9903e93927c2164caa727cd3f6a0e6d14cc",
         "type": "github"
       },
       "original": {
@@ -235,27 +236,27 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1651007983,
-        "narHash": "sha256-GNay7yDPtLcRcKCNHldug85AhAvBpTtPEJWSSDYBw8U=",
+        "lastModified": 1644193793,
+        "narHash": "sha256-ggCI5LCXwkUJQwjpkr9qDFbQMiK3JvAfeNR4Uy0ny5Q=",
         "owner": "NixOs",
         "repo": "nixpkgs",
-        "rev": "e10da1c7f542515b609f8dfbcf788f3d85b14936",
+        "rev": "521e4d7d13b09bc0a21976b9d19abd197d4e3b1e",
         "type": "github"
       },
       "original": {
         "owner": "NixOs",
-        "ref": "nixos-unstable",
+        "ref": "nixos-21.11",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1651137604,
-        "narHash": "sha256-shoA4XrTZdIhssk4AeO2ZFiilT4Q6oTlZ60yYo0C7Y8=",
+        "lastModified": 1610729867,
+        "narHash": "sha256-bk/SBaBLqZX/PEqal27DMQwAHHl0dcZMp8NNksQr80s=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "77d41d25e2362badbe08aca77a0415923a00629d",
+        "rev": "04af07c659c6723a2259bb6bc00a47ec53330f20",
         "type": "github"
       },
       "original": {
@@ -334,11 +335,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1650693998,
-        "narHash": "sha256-rypGV9HND1VsR/DEtD4O3cPcwCJVfIiTKvEbYskQSqg=",
+        "lastModified": 1644294697,
+        "narHash": "sha256-+XHCt4Oyyxwib+sZNlM/iUt7VVLgqpKZWqJwegO9+IA=",
         "owner": "nix-community",
         "repo": "poetry2nix",
-        "rev": "8cfd980262181bd3ef15899708ceeb2e3f33958b",
+        "rev": "d3dc8d28f29cb56ed861585ed3ec393b7d859261",
         "type": "github"
       },
       "original": {
@@ -366,7 +367,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "bedlevel": "bedlevel",
+        "beltsearch": "beltsearch",
         "cisco": "cisco",
         "deploy-rs": "deploy-rs",
         "flake-utils": "flake-utils_4",

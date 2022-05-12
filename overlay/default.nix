@@ -1,6 +1,7 @@
 { nixpkgs
 , cisco
 , vysor
+, beltsearch
 , system
 }:
 
@@ -17,6 +18,7 @@ in self: super: {
   generate_ssh_key = callPackage ./generate_ssh_key {};
   flashPrint = callPackage ./flashPrint.nix {};
 
+  beltsearch = beltsearch.outputs.packages."${system}".beltsearch;
 
   tmate = super.tmate.overrideAttrs (old: rec {
     version = "2.3.0";

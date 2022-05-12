@@ -30,12 +30,13 @@
       url = "git+ssh://git@sqbu-github.cisco.com/CE/vysor";
       flake = false;
     };
+    beltsearch.url = "git+ssh://git@sqbu-github.cisco.com/mertsas/beltsearch?ref=main";
   };
 
   outputs = { self, nixpkgs, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, openconnect-sso, cisco, webex-linux, vysor, beltsearch, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
-        inherit nixpkgs home-manager agenix openconnect-sso cisco webex-linux vysor;
+        inherit nixpkgs home-manager agenix openconnect-sso cisco webex-linux vysor beltsearch;
         lib = super;
       });
 

@@ -71,6 +71,7 @@ in {
     home-manager.users.martin = {
       imports = [
         ../../settings/home-manager/all.nix
+        ../../settings/home-manager/beltsearch.nix
       ];
 
       home.packages = [
