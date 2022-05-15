@@ -18,6 +18,7 @@
     keep-derivations = true
     experimental-features = nix-command flakes
   '';
+  system.stateVersion = "22.05";
 
   martiert = {
     sshd = {

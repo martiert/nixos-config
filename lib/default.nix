@@ -56,6 +56,7 @@ in rec {
         ../settings/nixos/users/root.nix
         ../settings/nixos/configs/networking
         config.nixos
+        { system.stateVersion = "22.05"; }
         agenix.nixosModule
         home-manager.nixosModules.home-manager
         {

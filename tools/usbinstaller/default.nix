@@ -48,6 +48,8 @@ in {
     ${pkgs.gnupg}/bin/gpg --import /etc/gnupg/keys.pub
   '';
 
+  system.stateVersion = "22.05";
+
   nix.package = pkgs.nixUnstable;
   nix.extraOptions = ''
     keep-outputs = true
