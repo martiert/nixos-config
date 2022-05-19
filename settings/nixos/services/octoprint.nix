@@ -5,6 +5,7 @@
     enable = true;
     plugins = plugins: with plugins; [
       firmwareupdater
+      bedlevelvisualizer
     ];
     extraConfig = {
       plugins = {
@@ -16,7 +17,7 @@
               "_id" = 0;
               "_name" = "Default";
               avrdude_path = "${pkgs.avrdude}/bin/avrdude";
-              avrdude_programmer = "writing";
+              avrdude_programmer = "wiring";
               avrdude_avrmcu = "m2560";
               flash_method = "avrdude";
               serial_port = "/dev/ttyUSB0";
