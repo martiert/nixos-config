@@ -6,7 +6,7 @@
 
   nixos = ({modulesPath, pkgs, config, ...}: {
     nixpkgs.overlays = [
-      (import ./overlays/octoprint.nix)
+      (import ../../overlay/octoprint.nix)
     ];
 
     imports = [
