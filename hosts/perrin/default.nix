@@ -148,6 +148,7 @@ in {
         i3 = {
           enable = true;
         };
+        email.enable = true;
       };
     };
   };
