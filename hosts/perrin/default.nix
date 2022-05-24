@@ -59,6 +59,16 @@ in {
 
     age.secrets."wpa_supplicant_enp4s0".file = ../../secrets/wpa_supplicant_wired.age;
 
+    fileSystems."/home/martin/Cisco" = {
+      device = "/dev/disk/by-uuid/e2e37fd7-4a01-4386-90e0-20ea8f37fc64";
+      encrypted = {
+        enable = true;
+        blkDev = "/dev/disk/by-uuid/865caa0b-41fe-4517-a429-63a5a8972328";
+        keyFile = "/mnt-root/etc/keys/cisco.key";
+        label = "cisco";
+      };
+    };
+
     martiert = {
       mountpoints = {
         keyDisk.keyFile = "luks/perrin.key";
