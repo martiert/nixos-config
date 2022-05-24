@@ -5,7 +5,7 @@ let
 in {
   services.openssh = {
     enable = cfg.enable;
-    allowSFTP = false;
+    allowSFTP = true;
     hostKeys = [ { type = "ed25519"; path = "/etc/ssh/ssh_host_ed25519_key"; }];
     passwordAuthentication = false;
   };
