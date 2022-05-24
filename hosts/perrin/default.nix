@@ -73,11 +73,11 @@ in {
       mountpoints = {
         keyDisk.keyFile = "luks/perrin.key";
         root = {
-          encryptedDevice = "/dev/disk/by-uuid/b13581fd-3fbe-4f00-85a7-35714bd8a48f";
-          device = "/dev/disk/by-uuid/5deb8460-8f7a-4bfe-906e-76ef108c84f2";
+          encryptedDevice = "/dev/disk/by-uuid/34185190-271f-464b-91aa-d6707835ab60";
+          device = "/dev/disk/by-uuid/29a4d0df-3ec4-4b32-914a-9329d4b18c99";
         };
-        boot = "/dev/disk/by-uuid/51EC-A800";
-        swap = "/dev/disk/by-partuuid/cae6027b-e70b-4c66-b4fc-d15f71368b35";
+        boot = "/dev/disk/by-uuid/34F2-B158";
+        swap = "/dev/disk/by-partuuid/1bc95ed3-d38e-d64e-9410-43067e6cd4d5";
       };
       boot = {
         initrd.extraAvailableKernelModules = [ "usbhid" ];
