@@ -54,6 +54,8 @@ in {
     boot.kernelModules = bootCfg.kernelModules;
     boot.extraModulePackages = [ ];
 
+    boot.tmpOnTmpfs = true;
+
     boot.loader = {
       efi.canTouchEfiVariables = !bootCfg.efi.removable;
       grub = {
