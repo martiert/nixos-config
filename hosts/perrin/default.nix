@@ -52,12 +52,12 @@ in {
 
       networking.networkmanager = {
         enable = true;
-        unmanaged = [ "enp3s0" ];
+        unmanaged = [ "enp4s0" ];
         dns = "dnsmasq";
         dhcp = "dhcpcd";
       };
 
-    age.secrets."wpa_supplicant_enp3s0".file = ../../secrets/wpa_supplicant_wired.age;
+    age.secrets."wpa_supplicant_enp4s0".file = ../../secrets/wpa_supplicant_wired.age;
 
     martiert = {
       mountpoints = {
@@ -84,7 +84,7 @@ in {
             enable = true;
             useDHCP = true;
           };
-          "enp3s0" = {
+          "enp4s0" = {
             enable = true;
             useDHCP = true;
             staticRoutes = true;
@@ -132,7 +132,7 @@ in {
           enable = true;
           ethernet = {
             eno1 = 2;
-            enp3s0 = 3;
+            enp4s0 = 3;
           };
         };
         i3 = {
