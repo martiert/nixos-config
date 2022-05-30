@@ -147,29 +147,6 @@ in
         };
       };
 
-      virtualHosts."bedlevel.martiert.com" = {
-        forceSSL = true;
-        enableACME = true;
-
-        extraConfig = ''
-            proxy_connect_timeout 1h;
-            proxy_send_timeout    1h;
-            proxy_read_timeout    1h;
-          '' + hstsConfig;
-
-        locations."/" = {
-          root = "/var/www/bedlevel.martiert.com";
-          index = "index.html";
-        };
-
-        locations."/api/v1" = {
-          extraConfig = ''
-            rewrite /api/v1/?(.*) /$1 break;
-          '';
-          proxyPass = "http://192.168.1.226:3001";
-        };
-      };
-
       virtualHosts."octoprint.martiert.com" = {
         forceSSL = true;
         enableACME = true;
