@@ -68,6 +68,15 @@ in {
         label = "cisco";
       };
     };
+    fileSystems."/storage" = {
+      device = "/dev/disk/by-uuid/025bf0b4-8400-4e48-a077-0613326f9558";
+      encrypted = {
+        enable = true;
+        blkDev = "/dev/disk/by-uuid/d62f0219-ee11-4d13-ac6c-e033ea8fef79";
+        keyFile = "/mnt-root/etc/keys/storage.key";
+        label = "storage";
+      };
+    };
 
     martiert = {
       mountpoints = {
