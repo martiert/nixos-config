@@ -5,18 +5,42 @@
 
 let
   system = "x86_64-linux";
-  swayi3Config = {
+  swayi3Config = left: middle: right: {
     startup = [
       { command = "alacritty"; }
       { command = "firefox"; }
       { command = "CiscoCollabHost"; }
       { command = "gimp"; }
+      { command = "xsetwacom --set \"Wacom Cintiq 16 Pen stylus\" MapToOutput HEAD-2"; }
+      { command = "xsetwacom --set \"Wacom Cintiq 16 Pen eraser\" MapToOutput HEAD-2"; }
     ];
     assigns = {
-      "2" = [{ class = "^Firefox$"; }];
-      "3" = [{ class = "^webex$"; }];
+      "9" = [{ class = "^Firefox$"; }];
+      "2" = [{ class = "^webex$"; }];
       "10" = [{ class = "^Gimp$"; }];
     };
+    workspaceOutputAssign = [
+      {
+        output = left;
+        workspace = "9";
+      }
+      {
+        output = right;
+        workspace = "10";
+      }
+      {
+        output = middle;
+        workspace = "1";
+      }
+      {
+        output = middle;
+        workspace = "2";
+      }
+      {
+        output = middle;
+        workspace = "3";
+      }
+    ];
   };
 in {
   inherit system;
@@ -39,6 +63,11 @@ in {
 
     services.xserver = {
       videoDrivers = [ "nvidia" ];
+      xrandrHeads = [
+        "HDMI-0"
+        "HDMI-1"
+        "DP-1"
+      ];
     };
 
     services.dnsmasq = 
@@ -144,7 +173,7 @@ in {
         webex-linux.packages."${system}".webexWayland
       ];
 
-      xsession.windowManager.i3.config = swayi3Config;
+      xsession.windowManager.i3.config = swayi3Config "HDMI-0" "HDMI-1" "DP-1";
       martiert = {
         alacritty.fontSize = 14;
         i3status = {
