@@ -7,6 +7,7 @@ let
   system = "x86_64-linux";
   swayi3Config = left: middle: right: {
     startup = [
+      { command = "xrandr --output HDMI-1 --right-of HDMI-0 --output DP-1 --right-of HDMI-1"; }
       { command = "alacritty"; }
       { command = "firefox"; }
       { command = "CiscoCollabHost"; }
@@ -62,6 +63,7 @@ in {
     };
 
     services.xserver = {
+      enable = true;
       videoDrivers = [ "nvidia" ];
       xrandrHeads = [
         "HDMI-0"
