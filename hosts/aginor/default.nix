@@ -33,13 +33,13 @@ in {
       ];
     };
 
-    fileSystems."/media/div" = {
-      device = "/dev/disk/by-uuid/c67f1d64-2b82-46a6-99b1-cc446a859e1a";
+    fileSystems."/home/martin/Cisco" = {
+      device = "/dev/disk/by-uuid/bb99b78e-bb87-4a60-af06-de8a9fd87952";
       encrypted = {
         enable = true;
-        blkDev = "/dev/disk/by-uuid/f3e30761-85f8-4510-b267-84fa5c7b6f5e";
-        keyFile = "/mnt-root/etc/keys/div.key";
-        label = "div";
+        blkDev = "/dev/disk/by-uuid/67ab45c6-1231-4ebe-b518-f3d0b8ffb1b0";
+        keyFile = "/mnt-root/etc/keys/cisco.key";
+        label = "cisco";
       };
     };
 
