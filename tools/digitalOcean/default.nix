@@ -25,6 +25,7 @@
       enable = true;
       authorizedKeyFiles = [
         ./public_keys/aginor.pub
+        ./public_keys/perrin.pub
       ];
     };
   };
