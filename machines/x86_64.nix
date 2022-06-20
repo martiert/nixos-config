@@ -111,13 +111,13 @@ in {
         group = "dockremap";
         subUidRanges = [
           {
-            startUid = 10000;
+            startUid = 1000;
             count = 65536;
           }
         ];
         subGidRanges = [
           {
-            startGid = 10000;
+            startGid = 100;
             count = 65536;
           }
         ];
