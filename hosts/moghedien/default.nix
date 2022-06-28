@@ -71,6 +71,7 @@ in {
         ../../settings/home-manager/all.nix
       ];
 
+      home.stateVersion = "22.05";
       home.packages = [
         webex-linux.packages."${system}".webexWayland
       ];

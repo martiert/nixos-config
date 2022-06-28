@@ -74,6 +74,7 @@ in {
         ../../settings/home-manager/beltsearch.nix
       ];
 
+      home.stateVersion = "22.05";
       home.packages = [
         webex-linux.packages."${system}".webexWayland
       ];
