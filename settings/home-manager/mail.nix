@@ -18,8 +18,14 @@ in {
             imapPort = mkOption {
               type = types.int;
               default = 1143;
-              description = "Port for davmail to listen to";
+              description = "Port for davmail to listen to for IMAP";
             };
+            caldavPort = mkOption {
+              type = types.int;
+              default = 1080;
+              description = "Port for davmail to listen to for calendar";
+            };
+
             o365 = mkOption {
               type = types.submodule {
                 options = {

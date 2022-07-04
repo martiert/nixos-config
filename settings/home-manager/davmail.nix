@@ -59,6 +59,7 @@ in {
         davmail.oauth.redirectUri=${cfg.davmail.o365.redirectUri}
         davmail.oauth.persistToken=true
         davmail.imapPort=${toString cfg.davmail.imapPort}
+        davmail.caldavPort=${toString cfg.davmail.caldavPort}
       '');
 
     systemd.user.services.davmail = {
