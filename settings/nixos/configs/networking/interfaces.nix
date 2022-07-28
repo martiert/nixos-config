@@ -37,6 +37,7 @@ let
       { address = "64.103.0.0";       prefixLength = 16; }
       { address = "72.163.0.0";       prefixLength = 16; }
       { address = "64.100.37.70";     prefixLength = 32; }
+      { address = "12.19.88.90";      prefixLength = 32;  }
     ];
     ipv6.routes = lib.mkIf value.staticRoutes [
       { address = "2603:1006:2000::";   prefixLength = 48; }
