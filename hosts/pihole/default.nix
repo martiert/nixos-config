@@ -1,19 +1,29 @@
 { nixpkgs, ... }:
 
 {
-  system = "aarch64-linux";
-  deployTo = "pihole.localdomain";
+  system = "x86_64-linux";
+  deployTo = "pihole.martiert.com";
 
   nixos = ({modulesPath, ...}: {
     imports = [
-      "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
-      ../../machines/rpi3.nix
+      "${modulesPath}/profiles/qemu-guest.nix"
+      ./networking.nix
+      ../../machines/nixos-cache.nix
       ../../settings/nixos/services/openssh.nix
       ../../settings/nixos/services/pihole
     ];
 
-    networking.useDHCP = false;
-    networking.interfaces.eth0.useDHCP = true;
+    boot = {
+      loader.grub.device = "/dev/vda";
+      initrd.kernelModules = [ "nvme" ];
+      cleanTmpDir = true;
+    };
+    zramSwap.enable = true;
+
+    fileSystems."/" = {
+      device = "/dev/vda1";
+      fsType = "ext4";
+    };
 
     martiert = {
       sshd = {

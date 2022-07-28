@@ -41,6 +41,22 @@
         "url": "ssh://git@sqbu-github.cisco.com/mertsas/beltsearch"
       }
     },
+    "blocklist": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659002097,
+        "narHash": "sha256-32Cl2jjyZQiGWjz2RkRzpqEOMAwQ5b2ZSE8ho/eM51Q=",
+        "owner": "notracking",
+        "repo": "hosts-blocklists",
+        "rev": "a8be2aca0d9b70629fb26079a3d5f641e1918736",
+        "type": "github"
+      },
+      "original": {
+        "owner": "notracking",
+        "repo": "hosts-blocklists",
+        "type": "github"
+      }
+    },
     "cisco": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -148,11 +164,11 @@
     },
     "flake-utils_4": {
       "locked": {
-        "lastModified": 1656065134,
-        "narHash": "sha256-oc6E6ByIw3oJaIyc67maaFcnjYOz1mMcOtHxbEf9NwQ=",
+        "lastModified": 1656928814,
+        "narHash": "sha256-RIFfgBuKz6Hp89yRr7+NR5tzIAbn52h8vT6vXkYjZoM=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "bee6a7250dd1b01844a2de7e02e4df7d8a0a206c",
+        "rev": "7e2a3b3dfd9af950a856d66b0a7d01e3c18aa249",
         "type": "github"
       },
       "original": {
@@ -169,11 +185,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1656367977,
-        "narHash": "sha256-0hV17V9Up9pnAtPJ+787FhrsPnawxoTPA/VxgjRMrjc=",
+        "lastModified": 1658751516,
+        "narHash": "sha256-Y/3dHoTjbvYBtWd+TTBQJUIgDPO9d+Gqt05C5dyR7E4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "3bf16c0fd141c28312be52945d1543f9ce557bb1",
+        "rev": "dbed4c794d20d51027fc1107f063ec5be027dafc",
         "type": "github"
       },
       "original": {
@@ -222,11 +238,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1655901362,
-        "narHash": "sha256-1cPiO869Dr3hqn1qhqd6amvw5U0PB7XDSdwMsIMWNiQ=",
+        "lastModified": 1657748715,
+        "narHash": "sha256-WecDwDY/hEcDQYzFnccCNa+5Umht0lfjx/d1qGDy/rQ=",
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "898edde476232843da50c9a855efaf5dd8caadaa",
+        "rev": "3323b944d99b026aebfd8de439e001409dde067d",
         "type": "github"
       },
       "original": {
@@ -284,11 +300,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1656753965,
-        "narHash": "sha256-BCrB3l0qpJokOnIVc3g2lHiGhnjUi0MoXiw6t1o8H1E=",
+        "lastModified": 1658737577,
+        "narHash": "sha256-xosJ5nJT9HX+b6UWsSX6R+ap4AdZOCrl/r+IKFp2ASQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0ea7a8f1b939d74e5df8af9a8f7342097cdf69eb",
+        "rev": "5a0e0d73b944157328d54c4ded1cf2f0146a86a5",
         "type": "github"
       },
       "original": {
@@ -369,6 +385,7 @@
       "inputs": {
         "agenix": "agenix",
         "beltsearch": "beltsearch",
+        "blocklist": "blocklist",
         "cisco": "cisco",
         "deploy-rs": "deploy-rs",
         "flake-utils": "flake-utils_4",

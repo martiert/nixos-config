@@ -7,6 +7,7 @@
 , webex-linux
 , vysor
 , beltsearch
+, blocklist
 , ...}:
 
 let
@@ -71,7 +72,7 @@ in rec {
 
           nix.registry.nixpkgs.flake = nixpkgs;
           nixpkgs.overlays = [
-            (import ../overlay { inherit nixpkgs cisco vysor beltsearch; system = config.system; })
+            (import ../overlay { inherit nixpkgs cisco vysor beltsearch blocklist; system = config.system; })
           ];
         }
       ];

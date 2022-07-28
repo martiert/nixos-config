@@ -2,6 +2,7 @@
 , cisco
 , vysor
 , beltsearch
+, blocklist
 , system
 }:
 
@@ -29,4 +30,18 @@ in self: super: {
       sha256 = "SocdTFLGsojBR5+AXQ24x9P97dD8JHImRtfJcGeFmDs=";
     };
   });
+
+  dns_blocklist = super.stdenv.mkDerivation {
+    pname = "blocklist";
+    version = "1.0.0";
+
+    src = blocklist;
+
+    configPhase = true;
+    buildPhase = "";
+    installPhase = ''
+      mkdir $out
+      cp -r * $out/
+    '';
+  };
 }
