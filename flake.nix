@@ -21,7 +21,6 @@
       url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    webex-linux.url = "git+ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix?ref=main";
     openconnect-sso = {
       url = "github:vlaci/openconnect-sso";
       flake = false;
@@ -37,10 +36,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, openconnect-sso, cisco, webex-linux, vysor, beltsearch, blocklist, ... }@inputs:
+  outputs = { self, nixpkgs, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, openconnect-sso, cisco, vysor, beltsearch, blocklist, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
-        inherit nixpkgs home-manager agenix openconnect-sso cisco webex-linux vysor beltsearch blocklist;
+        inherit nixpkgs home-manager agenix openconnect-sso cisco vysor beltsearch blocklist;
         lib = super;
       });
 

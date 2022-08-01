@@ -1,6 +1,5 @@
 { nixpkgs
 , openconnect-sso
-, webex-linux
 , ...}:
 
 let
@@ -10,7 +9,7 @@ let
       { command = "xrandr --output HDMI-1 --right-of HDMI-0 --output DP-1 --right-of HDMI-1"; }
       { command = "alacritty"; }
       { command = "firefox"; }
-      { command = "CiscoCollabHost"; }
+      { command = "webex"; }
       { command = "gimp"; }
       { command = "xsetwacom --set \"Wacom Cintiq 16 Pen stylus\" MapToOutput HEAD-2"; }
       { command = "xsetwacom --set \"Wacom Cintiq 16 Pen eraser\" MapToOutput HEAD-2"; }
@@ -172,9 +171,6 @@ in {
       ];
 
       home.stateVersion = "22.05";
-      home.packages = [
-        webex-linux.packages."${system}".webexWayland
-      ];
 
       xsession.windowManager.i3.config = swayi3Config "HDMI-0" "HDMI-1" "DP-1";
       martiert = {

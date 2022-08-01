@@ -1,6 +1,5 @@
 { nixpkgs
 , openconnect-sso
-, webex-linux
 , ...}:
 
 let
@@ -75,9 +74,6 @@ in {
       ];
 
       home.stateVersion = "22.05";
-      home.packages = [
-        webex-linux.packages."${system}".webexWayland
-      ];
 
       martiert = {
         i3status = {
@@ -94,7 +90,7 @@ in {
         startup = [
           { command = "firefox"; }
           { command = "alacritty"; }
-          { command = "CiscoCollabHost"; }
+          { command = "webex"; }
         ];
         assigns = {
           "2" = [{ class = "^webex$"; }];

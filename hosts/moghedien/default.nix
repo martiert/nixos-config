@@ -1,6 +1,5 @@
 { nixpkgs
 , openconnect-sso
-, webex-linux
 , ...}:
 
 let
@@ -9,7 +8,7 @@ let
     startup = [
       { command = "alacritty"; }
       { command = "firefox"; }
-      { command = "CiscoCollabHost"; }
+      { command = "webex"; }
     ];
     workspaceOutputAssign = [
       {
@@ -72,9 +71,6 @@ in {
       ];
 
       home.stateVersion = "22.05";
-      home.packages = [
-        webex-linux.packages."${system}".webexWayland
-      ];
 
       xsession.windowManager.i3.config = swayi3Config //
         {
@@ -94,7 +90,7 @@ in {
           };
           assigns = {
             "2" = [{ app_id = "^firefox$"; }];
-            "3" = [{ app_id = "^CiscoCollabHost$"; }];
+            "3" = [{ app_id = "^webex$"; }];
             "10" = [{ class = "^Gimp$"; }];
           };
         };

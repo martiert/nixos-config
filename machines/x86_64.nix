@@ -78,7 +78,7 @@ in {
       "steam"
       "steam-original"
       "steam-runtime"
-      "webex-linux"
+      "webex"
       "teamctl"
       "roomctl"
       "Oracle_VM_VirtualBox_Extension_Pack"

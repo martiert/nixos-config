@@ -15,6 +15,5 @@ in {
     pkgs.teamctl
     pkgs.roomctl
     pkgs.vysor
-    pkgs.webex-linux
   ];
 }

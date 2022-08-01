@@ -1,6 +1,5 @@
 { nixpkgs
 , openconnect-sso
-, webex-linux
 , ...}:
 
 let
@@ -9,7 +8,7 @@ let
     startup = [
       { command = "firefox"; }
       { command = "alacritty"; }
-      { command = "CiscoCollabHost"; }
+      { command = "webex"; }
       { command = "gimp"; }
     ];
     assigns = {
@@ -143,9 +142,6 @@ in {
       ];
 
       home.stateVersion = "22.05";
-      home.packages = [
-        webex-linux.packages."${system}".webexWayland
-      ];
 
       xsession.windowManager.i3.config = swayi3Config "DP-2-2" "DP-2-1" "DP-1";
       wayland.windowManager.sway.config = (swayi3Config "DP-4" "DP-3" "DP-1") //

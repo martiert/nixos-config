@@ -4,7 +4,6 @@
 , home-manager
 , openconnect-sso
 , cisco
-, webex-linux
 , vysor
 , beltsearch
 , blocklist
@@ -24,7 +23,7 @@ let
     let
       filename = ../hosts/${name};
       config = import filename {
-        inherit nixpkgs home-manager openconnect-sso webex-linux;
+        inherit nixpkgs home-manager openconnect-sso;
       };
     in {
       name = name;

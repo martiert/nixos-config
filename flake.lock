@@ -44,11 +44,11 @@
     "blocklist": {
       "flake": false,
       "locked": {
-        "lastModified": 1659002097,
-        "narHash": "sha256-32Cl2jjyZQiGWjz2RkRzpqEOMAwQ5b2ZSE8ho/eM51Q=",
+        "lastModified": 1659261307,
+        "narHash": "sha256-vkjMNRYSMHOMcBWme3ekmnzgopkrvdAVoqbwe9o2+fc=",
         "owner": "notracking",
         "repo": "hosts-blocklists",
-        "rev": "a8be2aca0d9b70629fb26079a3d5f641e1918736",
+        "rev": "b2e4fd0802c9d34cf6a2057d088e2e23863af77c",
         "type": "github"
       },
       "original": {
@@ -185,33 +185,16 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1658924727,
-        "narHash": "sha256-Fhh9FK9CvuCLxG1WkWJPoendDeXKI4gHYTfezo1n2Zg=",
+        "lastModified": 1659232160,
+        "narHash": "sha256-RYKbKAYooiART2RUEpUnP7tAYM6+2i1m9+QI14wljZU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0e2f7876d2f2ae98a67d89a8bef8c49332aae5af",
+        "rev": "7146638e9ef74aba6736cbbf12dbe60e1ed24c1e",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "nixGL": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1651078744,
-        "narHash": "sha256-+S/NEzZoTt7EoSOMEUsR/LuNTtzYhbribFaIewNxdCQ=",
-        "owner": "guibou",
-        "repo": "nixGL",
-        "rev": "56f2fbcce7a08c60c98394a64e900d5e9227bcb2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "guibou",
-        "ref": "main",
-        "repo": "nixGL",
         "type": "github"
       }
     },
@@ -300,32 +283,16 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1658826464,
-        "narHash": "sha256-94ZTF0uIX/iZdiD4RJ5f933ak/OM4XLl7hF+gCa4Iuk=",
+        "lastModified": 1659219666,
+        "narHash": "sha256-pzYr5fokQPHv7CmUXioOhhzDy/XyWOIXP4LZvv/T7Mk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ce49cb7792a7ffd65ef352dda1110a4e4a204eac",
+        "rev": "7b9be38c7250b22d829ab6effdee90d5e40c6e5c",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_5": {
-      "locked": {
-        "lastModified": 1652020977,
-        "narHash": "sha256-9hDlNbrxzD/pLlXmoQ6gzxbYiSAKrj7uHYUWNByLFlI=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "3c5ae9be1f18c790ea890ef8decbd0946c0b4c04",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-21.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -393,8 +360,7 @@
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs_4",
         "openconnect-sso": "openconnect-sso",
-        "vysor": "vysor",
-        "webex-linux": "webex-linux"
+        "vysor": "vysor"
       }
     },
     "teamctl": {
@@ -458,26 +424,6 @@
       "original": {
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/CE/vysor"
-      }
-    },
-    "webex-linux": {
-      "inputs": {
-        "nixGL": "nixGL",
-        "nixpkgs": "nixpkgs_5"
-      },
-      "locked": {
-        "lastModified": 1656323833,
-        "narHash": "sha256-KFn+punU5gVtNS7igFtOoVEokW5bFpspwy9c4/9CCiU=",
-        "ref": "main",
-        "rev": "84ca82ab736b4e6019d065820b166edc26091247",
-        "revCount": 58,
-        "type": "git",
-        "url": "ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "ssh://git@sqbu-github.cisco.com/Nix/webex-linux-nix"
       }
     }
   },

@@ -47,5 +47,6 @@
     tmate
     spotify
     zoom-us
+    webex
   ];
 }
