@@ -32,6 +32,7 @@
           ./public_keys/moghedien.pub
           ./public_keys/moridin.pub
           ./public_keys/perrin.pub
+          ./public_keys/aginor.pub
         ];
       };
     };
