@@ -5,14 +5,14 @@ self: super: {
             name = "FirmwareUpdater";
           in self.buildPythonPackage rec {
             pname = "OctoPrintPlugin-${name}";
-            version = "1.13.2";
+            version = "1.13.3";
             propagatedBuildInputs = [
               self.octoprint
             ];
 
             src = fetchTarball {
               url = "https://github.com/OctoPrint/OctoPrint-${name}/archive/refs/tags/${version}.tar.gz";
-              sha256 = "0zjy2mr2h44n14f66336lzf9ksx0yb6l678l81vc9rwxl8p56zrm";
+              sha256 = "02x8bqi2s2fa57j5sz3dizzmrck6j5hh7nn40svrzr71yyqxx5pd";
             };
 
             doCheck = false;

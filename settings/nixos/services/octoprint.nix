@@ -1,6 +1,10 @@
 { pkgs, lib, ... }:
 
 {
+  environment.systemPackages = [
+    pkgs.libraspberrypi
+  ];
+
   services.octoprint = {
     enable = true;
     plugins = plugins: with plugins; [
