@@ -3,6 +3,7 @@ let
   perrin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBGRf2h4CTeeSWRsozsKAJOstTDNi06NXe/n+GAkQ/K root@Perrin";
   aginor = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMRjg84Y2jgL/qFgc0BPnZvjLkN/fnsDTdLyFfbK+KmZ root@Aginor";
   moghedien = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAlDQcKcShLLVDXOLzzHKx7D6gNetKxC2nL7nFz6SWtu root@moghedien";
+  mattrim = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0jcSi9N1xUK9BHLthykIgI8Wj8/yFdMLdqk5KwL1Hp root@mattrim";
 
   octoprint = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKU1fdUX2EF8GAH6e6K9gp42XgBjhtrUNYz6kKfHwPpD root@octoprint";
   pihole = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMizRj3YEyAbCL3T9S8Fa2IvSN2Ia/U1hD2ItEzALhZI root@pihole";
