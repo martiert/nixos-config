@@ -54,6 +54,7 @@ in {
       ../../settings/nixos/configs/common.nix
       ../../settings/nixos/services/openssh.nix
       ../../settings/nixos/services/nginx.nix
+      ../../settings/nixos/services/dnsproxy.nix
     ];
 
     virtualisation.virtualbox.host = {
@@ -71,23 +72,8 @@ in {
       ];
     };
 
-    services.dnsmasq = 
-      let
-        dnsServers = import ../../secrets/dns_servers.nix;
-      in {
-        enable = true;
-        resolveLocalQueries = true;
-        servers = dnsServers.home ++ dnsServers.cisco;
-      };
-
-      networking.networkmanager = {
-        enable = true;
-        unmanaged = [ "enp4s0" ];
-        dns = "dnsmasq";
-        dhcp = "dhcpcd";
-      };
-
     age.secrets."wpa_supplicant_enp4s0".file = ../../secrets/wpa_supplicant_wired.age;
+    age.secrets."dns_servers".file = ../../secrets/dns_servers.age;
 
     fileSystems."/home/martin/Cisco" = {
       device = "/dev/disk/by-uuid/e2e37fd7-4a01-4386-90e0-20ea8f37fc64";
@@ -137,6 +123,7 @@ in {
             enable = true;
             useDHCP = true;
             staticRoutes = true;
+            unmanaged = true;
             supplicant = {
               enable = true;
               wired = true;

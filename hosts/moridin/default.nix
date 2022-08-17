@@ -50,6 +50,7 @@ in {
       ../../machines/x86_64.nix
       ../../settings/nixos/configs/common.nix
       ../../settings/nixos/services/openssh.nix
+      ../../settings/nixos/services/dnsproxy.nix
     ];
 
     virtualisation.virtualbox.host = {
@@ -66,21 +67,7 @@ in {
     };
 
     age.secrets."wpa_supplicant_enp0s20f0u3".file = ../../secrets/wpa_supplicant_wired.age;
-    services.dnsmasq = 
-      let
-        dnsServers = import ../../secrets/dns_servers.nix;
-      in {
-        enable = true;
-        resolveLocalQueries = true;
-        servers = dnsServers.home ++ dnsServers.cisco;
-      };
-
-      networking.networkmanager = {
-        enable = true;
-        unmanaged = [ "enp0s20f0u3" ];
-        dns = "dnsmasq";
-        dhcp = "dhcpcd";
-      };
+    age.secrets."dns_servers".file = ../../secrets/dns_servers.age;
 
     martiert = {
       mountpoints = {
@@ -109,6 +96,7 @@ in {
             enable = true;
             useDHCP = true;
             staticRoutes = true;
+            unmanaged = true;
             supplicant = {
               enable = true;
               wired = true;

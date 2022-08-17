@@ -19,4 +19,5 @@ let
 in {
   "secrets/wpa_supplicant_wired.age".publicKeys = [ perrin moridin ] ++ editKeys;
   "secrets/wpa_supplicant_wireless.age".publicKeys = [ moghedien octoprint ] ++ editKeys;
+  "secrets/dns_servers.age".publicKeys = [ perrin moridin mattrim ] ++ editKeys;
 }
