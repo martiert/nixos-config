@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
     flake-utils.url = "github:numtide/flake-utils";
     agenix = {
       url = "github:ryantm/agenix";
@@ -36,10 +37,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, openconnect-sso, cisco, vysor, beltsearch, blocklist, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-wsl, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, openconnect-sso, cisco, vysor, beltsearch, blocklist, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
-        inherit nixpkgs home-manager agenix openconnect-sso cisco vysor beltsearch blocklist;
+        inherit nixpkgs nixos-wsl home-manager agenix openconnect-sso cisco vysor beltsearch blocklist;
         lib = super;
       });
 

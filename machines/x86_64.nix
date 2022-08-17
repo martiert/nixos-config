@@ -38,6 +38,7 @@ in {
 
   imports = [
     ./mountpoints.nix
+    ./allowedPackages.nix
   ];
 
   config = {
@@ -70,25 +71,6 @@ in {
     services.pcscd.enable = true;
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "cnijfilter2"
-      "google-chrome"
-      "skypeforlinux"
-      "steam"
-      "steam-original"
-      "steam-runtime"
-      "webex"
-      "teamctl"
-      "roomctl"
-      "Oracle_VM_VirtualBox_Extension_Pack"
-      "nvidia-x11"
-      "nvidia-settings"
-      "nvidia-persistenced"
-      "spotify"
-      "spotify-unwrapped"
-      "zoom"
-    ];
 
     hardware.enableRedistributableFirmware = true;
     powerManagement.cpuFreqGovernor = mkDefault "powersave";

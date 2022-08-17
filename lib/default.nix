@@ -1,4 +1,5 @@
 { nixpkgs
+, nixos-wsl
 , lib
 , agenix
 , home-manager
@@ -56,6 +57,7 @@ in rec {
         ../settings/nixos/users/root.nix
         ../settings/nixos/configs/networking
         config.nixos
+        nixos-wsl.nixosModules.wsl
         { system.stateVersion = "22.05"; }
         agenix.nixosModule
         home-manager.nixosModules.home-manager
