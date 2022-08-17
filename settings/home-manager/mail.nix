@@ -85,10 +85,24 @@ in {
 
   imports = [
     ./davmail.nix
-    ../../secrets/mail_setup.nix
   ];
 
   config = mkIf cfg.enable {
+    martiert.email = {
+      address = "mertsas@cisco.com";
+      smtp = {
+        tls = false;
+        host = "outbound.cisco.com";
+      };
+      imap.tls = false;
+      davmail = {
+        o365 = {
+          enable = true;
+          clientId = "953f4ef4-80ac-48d1-b98c-f66f227bb094";
+        };
+      };
+    };
+
     accounts.email = {
       maildirBasePath = ".mail";
       accounts.cisco = {
