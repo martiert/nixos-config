@@ -1,5 +1,4 @@
 { nixpkgs
-, openconnect-sso
 , ...}:
 
 rec {
@@ -7,6 +6,10 @@ rec {
   nixos = ({ config, ... }: {
     imports = [
       ../../settings/nixos/configs/common.nix
+      ../../settings/nixos/services/dnsproxy.nix
+      ../../settings/nixos/users/martin.nix
+      ../../settings/nixos/users/root.nix
+      ../../settings/nixos/services/openssh.nix
       ../../machines/wsl.nix
     ];
     nix.settings.trusted-users = [
@@ -18,6 +21,10 @@ rec {
       automountPath = "/mnt";
       defaultUser = "martin";
       startMenuLaunchers = false; # Done below to include Home Manager apps
+      wslConf.network = {
+        generateResolvConf = false;
+        hostname = "mattrim";
+      };
     };
 
     # Ensure /tmp/.X11-unix isn't cleaned by systemd-tmpfiles:
@@ -25,13 +32,17 @@ rec {
     systemd.tmpfiles.rules = [
       "d /tmp/.X11-unix 1777 root root"
     ];
-    networking.useDHCP = false;
-    networking.resolvconf.enable = true;
-    networking.dhcpcd.extraConfig = "resolv.conf";
+    networking = {
+      useDHCP = false;
+      resolvconf.enable = true;
+      dhcpcd.extraConfig = "resolv.conf";
+    };
 
-    age.identityPaths = [ "/etc/ssh/ssh_host_ed25591_key" ];
+    environment.etc."resolv.conf".source = "/etc/resolv.conf.conf";
+    age.secrets."dns_servers".file = ../../secrets/dns_servers.age;
 
     martiert = {
+      sshd.enable = true;
       networking.interfaces = {
         "eth0" = {
           enable = true;
