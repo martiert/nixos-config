@@ -1,5 +1,4 @@
 { nixpkgs
-, openconnect-sso
 , ...}:
 
 let
@@ -7,10 +6,6 @@ let
 in {
   inherit system;
   nixos = {
-    nixpkgs.overlays = [
-      (import "${openconnect-sso}/overlay.nix")
-    ];
-
     imports = [
       ../../machines/x86_64.nix
       ../../settings/nixos/configs/common.nix

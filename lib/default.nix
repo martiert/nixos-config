@@ -3,7 +3,6 @@
 , lib
 , agenix
 , home-manager
-, openconnect-sso
 , cisco
 , vysor
 , beltsearch
@@ -24,7 +23,7 @@ let
     let
       filename = ../hosts/${name};
       config = import filename {
-        inherit nixpkgs home-manager openconnect-sso;
+        inherit nixpkgs home-manager;
       };
     in {
       name = name;
