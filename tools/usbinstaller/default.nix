@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
-let
-  networks = import ../../secrets/networks.nix;
-in {
+{
   environment.systemPackages = with pkgs; [
     git
     git-crypt
@@ -16,30 +14,6 @@ in {
 
   networking.wireless = {
     enable = true;
-    networks = {
-      "402 Payment Required" = {
-        pskRaw = networks.home;
-        priority = 6;
-      };
-      "blizzard" = {
-        auth = ''
-          eap=PEAP
-          identity="${networks.cisco.identity}"
-          password="${networks.cisco.password}"
-          phase2="auth=MSCHAPV2"
-        '';
-        authProtocols=[ "WPA-EAP" ];
-      };
-      "snowstorm" = {
-        auth = ''
-          eap=PEAP
-          identity="${networks.cisco.identity}"
-          password="${networks.cisco.password}"
-          phase2="auth=MSCHAPV2"
-        '';
-        authProtocols=[ "WPA-EAP" ];
-      };
-    };
   };
 
   environment.etc."gnupg/keys.pub".source = ../../settings/home-manager/keys.pub;
