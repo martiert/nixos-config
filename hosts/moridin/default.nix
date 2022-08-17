@@ -57,6 +57,12 @@ in {
       enable = true;
       enableExtensionPack = true;
     };
+    networking.networkmanager = {
+      enable = true;
+      unmanaged = [ "enp0s20f0u3" ];
+      dns = "dnsmasq";
+      dhcp = "dhcpcd";
+    };
 
     services.xserver = {
       xrandrHeads = [
@@ -96,7 +102,6 @@ in {
             enable = true;
             useDHCP = true;
             staticRoutes = true;
-            unmanaged = true;
             supplicant = {
               enable = true;
               wired = true;

@@ -90,7 +90,6 @@ in {
               description = "Interfaces to add to the bridge";
             };
             staticRoutes = mkEnableOption "static routes";
-            unmanaged = mkEnableOption "unmanaged interface";
             supplicant = mkOption {
               default = {};
               type = types.submodule {
