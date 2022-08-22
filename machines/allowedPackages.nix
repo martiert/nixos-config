@@ -18,5 +18,6 @@
     "spotify"
     "spotify-unwrapped"
     "zoom"
+    "teamviewer"
   ];
 }
