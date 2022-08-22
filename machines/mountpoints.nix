@@ -33,6 +33,11 @@ in {
             type = types.str;
             description = "decrypted device to mount";
           };
+          credentials = mkOption {
+            type = types.listOf (types.str);
+            description = "credentials for luks decryption";
+            default = [];
+          };
         };
       };
     };
@@ -48,16 +53,24 @@ in {
   };
 
   config = {
-    boot.initrd.luks.devices."root" = {
-      device = cfg.root.encryptedDevice;
-      keyFile = "${keyDir}/${cfg.keyDisk.keyFile}";
-      preLVM = false;
-      fallbackToPassword = true;
-      preOpenCommands = ''
-        mkdir "${keyDir}"
-        waitDevice "${cfg.keyDisk.disk}"
-        mount "${cfg.keyDisk.disk}" "${keyDir}"
-      '';
+    # boot.initrd.luks.devices."root" = {
+    #   device = cfg.root.encryptedDevice;
+    #   keyFile = "${keyDir}/${cfg.keyDisk.keyFile}";
+    #   preLVM = false;
+    #   fallbackToPassword = true;
+    #   preOpenCommands = ''
+    #     mkdir "${keyDir}"
+    #     waitDevice "${cfg.keyDisk.disk}"
+    #     mount "${cfg.keyDisk.disk}" "${keyDir}"
+    #   '';
+    boot.initrd.luks = {
+      fido2Support = true;
+      devices."root" = {
+        fido2.credential = "\"${builtins.concatStringsSep "," cfg.root.credentials}\"";
+        device = cfg.root.encryptedDevice;
+        preLVM = false;
+        fallbackToPassword = true;
+      };
     };
     fileSystems."/" = {
       device = cfg.root.device;

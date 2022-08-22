@@ -97,10 +97,14 @@ in {
 
     martiert = {
       mountpoints = {
-        keyDisk.keyFile = "luks/perrin.key";
         root = {
           encryptedDevice = "/dev/disk/by-uuid/34185190-271f-464b-91aa-d6707835ab60";
           device = "/dev/disk/by-uuid/29a4d0df-3ec4-4b32-914a-9329d4b18c99";
+          credentials = [
+            "7a1b48e5df7fe3f91fc7b44a5404a6a2"
+            "629a8ce0e10987d16ea20dc186aac48c"
+            "1b633076d0cef092511ad5beca0ab1c5"
+          ];
         };
         boot = "/dev/disk/by-uuid/34F2-B158";
         swap = "/dev/disk/by-partuuid/1bc95ed3-d38e-d64e-9410-43067e6cd4d5";
