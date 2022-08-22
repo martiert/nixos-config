@@ -363,22 +363,6 @@
         "type": "github"
       }
     },
-    "openconnect-sso": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1639475764,
-        "narHash": "sha256-VvhPYafFfvhp7ZlygZ0kTyczkLY/5e0ip5OElX2CwhM=",
-        "owner": "vlaci",
-        "repo": "openconnect-sso",
-        "rev": "4430cb09aefe15108e5f3b40b94ed792fbe9548b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vlaci",
-        "repo": "openconnect-sso",
-        "type": "github"
-      }
-    },
     "poetry2nix": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -426,7 +410,6 @@
         "nixos-generators": "nixos-generators",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_5",
-        "openconnect-sso": "openconnect-sso",
         "vysor": "vysor"
       }
     },
