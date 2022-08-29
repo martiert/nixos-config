@@ -29,7 +29,6 @@ in {
 
       windowManager.i3.enable = true;
 
-      useGlamor = true;
       wacom.enable = true;
     };
 
