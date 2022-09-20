@@ -44,11 +44,11 @@
     "blocklist": {
       "flake": false,
       "locked": {
-        "lastModified": 1662372628,
-        "narHash": "sha256-01XobAQWZh1Kf3bpPvc+r18yD00jGDLMMpOgDtauMpM=",
+        "lastModified": 1663672337,
+        "narHash": "sha256-pxqrV/lcCvF18Ai2bZXtWoDndsUoJ5wcFJ+9YRlnwJ0=",
         "owner": "notracking",
         "repo": "hosts-blocklists",
-        "rev": "1b5d1e88ff96c6eac802853a0f3d395a239a2915",
+        "rev": "4cb7f91603e643b8cc6cc98892d70b216e195d81",
         "type": "github"
       },
       "original": {
@@ -216,11 +216,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1662396970,
-        "narHash": "sha256-N1LKxBqKmWSM/YFSROAmhotZVTUt0d6yF3opFc/XcN8=",
+        "lastModified": 1663629861,
+        "narHash": "sha256-CjfQUyPfG/hkE4jnMcTvVJ0ubc84u8ySruZL+emXMjw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "583a99f0166e3e5df9539b972091830bb9faf6b8",
+        "rev": "41790ba656bafc023f48ccdbbe7816d30fd52d76",
         "type": "github"
       },
       "original": {
@@ -349,11 +349,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1662019588,
-        "narHash": "sha256-oPEjHKGGVbBXqwwL+UjsveJzghWiWV0n9ogo1X6l4cw=",
+        "lastModified": 1663494472,
+        "narHash": "sha256-fSowlaoXXWcAM8m9wA6u+eTJJtvruYHMA+Lb/tFi/qM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2da64a81275b68fdad38af669afeda43d401e94b",
+        "rev": "f677051b8dc0b5e2a9348941c99eea8c4b0ff28f",
         "type": "github"
       },
       "original": {
@@ -447,11 +447,11 @@
     },
     "utils_2": {
       "locked": {
-        "lastModified": 1653893745,
-        "narHash": "sha256-0jntwV3Z8//YwuOjzhV2sgJJPt+HY6KhU7VZUL0fKZQ=",
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "1ed9fb1935d260de5fe1c2f7ee0ebaae17ed2fa1",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
         "type": "github"
       },
       "original": {
@@ -463,11 +463,11 @@
     "vysor": {
       "flake": false,
       "locked": {
-        "lastModified": 1661864391,
-        "narHash": "sha256-+bxPZCWPKNjusDRQYairAStscURYiGMI4XKI/LezXKk=",
+        "lastModified": 1663666091,
+        "narHash": "sha256-3pE1SoIE5T1o+VJT1NZESuAGzrCQAmU+z+k7ZPMjT+o=",
         "ref": "refs/heads/master",
-        "rev": "0b31348a43f870a7d278fc9eaa461e9e0c16fbb1",
-        "revCount": 155,
+        "rev": "a1fde8f3daff40c575b239dde258e65e496bf724",
+        "revCount": 164,
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/CE/vysor"
       },

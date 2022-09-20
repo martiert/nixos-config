@@ -66,7 +66,7 @@ in {
     boot.initrd.luks = {
       fido2Support = true;
       devices."root" = {
-        fido2.credential = "\"${builtins.concatStringsSep "," cfg.root.credentials}\"";
+        fido2.credentials = cfg.root.credentials;
         device = cfg.root.encryptedDevice;
         preLVM = false;
         fallbackToPassword = true;
