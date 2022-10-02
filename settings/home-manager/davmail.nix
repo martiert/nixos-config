@@ -70,7 +70,7 @@ in {
       };
 
       Service = {
-        Environment = "PATH=${pkgs.davmail}/bin:${pkgs.coreutils}/bin:${pkgs.xdg_utils}/bin:${pkgs.firefox}/bin";
+        Environment = "PATH=${pkgs.davmail}/bin:${pkgs.coreutils}/bin:${pkgs.xdg-utils}/bin:${pkgs.firefox}/bin";
         ExecStart = "${davmail}/bin/davmail";
         Restart = "on-failure";
       };

@@ -33,15 +33,7 @@ in self: super: {
       sha256 = "SocdTFLGsojBR5+AXQ24x9P97dD8JHImRtfJcGeFmDs=";
     };
   });
-  cryptsetup = super.cryptsetup.overrideAttrs (old: rec {
-    pname = "cryptsetup";
-    version = "2.4.3";
-    src = builtins.fetchurl {
-      url = "mirror://kernel/linux/utils/cryptsetup/v2.4/${pname}-${version}.tar.xz";
-      sha256 = "sha256-/A35RRiBciZOxb8dC9oIJk+tyKP4VtR+upHzH+NUtQc=";
-    };
-  });
-
+ 
   dns_blocklist = super.stdenv.mkDerivation {
     pname = "blocklist";
     version = "1.0.0";

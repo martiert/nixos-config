@@ -18,7 +18,7 @@ pythonPackages.buildPythonApplication rec {
 
   propagatedBuildInputs = [
     pythonPackages.icalendar
-    pythonPackages.dateutil
+    pythonPackages.python-dateutil
   ];
 
   meta = with lib; {
