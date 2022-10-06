@@ -20,9 +20,14 @@ in self: super: {
   flashPrint = callPackage ./flashPrint.nix {};
 
   beltsearch = beltsearch.outputs.packages."${system}".beltsearch;
-  fido2luks = super.fido2luks.overrideAttrs (old: rec {
-    meta.broken = false;
-  });
+
+  weechatScripts = {
+    weechat-matrix2 = super.weechatScripts.weechat-matrix.overrideAttrs (old: rec {
+      dontBuild = false;
+      buildPhase = "mkdir dist";
+    });
+    wee-slack = super.weechatScripts.wee-slack;
+  };
 
   tmate = super.tmate.overrideAttrs (old: rec {
     version = "2.3.0";
