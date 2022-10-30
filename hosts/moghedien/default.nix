@@ -66,6 +66,7 @@ in {
     home-manager.users.martin = {
       imports = [
         ../../settings/home-manager/all.nix
+        ../../settings/home-manager/x86_64-linux.nix
       ];
 
       home.stateVersion = "22.05";

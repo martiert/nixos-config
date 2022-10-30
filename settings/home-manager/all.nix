@@ -22,12 +22,8 @@
 
   home.packages = with pkgs; [
     silver-searcher
-    google-chrome
     firefox
-    skypeforlinux
-    steam
     gimp
-    flashPrint
 
     #tools
     wget
@@ -45,8 +41,5 @@
 
     projecteur
     tmate
-    spotify
-    zoom-us
-    webex
   ];
 }

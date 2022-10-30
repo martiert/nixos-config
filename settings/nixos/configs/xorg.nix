@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 
 with lib;
 
@@ -33,6 +33,8 @@ in {
     };
 
     programs.sway.enable = true;
-    hardware.opengl.driSupport32Bit = true;
+    hardware.opengl = mkIf (pkgs.system == "x86_64-linux") {
+      driSupport32Bit = true;
+    };
   };
 }

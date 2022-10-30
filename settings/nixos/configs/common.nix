@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -9,8 +9,8 @@
   sound.enable = true;
   hardware.pulseaudio = {
     enable = true;
-    support32Bit = true;
     extraConfig = ''unload-module module-switch-on-port-available'';
+    support32Bit = (pkgs.system == "x86_64-linux");
   };
 
   documentation.dev.enable = true;

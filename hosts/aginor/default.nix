@@ -69,6 +69,7 @@ in {
       imports = [
         ../../settings/home-manager/all.nix
         ../../settings/home-manager/beltsearch.nix
+        ../../settings/home-manager/x86_64-linux.nix
       ];
 
       home.stateVersion = "22.05";
