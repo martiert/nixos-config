@@ -57,10 +57,12 @@ in rec {
         ../settings/nixos/configs/networking
         config.nixos
         nixos-wsl.nixosModules.wsl
-        { system.stateVersion = "22.05"; }
         agenix.nixosModule
         home-manager.nixosModules.home-manager
         {
+          system.stateVersion = "22.05";
+          wsl.defaultUser = "martin";
+
           environment.variables.EDITOR = "vim";
           environment.variables.MOZ_ENABLE_WAYLAND = "1";
           environment.systemPackages = [ agenix.defaultPackage."${config.system}" ];
