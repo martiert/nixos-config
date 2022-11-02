@@ -15,20 +15,17 @@ in {
       "root"
       "martin"
     ];
-
-    wsl = {
-      enable = true;
-      automountPath = "/mnt";
-      defaultUser = "martin";
-      startMenuLaunchers = false;
+  
+    martiert = {
+      sshd.enable = true;
     };
-  };
-
-  home-manager.users.martin = {
-    imports = [
-      ../../settings/home-manager/all.nix
-    ];
-
-    home.stateVersion = "22.05";
+  
+    home-manager.users.martin = {
+      imports = [
+        ../../settings/home-manager/all.nix
+      ];
+  
+      home.stateVersion = "22.05";
+    };
   };
 }

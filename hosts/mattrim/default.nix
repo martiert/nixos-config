@@ -17,10 +17,6 @@ rec {
       "martin"
     ];
     wsl = {
-      enable = true;
-      automountPath = "/mnt";
-      defaultUser = "martin";
-      startMenuLaunchers = false; # Done below to include Home Manager apps
       wslConf.network = {
         generateResolvConf = false;
         hostname = "mattrim";
