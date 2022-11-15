@@ -132,9 +132,10 @@ in {
 
             mailboxes "=Inbox"
             mailboxes "=Inbox/chromium"
-            mailboxes "=Inbox/courses"
             mailboxes "=Inbox/jira"
             mailboxes "=Inbox/Patches"
+            mailboxes "=Inbox/github"
+            mailboxes "=Inbox/clueless"
             mailboxes "=Inbox/xapi"
             '';
         };
