@@ -46,6 +46,7 @@
         ./public_keys/moridin.pub
         ./public_keys/aginor.pub
         ./public_keys/perrin.pub
+        ./public_keys/schnappi.pub
       ];
     };
   });
