@@ -62,7 +62,16 @@ in {
       services.xserver = {
         defaultSession = "none+i3";
       };
-      sshd.enable = true;
+      sshd = {
+        enable = true;
+        authorizedKeyFiles = [
+          ./public_keys/mattrim.pub
+          ./public_keys/moghedien.pub
+          ./public_keys/moridin.pub
+          ./public_keys/perrin.pub
+          ./public_keys/schnappi.pub
+        ];
+      };
     };
 
     home-manager.users.martin = {
