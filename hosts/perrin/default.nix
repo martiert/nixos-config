@@ -146,7 +146,15 @@ in {
           };
         };
       };
-      sshd.enable = true;
+      sshd = {
+        enable = true;
+        authorizedKeyFiles = [
+          ./public_keys/aginor.pub
+          ./public_keys/moghedien.pub
+          ./public_keys/moridin.pub
+          ./public_keys/schnappi.pub
+        ];
+      };
     };
 
     home-manager.useGlobalPkgs = true;
