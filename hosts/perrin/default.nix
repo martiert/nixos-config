@@ -52,11 +52,6 @@ in {
       ../../settings/nixos/services/dnsproxy.nix
     ];
 
-    virtualisation.virtualbox.host = {
-      enable = true;
-      enableExtensionPack = true;
-    };
-
     services.xserver = {
       enable = true;
       videoDrivers = [ "nvidia" ];

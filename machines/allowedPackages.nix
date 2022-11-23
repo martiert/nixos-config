@@ -11,7 +11,6 @@
     "webex"
     "teamctl"
     "roomctl"
-    "Oracle_VM_VirtualBox_Extension_Pack"
     "nvidia-x11"
     "nvidia-settings"
     "nvidia-persistenced"

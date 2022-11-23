@@ -12,10 +12,6 @@ in {
       ../../settings/nixos/services/openssh.nix
     ];
     virtualisation = {
-      virtualbox.host = {
-        enable = true;
-        enableExtensionPack = true;
-      };
       docker.enableNvidia = true;
     };
 

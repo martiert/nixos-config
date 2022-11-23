@@ -48,10 +48,6 @@ in {
       ../../settings/nixos/services/dnsproxy.nix
     ];
 
-    virtualisation.virtualbox.host = {
-      enable = true;
-      enableExtensionPack = true;
-    };
     networking.networkmanager = {
       enable = true;
       unmanaged = [ "enp0s20f0u3" ];
