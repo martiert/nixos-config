@@ -3,11 +3,33 @@
 
 let
   system = "x86_64-linux";
+  swayi3Config = {
+    startup = [
+      { command = "alacritty"; }
+      { command = "firefox"; }
+      { command = "webex"; }
+    ];
+    workspaceOutputAssign = [
+      {
+        output = "USB-C-0";
+        workspace = "9";
+      }
+      {
+        output = "DP-0";
+        workspace = "1";
+      }
+      {
+        output = "DP-0";
+        workspace = "2";
+      }
+    ];
+  };
 in {
   inherit system;
   nixos = {
     imports = [
       ../../machines/x86_64.nix
+      ../../machines/nvidia.nix
       ../../settings/nixos/configs/common.nix
       ../../settings/nixos/services/openssh.nix
     ];
@@ -16,7 +38,6 @@ in {
     };
 
     services.xserver = {
-      videoDrivers = [ "nvidia" ];
       xrandrHeads = [
         "USB-C-0"
         "DP-0"
@@ -90,30 +111,17 @@ in {
         };
         email.enable = true;
       };
-      xsession.windowManager.i3.config = {
-        startup = [
-          { command = "firefox"; }
-          { command = "alacritty"; }
-          { command = "webex"; }
-        ];
+      xsession.windowManager.i3.config = swayi3Config // {
         assigns = {
           "2" = [{ class = "^webex$"; }];
           "9" = [{ class = "^Firefox$"; }];
         };
-        workspaceOutputAssign = [
-          {
-            output = "USB-C-0";
-            workspace = "9";
-          }
-          {
-            output = "DP-0";
-            workspace = "1";
-          }
-          {
-            output = "DP-0";
-            workspace = "2";
-          }
-        ];
+      };
+      wayland.windowManager.sway.config = swayi3Config // {
+        assigns = {
+          "2" = [{ app_id = "^firefox$"; }];
+          "3" = [{ app_id = "^webex$"; }];
+        };
       };
     };
   };

@@ -46,6 +46,7 @@ in {
   nixos = {
     imports = [
       ../../machines/x86_64.nix
+      ../../machines/nvidia.nix
       ../../settings/nixos/configs/common.nix
       ../../settings/nixos/services/openssh.nix
       ../../settings/nixos/services/nginx.nix
@@ -54,7 +55,6 @@ in {
 
     services.xserver = {
       enable = true;
-      videoDrivers = [ "nvidia" ];
       xrandrHeads = [
         "HDMI-0"
         "HDMI-1"
