@@ -45,6 +45,7 @@ in {
   inherit system;
   nixos = {
     imports = [
+      ./networkRestart.nix
       ../../machines/x86_64.nix
       ../../machines/nvidia.nix
       ../../settings/nixos/configs/common.nix
