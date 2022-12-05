@@ -109,6 +109,7 @@ in {
         efi.removable = true;
       };
       hardware.hidpi.enable = true;
+      hardware.nvidia.openDriver = false;
       services.xserver = {
         defaultSession = "none+i3";
       };

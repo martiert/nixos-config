@@ -76,6 +76,7 @@ in {
       };
       boot.initrd.extraAvailableKernelModules = [ "usbhid" "rtsx_pci_sdmmc" ];
       hardware.hidpi.enable = true;
+      hardware.nvidia.openDriver = true;
       services.xserver = {
         defaultSession = "none+i3";
       };
