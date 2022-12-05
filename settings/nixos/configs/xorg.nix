@@ -4,6 +4,7 @@ with lib;
 
 let
   cfg = config.martiert.services.xserver;
+  hwCfg = config.martiert.hardware;
 in {
   options = {
     martiert.services.xserver = {
@@ -23,7 +24,10 @@ in {
 
       libinput.enable = true;
       displayManager = {
-        sddm.enable = true;
+        sddm = {
+          enable = true;
+          enableHidpi = hwCfg.hidpi.enable;
+        };
         defaultSession = cfg.defaultSession;
       };
 
