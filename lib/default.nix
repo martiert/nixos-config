@@ -60,7 +60,7 @@ in rec {
         agenix.nixosModule
         home-manager.nixosModules.home-manager
         {
-          system.stateVersion = "22.05";
+          system.stateVersion = "23.05";
           wsl.defaultUser = "martin";
 
           environment.variables.EDITOR = "vim";
