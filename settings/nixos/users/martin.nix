@@ -20,7 +20,7 @@ in {
     users = {
       users.martin = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "audio" "video" "uucp" ];
+        extraGroups = [ "wheel" "audio" "video" "uucp" "adbusers" ];
         shell = pkgs.zsh;
         openssh.authorizedKeys.keyFiles = cfg.authorizedKeyFiles;
         hashedPassword = "$6$nUFj3gT/oPluqWtN$2kfFlSYw7XBlEDlhJgWi2whyWxEuKP7pnquExp7vbBftQiGfzoFtpZ/.exIsnPrv023BFRv7L0RjVzIAJ4e1b0";

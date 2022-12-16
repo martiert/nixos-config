@@ -114,6 +114,7 @@ in {
       "martin"
     ];
 
+    programs.adb.enable = true;
     networking.firewall.allowedTCPPortRanges = [
       {
         from = 20000;
