@@ -50,7 +50,7 @@ in {
       "sd_mod"
     ] ++ bootCfg.initrd.extraAvailableKernelModules;
 
-    boot.kernelPackages = pkgs.linuxPackages_6_0;
+    boot.kernelPackages = pkgs.linuxPackages_latest;
 
     boot.initrd.kernelModules = [ "uas" "usbcore" "usb_storage" "ext4" "nls_cp437" "nls_iso8859_1" ];
     boot.kernelModules = bootCfg.kernelModules;
