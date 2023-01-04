@@ -120,8 +120,8 @@ in {
       };
       wayland.windowManager.sway.config = swayi3Config // {
         assigns = {
-          "2" = [{ app_id = "^firefox$"; }];
-          "3" = [{ app_id = "^webex$"; }];
+          "9" = [{ app_id = "^firefox$"; }];
+          "2" = [{ app_id = "^webex$"; }];
         };
       };
     };

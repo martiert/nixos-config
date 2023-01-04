@@ -5,19 +5,14 @@ let
   system = "x86_64-linux";
   swayi3Config = left: middle: right: {
     startup = [
-      { command = "xrandr --output HDMI-1 --right-of HDMI-0 --output DP-1 --right-of HDMI-1"; }
+      # { command = "xrandr --output HDMI-A-0 --right-of HDMI-0 --output DP-1 --right-of HDMI-1"; }
       { command = "alacritty"; }
       { command = "firefox"; }
       { command = "webex"; }
       { command = "gimp"; }
-      { command = "xsetwacom --set \"Wacom Cintiq 16 Pen stylus\" MapToOutput HEAD-2"; }
-      { command = "xsetwacom --set \"Wacom Cintiq 16 Pen eraser\" MapToOutput HEAD-2"; }
+      { command = "xsetwacom --set \"Wacom Cintiq 16 Pen stylus\" MapToOutput ${right}"; }
+      { command = "xsetwacom --set \"Wacom Cintiq 16 Pen eraser\" MapToOutput ${right}"; }
     ];
-    assigns = {
-      "9" = [{ class = "^Firefox$"; }];
-      "2" = [{ class = "^webex$"; }];
-      "10" = [{ class = "^Gimp$"; }];
-    };
     workspaceOutputAssign = [
       {
         output = left;
@@ -47,7 +42,7 @@ in {
     imports = [
       ./networkRestart.nix
       ../../machines/x86_64.nix
-      ../../machines/nvidia.nix
+      ../../machines/amdgpu.nix
       ../../settings/nixos/configs/common.nix
       ../../settings/nixos/services/openssh.nix
       ../../settings/nixos/services/nginx.nix
@@ -57,19 +52,19 @@ in {
     services.xserver = {
       enable = true;
       xrandrHeads = [
-        "HDMI-0"
-        "HDMI-1"
-        "DP-1"
+        "HDMI-A-0"
+        "DisplayPort-0"
+        "DisplayPort-1"
       ];
     };
     networking.networkmanager = {
       enable = true;
-      unmanaged = [ "enp4s0" ];
+      unmanaged = [ "enp6s0" ];
       dns = "dnsmasq";
       dhcp = "dhcpcd";
     };
 
-    age.secrets."wpa_supplicant_enp4s0".file = ../../secrets/wpa_supplicant_wired.age;
+    age.secrets."wpa_supplicant_enp6s0".file = ../../secrets/wpa_supplicant_wired.age;
     age.secrets."dns_servers".file = ../../secrets/dns_servers.age;
 
     fileSystems."/home/martin/Cisco" = {
@@ -110,7 +105,7 @@ in {
         efi.removable = true;
       };
       hardware.hidpi.enable = true;
-      hardware.nvidia.openDriver = false;
+      # hardware.nvidia.openDriver = false;
       services.xserver = {
         defaultSession = "none+i3";
       };
@@ -121,7 +116,7 @@ in {
             enable = true;
             useDHCP = true;
           };
-          "enp4s0" = {
+          "enp6s0" = {
             enable = true;
             useDHCP = true;
             staticRoutes = true;
@@ -169,18 +164,37 @@ in {
 
       home.stateVersion = "22.05";
 
-      xsession.windowManager.i3.config = swayi3Config "HDMI-0" "HDMI-1" "DP-1";
+      xsession.windowManager.i3.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "DisplayPort-1" //
+        {
+          assigns = {
+            "9" = [{ class = "^Firefox$"; }];
+            "2" = [{ class = "^webex$"; }];
+            "10" = [{ class = "^Gimp$"; }];
+          };
+        };
+
+
+      wayland.windowManager.sway.config = swayi3Config "HDMI-A-1" "DP-1" "DP-2" //
+        {
+          assigns = {
+            "9" = [{ app_id = "^firefox$"; }];
+            "2" = [{ app_id = "^webex$"; }];
+            "10" = [{ app_id = "^gimp$"; }];
+          };
+        };
+
       martiert = {
         alacritty.fontSize = 14;
         i3status = {
           enable = true;
           ethernet = {
             eno1 = 2;
-            enp4s0 = 3;
+            enp6s0 = 3;
           };
         };
         i3 = {
           enable = true;
+          barSize = 12.0;
         };
         email.enable = true;
       };
