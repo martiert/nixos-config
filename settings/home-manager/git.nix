@@ -6,6 +6,10 @@
       enable = true;
       userName = "Martin Ertsås";
       userEmail = "martiert@gmail.com";
+      signing = {
+        signByDefault = true;
+        key = null;
+      };
       ignores = [
         "TODO"
         "compile_commands.json"
