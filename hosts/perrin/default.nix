@@ -150,6 +150,7 @@ in {
           ./public_keys/moghedien.pub
           ./public_keys/moridin.pub
           ./public_keys/schnappi.pub
+          ./public_keys/mattrim.pub
         ];
       };
     };
