@@ -1,10 +1,10 @@
 { lib
 , stdenv
-, pythonPackages
+, python3Packages
 , fetchFromGitHub
 }:
 
-pythonPackages.buildPythonApplication rec {
+python3Packages.buildPythonApplication rec {
   pname = "mutt-ics";
   version = "0.9.2";
 
@@ -17,8 +17,8 @@ pythonPackages.buildPythonApplication rec {
   };
 
   propagatedBuildInputs = [
-    pythonPackages.icalendar
-    pythonPackages.python-dateutil
+    python3Packages.icalendar
+    python3Packages.python-dateutil
   ];
 
   meta = with lib; {
