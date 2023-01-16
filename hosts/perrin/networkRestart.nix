@@ -2,8 +2,8 @@
 
 let
   restartScript = pkgs.writeShellScript "restartNetwork" ''
-        ${pkgs.systemd}/bin/systemctl restart supplicant-enp4s0
-        ${pkgs.systemd}/bin/systemctl restart network-addresses-enp4s0
+        ${pkgs.systemd}/bin/systemctl restart supplicant-enp6s0
+        ${pkgs.systemd}/bin/systemctl restart network-addresses-enp6s0
   '';
 in {
   systemd.services.networkRestart = {
