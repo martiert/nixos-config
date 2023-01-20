@@ -57,12 +57,6 @@ in {
         "DisplayPort-1"
       ];
     };
-    networking.networkmanager = {
-      enable = true;
-      unmanaged = [ "enp6s0" ];
-      dns = "dnsmasq";
-      dhcp = "dhcpcd";
-    };
 
     age.secrets."wpa_supplicant_enp6s0".file = ../../secrets/wpa_supplicant_wired.age;
     age.secrets."dns_servers".file = ../../secrets/dns_servers.age;
