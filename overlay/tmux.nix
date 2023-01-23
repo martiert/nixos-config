@@ -6,11 +6,11 @@ let
 in
 pypkgs.buildPythonApplication rec {
   pname = "tmuxp";
-  version = "1.26.0";
+  version = "1.23.0";
 
   src = pypkgs.fetchPypi {
     inherit pname version;
-    sha256 = "078624c5ac7aa4142735f856fadb7281fcebb10e6b98d1be2b2f2bbd106613b9";
+    sha256 = "Ix/43QFOa0kCP5xndszFGk0p12w/t/z+fVcYRIj9y0s=";
   };
 
   # No tests in archive
