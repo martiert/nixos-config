@@ -18,7 +18,6 @@ in self: super: {
   mutt-ics = callPackage ./mutt-ics.nix {};
   generate_ssh_key = callPackage ./generate_ssh_key {};
   flashPrint = callPackage ./flashPrint.nix {};
-  tmuxp = callPackage ./tmux.nix {};
 
   beltsearch = beltsearch.outputs.packages."${system}".beltsearch;
 
