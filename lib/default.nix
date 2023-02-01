@@ -57,7 +57,7 @@ in rec {
         ../settings/nixos/configs/networking
         config.nixos
         nixos-wsl.nixosModules.wsl
-        agenix.nixosModule
+        agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           system.stateVersion = "23.05";
@@ -65,7 +65,7 @@ in rec {
 
           environment.variables.EDITOR = "vim";
           environment.variables.MOZ_ENABLE_WAYLAND = "1";
-          environment.systemPackages = [ agenix.defaultPackage."${config.system}" ];
+          environment.systemPackages = [ agenix.packages."${config.system}".default ];
 
           networking.hostName = name;
 
