@@ -29,16 +29,6 @@ in self: super: {
     wee-slack = super.weechatScripts.wee-slack;
   };
 
-  tmate = super.tmate.overrideAttrs (old: rec {
-    version = "2.3.0";
-    src = super.fetchFromGitHub {
-      owner  = "tmate-io";
-      repo   = "tmate";
-      rev    = "2.3.0";
-      sha256 = "SocdTFLGsojBR5+AXQ24x9P97dD8JHImRtfJcGeFmDs=";
-    };
-  });
- 
   dns_blocklist = super.stdenv.mkDerivation {
     pname = "blocklist";
     version = "1.0.0";
