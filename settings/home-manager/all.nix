@@ -39,7 +39,6 @@
     teamctl
     roomctl
 
-    projecteur
     tmate
   ];
 }

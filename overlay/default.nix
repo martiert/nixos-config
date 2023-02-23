@@ -14,7 +14,6 @@ in self: super: {
   teamctl = cisco.outputs.packages."${system}".teamctl;
   roomctl = cisco.outputs.packages."${system}".roomctl;
 
-  projecteur = callPackage ./projecteur.nix {};
   mutt-ics = callPackage ./mutt-ics.nix {};
   generate_ssh_key = callPackage ./generate_ssh_key {};
   flashPrint = callPackage ./flashPrint.nix {};
