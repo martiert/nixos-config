@@ -12,9 +12,12 @@
       eth0 = {
         ipv4.addresses = [
           { address="139.59.160.195"; prefixLength=20; }
-          { address="10.106.0.4"; prefixLength=16; }
         ];
-        ipv4.routes = [ { address = "139.59.160.1"; prefixLength = 32; } ];
+      };
+      eth1 = {
+        ipv4.addresses = [
+          { address="10.106.0.4"; prefixLength=20; }
+        ];
       };
     };
   };

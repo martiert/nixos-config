@@ -12,15 +12,19 @@
     interfaces = {
       eth0 = {
         ipv4.addresses = [
-          { address="46.101.88.168"; prefixLength=20; }
-          { address="10.16.0.5"; prefixLength=16; }
+          { address = "46.101.88.168"; prefixLength = 20; }
         ];
         ipv6.addresses = [
-          { address="2a03:b0c0:1:d0::e65:8001"; prefixLength=64; }
-          { address="fe80::7ceb:8eff:feb2:5f8c"; prefixLength=64; }
+          { address = "2a03:b0c0:1:d0::e65:8001"; prefixLength = 64; }
         ];
-        ipv4.routes = [ { address = "46.101.80.1"; prefixLength = 32; } ];
-        ipv6.routes = [ { address = "2a03:b0c0:1:d0::1"; prefixLength = 128; } ];
+      };
+      eth1 = {
+        ipv4.addresses = [
+          { address = "10.16.0.5"; prefixLength = 20; }
+        ];
+        ipv6.addresses = [
+          { address = "fe80::7ceb:8eff:feb2:5f8c"; prefixLength = 64; }
+        ];
       };
     };
   };
