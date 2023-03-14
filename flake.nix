@@ -70,13 +70,13 @@
              ];
              format = "install-iso";
            };
-           aarch64-installer = nixos-generators.nixosGenerate {
-             pkgs = import nixpkgs { system = "aarch64-linux"; };
-             modules = [
-               ./tools/aarch64-installer
-             ];
-             format = "install-iso";
-           };
+           # aarch64-installer = nixos-generators.nixosGenerate {
+           #   pkgs = import nixpkgs { system = "aarch64-linux"; };
+           #   modules = [
+           #     ./tools/aarch64-installer
+           #   ];
+           #   format = "install-iso";
+           # };
 
            digitalOcean = nixos-generators.nixosGenerate {
              pkgs = import nixpkgs { inherit system; };
