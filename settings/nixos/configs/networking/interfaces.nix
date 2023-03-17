@@ -22,7 +22,7 @@ let
       { address = "10.0.0.0";         prefixLength = 8;  }
       { address = "148.62.0.0";       prefixLength = 16; }
       { address = "149.96.17.138";    prefixLength = 32; }
-      { address = "171.68.194.0";     prefixLength = 24; }
+      { address = "171.68.0.0";       prefixLength = 16; }
       { address = "171.70.0.0";       prefixLength = 16; }
       { address = "171.71.0.0";       prefixLength = 16; }
       { address = "173.36.0.0";       prefixLength = 16; }
