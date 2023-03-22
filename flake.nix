@@ -59,6 +59,75 @@
           mkDeploy;
 
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+
+      homeConfigurations.martin = home-manager.lib.homeManagerConfiguration rec {
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+          overlays = [
+            (import ./overlay/dummy.nix)
+          ];
+        };
+        modules = [
+          {
+            home.stateVersion = "23.05";
+            home.username = "martin";
+            home.homeDirectory = "/home/martin";
+
+            programs.zsh.initExtra = ". /home/martin/.nix-profile/etc/profile.d/nix.sh";
+
+            xsession.windowManager.i3.config = {
+              startup = [
+                { command = "alacritty"; }
+                { command = "firefox"; }
+              ];
+              workspaceOutputAssign = [
+                {
+                  output = "eDP-1";
+                  workspace = "1";
+                }
+              ];
+              assigns = {
+                "2" = [{ class = "^firefox$"; }];
+              };
+            };
+            wayland.windowManager.sway.config = {
+              startup = [
+                { command = "alacritty"; }
+                { command = "firefox"; }
+              ];
+              workspaceOutputAssign = [
+                {
+                  output = "eDP-1";
+                  workspace = "1";
+                }
+              ];
+              assigns = {
+                "2" = [{ app_id = "^firefox$"; }];
+              };
+            };
+            martiert = {
+              i3status = {
+                enable = true;
+                networks = {
+                  wireless = [
+                    "wlan0"
+                  ];
+                  ethernet = [
+                    "enu1u2"
+                  ];
+                };
+              };
+              i3 = {
+                enable = true;
+              };
+            };
+
+            imports = [
+              ./settings/home-manager/all.nix
+            ];
+          }
+        ];
+      };
     }
     // flake-utils.lib.eachSystem [ "aarch64-linux" "x86_64-linux" ] (system:
       {
