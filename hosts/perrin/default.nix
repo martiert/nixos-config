@@ -182,9 +182,16 @@ in {
         alacritty.fontSize = 14;
         i3status = {
           enable = true;
-          ethernet = {
-            eno1 = 2;
-            enp6s0 = 3;
+          networks = {
+            ethernet = [
+              "eno1"
+              "enp6s0"
+            ];
+          };
+          extraDisks = {
+            "Cisco" = "/home/martin/Cisco";
+            "/storage" = "/storage";
+            "/boot" = "/boot";
           };
         };
         i3 = {

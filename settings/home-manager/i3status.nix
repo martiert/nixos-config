@@ -4,22 +4,40 @@ with lib;
 
 let
   cfg = config.martiert.i3status;
-  settingsType = with types; attrsOf (oneOf [ bool int str ]);
-  ethernet_settings = iface: {
-    format_up = "${iface}: %ip";
-    format_down = "${iface} down";
-  };
-  wifi_settings = iface: {
-    format_up = " (%quality at %essid) %ip";
-    format_down = "${iface} down";
-    format_quality = "%03d%s";
-  };
-  network_entry = prefix: settings: iface: position: nameValuePair ("${prefix} ${iface}") ({
-    position = position;
-    settings = settings iface;
-  });
-  ethernet_entries = mapAttrs' (network_entry "ethernet" ethernet_settings) cfg.ethernet;
-  wifi_entries = mapAttrs' (network_entry "wireless" wifi_settings) cfg.wireless;
+
+  networkBlocks = let
+      createWifiBlock = iface: {
+        block = "net";
+        format = "$icon {$signal_strength at $ssid} $ip";
+        device = iface;
+      };
+      createEthernetBlock = iface: {
+        block = "net";
+        format = "$icon $ip";
+        device = iface;
+      };
+
+      wifiNetworkBlocks = ifaces:
+        map createWifiBlock ifaces;
+      ethernetNetworkBlocks = ifaces:
+        map createEthernetBlock ifaces;
+    in
+      networks:
+        wifiNetworkBlocks networks.wireless ++ ethernetNetworkBlocks networks.ethernet;
+
+
+  extraDiskEntries = let
+      makeDiskEntry = name: path: {
+        block = "disk_space";
+        format = "$icon ${name} $percentage";
+        icons_format = " ";
+        path = path;
+        alert_unit = "GB";
+        warning = 10;
+        alert = 5;
+      };
+    in entries:
+      mapAttrsToList makeDiskEntry entries;
 in {
   options = {
     martiert.i3status = {
@@ -27,89 +45,64 @@ in {
         type = types.bool;
         default = false;
       };
-      ethernet = mkOption {
-        type = types.attrsOf types.int;
-        default = {};
+      networks = mkOption {
+        default = {
+          ethernet = [];
+          wireless = [];
+        };
+        type = types.submodule {
+          options = {
+            ethernet = mkOption {
+              type = types.listOf types.str;
+              default = [];
+            };
+            wireless = mkOption {
+              type = types.listOf types.str;
+              default = [];
+            };
+          };
+        };
       };
-      wireless = mkOption {
-        type = types.attrsOf types.int;
+      extraDisks = mkOption {
+        type = types.attrsOf types.str;
         default = {};
-      };
-      battery = mkOption {
-        type = types.bool;
-        default = false;
       };
     };
   };
 
   config = {
-    programs.i3status = {
+    programs.i3status-rust = let
+      diskEntries = { "/" = "/"; } // cfg.extraDisks;
+    in {
       enable = cfg.enable;
-      enableDefault = false;
-  
-      general = {
-        colors = true;
-        color_good = "#ffffff";
-        color_degraded = "#d7ae00";
-        color_bad = "#f60d00";
-      };
-  
-      modules = ethernet_entries // wifi_entries // {
-        "battery all" = {
-          enable = cfg.battery;
-          position = 10;
-          settings = {
-            integer_battery_capacity = true;
-            format = "%status %percentage";
-            format_down = "";
-            status_chr = "";
-            status_bat = "";
-            status_unk = "?";
-            status_full = "";
-            low_threshold = 10;
-          };
-        };
-
-        memory = {
-          position = 11;
-          settings = {
-            format = " %percentage_used";
-            threshold_degraded = "10%";
-            threshold_critical = "5%";
-          };
-        };
-  
-        cpu_usage = {
-          position = 12;
-          settings = {
-            format = " %usage";
-            degraded_threshold = 75;
-            max_threshold = 95;
-          };
-        };
-  
-        "cpu_temperature 0" = {
-          position = 13;
-          settings = {
-            format = " %degrees°C";
-            max_threshold = 60;
-          };
-        };
-  
-        "disk /" = {
-          position = 14;
-          settings = {
-            format = " %percentage_used";
-            low_threshold = 10;
-          };
-        };
-  
-        "time" = {
-          position = 15;
-          settings = {
-            format = "%Y-%m-%d %H:%M:%S";
-          };
-        };
+      bars.bottom = {
+        icons = "awesome4";
+        blocks = networkBlocks cfg.networks ++ [
+          {
+            block = "battery";
+            format = "$icon $percentage $time";
+            driver = "upower";
+            missing_format = "";
+          }
+          {
+            block = "memory";
+            format = "$icon $mem_used/$mem_total";
+          }
+          {
+            block = "cpu";
+            format = "$icon $utilization";
+          }
+          {
+            block = "temperature";
+            format = "$icon $max";
+          }
+        ] ++ extraDiskEntries diskEntries ++ [
+          {
+            block = "time";
+            format = "$timestamp.datetime(f:'%Y-%m-%d %H:%M:%S')";
+            interval = 1;
+          }
+        ];
       };
     };
   };

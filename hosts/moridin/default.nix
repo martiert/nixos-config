@@ -147,9 +147,11 @@ in {
         alacritty.fontSize = 14;
         i3status = {
           enable = true;
-          ethernet = {
-            eno1 = 2;
-            enp0s20f0u3 = 3;
+          networks = {
+            ethernet = [
+              "eno1"
+              "enp0s20f0u3"
+            ];
           };
         };
         i3 = {

@@ -104,7 +104,15 @@ in {
       martiert = {
         i3status = {
           enable = true;
-          ethernet.eno2 = 1;
+          networks = {
+            ethernet = [
+              "eno2"
+            ];
+          };
+          extraDisks = {
+            "Cisco" = "/home/martin/Cisco";
+            "/boot" = "/boot";
+          };
         };
         i3 = {
           enable = true;

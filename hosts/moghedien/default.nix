@@ -97,10 +97,11 @@ in {
       martiert = {
         i3status = {
           enable = true;
-          wireless = {
-            wlp1s0 = 1;
+          networks = {
+            wireless = [
+              "wlp1s0"
+            ];
           };
-          battery = true;
         };
         i3 = {
           enable = true;
