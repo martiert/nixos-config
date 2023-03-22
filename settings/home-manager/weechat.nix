@@ -4,7 +4,7 @@ let
   weechatSetup = pkgs.weechat.override {
     configure = { availablePlugins, ... }: {
       scripts = with pkgs.weechatScripts; [
-        weechat-matrix2
+        weechat-matrix
         wee-slack
       ];
     };

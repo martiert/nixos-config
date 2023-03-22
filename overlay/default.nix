@@ -20,14 +20,6 @@ in self: super: {
 
   beltsearch = beltsearch.outputs.packages."${system}".beltsearch;
 
-  weechatScripts = {
-    weechat-matrix2 = super.weechatScripts.weechat-matrix.overrideAttrs (old: rec {
-      dontBuild = false;
-      buildPhase = "mkdir dist";
-    });
-    wee-slack = super.weechatScripts.wee-slack;
-  };
-
   dns_blocklist = super.stdenv.mkDerivation {
     pname = "blocklist";
     version = "1.0.0";
