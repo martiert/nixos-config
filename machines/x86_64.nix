@@ -56,7 +56,7 @@ in {
     boot.kernelModules = bootCfg.kernelModules;
     boot.extraModulePackages = [ ];
 
-    boot.tmpOnTmpfs = true;
+    boot.tmp.useTmpfs = true;
 
     boot.loader = {
       efi.canTouchEfiVariables = !bootCfg.efi.removable;
@@ -76,7 +76,6 @@ in {
     hardware.enableRedistributableFirmware = true;
     powerManagement.cpuFreqGovernor = mkDefault "powersave";
     hardware.cpu.intel.updateMicrocode = mkDefault true;
-    hardware.video.hidpi.enable = mkDefault hardwareCfg.hidpi.enable;
 
     virtualisation.docker = {
       enable = true;

@@ -6,7 +6,7 @@ stdenv.mkDerivation {
   src = ./generate_ssh_key;
 
   buildInputs = with pkgs; [
-    (python38.withPackages (pythonPackages: with pythonPackages; [
+    (python3.withPackages (pythonPackages: with pythonPackages; [
       cryptography
     ]))
   ];

@@ -17,6 +17,7 @@ in {
   };
 
   config = {
+    programs.zsh.enable = true;
     users = {
       users.martin = {
         isNormalUser = true;
