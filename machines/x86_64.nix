@@ -32,9 +32,6 @@ in {
       description = "Default kernel modules";
     };
   };
-  options.martiert.hardware.hidpi = {
-    enable = mkEnableOption "enable hidpi mode";
-  };
   imports = [
     ./mountpoints.nix
     ./allowedPackages.nix
