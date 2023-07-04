@@ -40,6 +40,7 @@ in {
             };
           }
         ];
+        colors.background = "#000000";
       };
     };
     services.picom = {
