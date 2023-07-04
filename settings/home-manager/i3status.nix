@@ -8,12 +8,14 @@ let
   networkBlocks = let
       createWifiBlock = iface: {
         block = "net";
-        format = "$icon {$signal_strength at $ssid} $ip";
+        format = "$icon ${iface}: $ip ($ssid)|${iface}: Not connected";
+        missing_format = "${iface}: Down";
         device = iface;
       };
       createEthernetBlock = iface: {
         block = "net";
-        format = "$icon $ip";
+        format = "$icon ${iface}: $ip|${iface}: Not connected";
+        missing_format = "";
         device = iface;
       };
 
