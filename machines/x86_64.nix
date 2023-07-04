@@ -65,7 +65,6 @@ in {
         device = "nodev";
         efiSupport = true;
         efiInstallAsRemovable = bootCfg.efi.removable;
-        version = 2;
       };
     };
 
