@@ -1,0 +1,14 @@
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+index fb0dbc77db74..3fd72d321094 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_device.c
++++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+@@ -389,6 +389,9 @@ MODULE_FIRMWARE("qcom/a619_gmu.bin");
+ MODULE_FIRMWARE("qcom/a630_sqe.fw");
+ MODULE_FIRMWARE("qcom/a630_gmu.bin");
+ MODULE_FIRMWARE("qcom/a630_zap.mbn");
++MODULE_FIRMWARE("qcom/a660_sqe.fw");
++MODULE_FIRMWARE("qcom/a690_gmu.bin");
++MODULE_FIRMWARE("qcom/a690_zap.mdt");
+ 
+ static inline bool _rev_match(uint8_t entry, uint8_t id)
+ {
