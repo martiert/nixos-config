@@ -15,7 +15,7 @@
     boot = {
       loader.grub.device = "/dev/vda";
       initrd.kernelModules = [ "nvme" ];
-      cleanTmpDir = true;
+      tmp.cleanOnBoot = true;
     };
     zramSwap.enable = true;
 
