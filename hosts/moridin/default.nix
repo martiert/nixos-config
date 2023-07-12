@@ -68,7 +68,6 @@ in {
 
     martiert = {
       mountpoints = {
-        keyDisk.keyFile = "luks/moridin.key";
         root = {
           encryptedDevice = "/dev/disk/by-uuid/4ea0a56f-90d0-48ad-a5f2-80befab4b826";
           device = "/dev/disk/by-label/nixos";

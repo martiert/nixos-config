@@ -11,23 +11,9 @@ in {
   };
 
   options.martiert.mountpoints = {
-    keyDisk = mkOption {
-      type = types.submodule {
-        options = {
-          disk = mkOption {
-            type = types.str;
-            default = "/dev/disk/by-label/keys";
-            description = "disk to mount for luks decryption";
-          };
-          keyFile = mkOption {
-            type = types.str;
-            description = "keyfile to use";
-          };
-        };
-      };
-    };
     root = mkOption {
-      type = types.submodule {
+      default = null;
+      type = types.nullOr (types.submodule {
         options = {
           encryptedDevice = mkOption {
             type = types.str;
@@ -43,11 +29,12 @@ in {
             default = [];
           };
         };
-      };
+      });
     };
     boot = mkOption {
-      type = types.str;
+      type = types.nullOr types.str;
       description = "device to mount to /boot";
+      default = null;
     };
     swap = mkOption {
       type = types.nullOr types.str;
@@ -57,17 +44,7 @@ in {
   };
 
   config = {
-    # boot.initrd.luks.devices."root" = {
-    #   device = cfg.root.encryptedDevice;
-    #   keyFile = "${keyDir}/${cfg.keyDisk.keyFile}";
-    #   preLVM = false;
-    #   fallbackToPassword = true;
-    #   preOpenCommands = ''
-    #     mkdir "${keyDir}"
-    #     waitDevice "${cfg.keyDisk.disk}"
-    #     mount "${cfg.keyDisk.disk}" "${keyDir}"
-    #   '';
-    boot.initrd.luks = {
+    boot.initrd.luks = mkIf (cfg.root != null) {
       fido2Support = true;
       devices."root" = {
         fido2.credentials = cfg.root.credentials;
@@ -76,14 +53,15 @@ in {
         fallbackToPassword = true;
       };
     };
-    fileSystems."/" = {
+    fileSystems."/" = mkIf (cfg.root != null) {
       device = cfg.root.device;
       fsType = "ext4";
     };
-    fileSystems."/boot" = {
+    fileSystems."/boot" = mkIf (cfg.boot != null) {
       device = cfg.boot;
       fsType = "vfat";
     };
+
     swapDevices = mkIf (cfg.swap != null) [{
       device = cfg.swap;
       randomEncryption = true;

@@ -11,6 +11,7 @@ rec {
       ../../settings/nixos/users/root.nix
       ../../settings/nixos/services/openssh.nix
       ../../machines/wsl.nix
+      ../../machines/mountpoints.nix
     ];
     nix.settings.trusted-users = [
       "root"
