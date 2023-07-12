@@ -43,7 +43,6 @@ in {
       ./networkRestart.nix
       ../../machines/x86_64.nix
       ../../machines/amdgpu.nix
-      ../../settings/nixos/configs/common.nix
       ../../settings/nixos/services/openssh.nix
       ../../settings/nixos/services/nginx.nix
       ../../settings/nixos/services/dnsproxy.nix
@@ -81,6 +80,9 @@ in {
     };
 
     martiert = {
+      system.type = "desktop";
+      printing.enable = true;
+      services.xserver.enable = true;
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/34185190-271f-464b-91aa-d6707835ab60";

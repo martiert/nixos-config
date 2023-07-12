@@ -30,7 +30,6 @@ in {
     imports = [
       ../../machines/x86_64.nix
       ../../machines/nvidia.nix
-      ../../settings/nixos/configs/common.nix
       ../../settings/nixos/services/openssh.nix
     ];
     virtualisation = {
@@ -55,6 +54,8 @@ in {
     };
 
     martiert = {
+      system.type = "desktop";
+      printing.enable = true;
       networking = {
         interfaces = {
           "eno2" = {
@@ -78,6 +79,7 @@ in {
       hardware.hidpi.enable = true;
       hardware.nvidia.openDriver = true;
       services.xserver = {
+        enable = true;
         defaultSession = "none+i3";
       };
       sshd = {

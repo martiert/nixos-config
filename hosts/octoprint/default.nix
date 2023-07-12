@@ -21,6 +21,7 @@
     networking.firewall.allowedTCPPorts = [ 3001 ];
 
     martiert = {
+      system.type = "server";
       sshd = {
         enable = true;
         authorizedKeyFiles = [

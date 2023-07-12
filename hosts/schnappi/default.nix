@@ -8,10 +8,8 @@ in {
   nixos = {
     imports = [
       ../../settings/nixos/services/openssh.nix
-      ../../settings/nixos/configs/common.nix
       ../../machines/sc8280xp
       ../../machines/mountpoints.nix
-      ../../settings/nixos/configs/networking
     ];
     nix.settings.trusted-users = [
       "root"
@@ -36,7 +34,9 @@ in {
     age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
 
     martiert = {
+      system.type = "laptop";
       hardware.hidpi.enable = true;
+      services.xserver.enable = true;
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/294031c9-eb35-4151-b78b-fb54af2162bb";

@@ -26,6 +26,7 @@
     };
 
     martiert = {
+      system.type = "server";
       sshd = {
         enable = true;
         authorizedKeyFiles = [

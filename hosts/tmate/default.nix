@@ -39,15 +39,18 @@
       "tmate-ssh-server-2.3.0"
     ];
 
-    martiert.sshd = {
-      enable = true;
-      authorizedKeyFiles = [
-        ./public_keys/moghedien.pub
-        ./public_keys/moridin.pub
-        ./public_keys/aginor.pub
-        ./public_keys/perrin.pub
-        ./public_keys/schnappi.pub
-      ];
+    martiert = {
+      system.type = "server";
+      sshd = {
+        enable = true;
+        authorizedKeyFiles = [
+          ./public_keys/moghedien.pub
+          ./public_keys/moridin.pub
+          ./public_keys/aginor.pub
+          ./public_keys/perrin.pub
+          ./public_keys/schnappi.pub
+        ];
+      };
     };
   });
 }

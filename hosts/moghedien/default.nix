@@ -30,7 +30,6 @@ in {
   nixos = ({ config, ... }: {
     imports = [
       ../../machines/x86_64.nix
-      ../../settings/nixos/configs/common.nix
     ];
     networking.useDHCP = false;
     networking.resolvconf.enable = true;
@@ -40,6 +39,8 @@ in {
     age.secrets."wpa_supplicant_wlp1s0".file = ../../secrets/wpa_supplicant_wireless.age;
 
     martiert = {
+      system.type = "laptop";
+      printing.enable = true;
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/90041fed-c9a4-4139-a61d-76c6c4aca100";
@@ -52,6 +53,7 @@ in {
         boot = "/dev/disk/by-uuid/C414-3256";
         swap = "/dev/disk/by-partuuid/813b7f11-8581-4af9-839c-c46e0be03f39";
       };
+      services.xserver.enable = true;
       networking.interfaces = {
         "wlp1s0" = {
           enable = true;

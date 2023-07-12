@@ -50,11 +50,9 @@ in rec {
     nixpkgs.lib.nixosSystem {
       system = config.system;
       modules = [
-        ../settings/nixos/configs/timezone.nix
-        ../settings/nixos/configs/fonts.nix
+        ../settings/nixos/configs
         ../settings/nixos/users/martin.nix
         ../settings/nixos/users/root.nix
-        ../settings/nixos/configs/networking
         config.nixos
         nixos-wsl.nixosModules.wsl
         agenix.nixosModules.default

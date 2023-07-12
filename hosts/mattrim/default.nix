@@ -5,7 +5,6 @@ rec {
   system = "x86_64-linux";
   nixos = ({ config, ... }: {
     imports = [
-      ../../settings/nixos/configs/common.nix
       ../../settings/nixos/services/dnsproxy.nix
       ../../settings/nixos/users/martin.nix
       ../../settings/nixos/users/root.nix
@@ -39,6 +38,9 @@ rec {
     age.secrets."dns_servers".file = ../../secrets/dns_servers.age;
 
     martiert = {
+      system.type = "desktop";
+      printing.enable = true;
+      services.xserver.enable = true;
       sshd.enable = true;
       networking.interfaces = {
         "eth0" = {

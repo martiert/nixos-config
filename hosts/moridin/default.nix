@@ -43,7 +43,6 @@ in {
   nixos = {
     imports = [
       ../../machines/x86_64.nix
-      ../../settings/nixos/configs/common.nix
       ../../settings/nixos/services/openssh.nix
       ../../settings/nixos/services/dnsproxy.nix
     ];
@@ -67,6 +66,9 @@ in {
     age.secrets."dns_servers".file = ../../secrets/dns_servers.age;
 
     martiert = {
+      system.type = "desktop";
+      printing.enable = true;
+      services.xserver.enable = true;
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/4ea0a56f-90d0-48ad-a5f2-80befab4b826";

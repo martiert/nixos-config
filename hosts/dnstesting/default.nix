@@ -26,6 +26,8 @@
     };
 
     martiert = {
+      system.type = "server";
+      audio.enable = false;
       sshd = {
         enable = true;
         authorizedKeyFiles = [

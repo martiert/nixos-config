@@ -6,10 +6,6 @@ let
   cfg = config.martiert.mountpoints;
   keyDir = "/keys";
 in {
-  options.martiert.hardware.hidpi = {
-    enable = mkEnableOption "enable hidpi mode";
-  };
-
   options.martiert.mountpoints = {
     root = mkOption {
       default = null;
