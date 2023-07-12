@@ -4,7 +4,7 @@
   imports = [
     ../../settings/nixos/users/root.nix
     ../../settings/nixos/users/martin.nix
-    ../../settings/nixos/services/openssh.nix
+    ../../settings/nixos/services
     ../../machines/nixos-cache.nix
   ];
   virtualisation.digitalOcean = {

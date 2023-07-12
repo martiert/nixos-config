@@ -51,6 +51,7 @@ in rec {
       system = config.system;
       modules = [
         ../settings/nixos/configs
+        ../settings/nixos/services
         ../settings/nixos/users/martin.nix
         ../settings/nixos/users/root.nix
         config.nixos

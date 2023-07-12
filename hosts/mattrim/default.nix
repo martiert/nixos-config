@@ -8,7 +8,6 @@ rec {
       ../../settings/nixos/services/dnsproxy.nix
       ../../settings/nixos/users/martin.nix
       ../../settings/nixos/users/root.nix
-      ../../settings/nixos/services/openssh.nix
       ../../machines/wsl.nix
       ../../machines/mountpoints.nix
     ];

@@ -9,7 +9,6 @@
       "${modulesPath}/profiles/qemu-guest.nix"
       ./networking.nix
       ../../machines/nixos-cache.nix
-      ../../settings/nixos/services/openssh.nix
       ../../settings/nixos/services/pihole
     ];
 

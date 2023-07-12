@@ -43,7 +43,6 @@ in {
   nixos = {
     imports = [
       ../../machines/x86_64.nix
-      ../../settings/nixos/services/openssh.nix
       ../../settings/nixos/services/dnsproxy.nix
     ];
 

@@ -12,7 +12,6 @@
     imports = [
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
       ../../machines/rpi3.nix
-      ../../settings/nixos/services/openssh.nix
       ../../settings/nixos/services/octoprint.nix
       ../../settings/nixos/users/octoprint.nix
     ];

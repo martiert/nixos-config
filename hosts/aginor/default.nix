@@ -30,7 +30,6 @@ in {
     imports = [
       ../../machines/x86_64.nix
       ../../machines/nvidia.nix
-      ../../settings/nixos/services/openssh.nix
     ];
     virtualisation = {
       docker.enableNvidia = true;

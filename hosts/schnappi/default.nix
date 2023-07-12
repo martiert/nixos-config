@@ -7,7 +7,6 @@ in {
   inherit system;
   nixos = {
     imports = [
-      ../../settings/nixos/services/openssh.nix
       ../../machines/sc8280xp
       ../../machines/mountpoints.nix
     ];

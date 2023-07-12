@@ -8,7 +8,6 @@
     imports = [
       "${modulesPath}/profiles/qemu-guest.nix"
       ./networking.nix
-      ../../settings/nixos/services/openssh.nix
       ../../machines/nixos-cache.nix
     ];
 
