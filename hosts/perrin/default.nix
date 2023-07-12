@@ -41,9 +41,9 @@ in {
   nixos = {
     imports = [
       ./networkRestart.nix
+      ./nginx
       ../../machines/x86_64.nix
       ../../machines/amdgpu.nix
-      ../../settings/nixos/services/nginx.nix
       ../../settings/nixos/services/dnsproxy.nix
     ];
 
