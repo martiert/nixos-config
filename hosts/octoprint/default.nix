@@ -5,15 +5,10 @@
   deployTo = "octoprint.localdomain";
 
   nixos = ({modulesPath, pkgs, config, ...}: {
-    nixpkgs.overlays = [
-      (import ../../overlay/octoprint.nix)
-    ];
-
     imports = [
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
       ../../machines/rpi3.nix
-      ../../settings/nixos/services/octoprint.nix
-      ../../settings/nixos/users/octoprint.nix
+      ./octoprint
     ];
 
     age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
