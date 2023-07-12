@@ -5,7 +5,6 @@ rec {
   system = "x86_64-linux";
   nixos = ({ config, ... }: {
     imports = [
-      ../../settings/nixos/services/dnsproxy.nix
       ../../settings/nixos/users/martin.nix
       ../../settings/nixos/users/root.nix
       ../../machines/wsl.nix
@@ -38,6 +37,7 @@ rec {
 
     martiert = {
       system.type = "desktop";
+      dnsproxy.enable = true;
       printing.enable = true;
       services.xserver.enable = true;
       sshd.enable = true;

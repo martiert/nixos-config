@@ -43,7 +43,6 @@ in {
   nixos = {
     imports = [
       ../../machines/x86_64.nix
-      ../../settings/nixos/services/dnsproxy.nix
     ];
 
     networking.networkmanager = {
@@ -67,6 +66,7 @@ in {
     martiert = {
       system.type = "desktop";
       printing.enable = true;
+      dnsproxy.enable = true;
       services.xserver.enable = true;
       mountpoints = {
         root = {

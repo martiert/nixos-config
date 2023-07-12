@@ -8,8 +8,8 @@
     imports = [
       "${modulesPath}/profiles/qemu-guest.nix"
       ./networking.nix
+      ./pihole
       ../../machines/nixos-cache.nix
-      ../../settings/nixos/services/pihole
     ];
 
     boot = {

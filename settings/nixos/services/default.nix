@@ -18,5 +18,6 @@ in {
 
   imports = [
     ./openssh.nix
+    ./dnsproxy.nix
   ];
 }

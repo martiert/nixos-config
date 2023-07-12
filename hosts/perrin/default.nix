@@ -44,7 +44,6 @@ in {
       ./nginx
       ../../machines/x86_64.nix
       ../../machines/amdgpu.nix
-      ../../settings/nixos/services/dnsproxy.nix
     ];
 
     services.xserver = {
@@ -80,6 +79,7 @@ in {
 
     martiert = {
       system.type = "desktop";
+      dnsproxy.enable = true;
       printing.enable = true;
       services.xserver.enable = true;
       mountpoints = {
