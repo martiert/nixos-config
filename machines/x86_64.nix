@@ -3,6 +3,7 @@
 with lib;
 
 let
+  martiert = config.martiert;
   bootCfg = config.martiert.boot;
   hardwareCfg = config.martiert.hardware;
 in {
@@ -32,17 +33,14 @@ in {
       description = "Default kernel modules";
     };
   };
-  imports = [
-    ./mountpoints.nix
-    ./allowedPackages.nix
-  ];
 
-  config = {
+  config = mkIf (pkgs.system == "x86_64-linux" && builtins.elem martiert.system.type [ "desktop" "laptop" ]) {
     boot.initrd.availableKernelModules = [
       "vfat"
       "xhci_pci"
       "ahci"
       "nvme"
+
       "usb_storage"
       "sd_mod"
     ] ++ bootCfg.initrd.extraAvailableKernelModules;

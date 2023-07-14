@@ -28,7 +28,6 @@ in {
   inherit system;
   nixos = {
     imports = [
-      ../../machines/x86_64.nix
       ../../machines/nvidia.nix
     ];
     virtualisation = {

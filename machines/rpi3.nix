@@ -7,8 +7,4 @@
     };
   };
   hardware.enableRedistributableFirmware = true;
-
-  imports = [
-    ./nixos-cache.nix
-  ];
 }

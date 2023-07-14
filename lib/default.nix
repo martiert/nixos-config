@@ -50,6 +50,7 @@ in rec {
     nixpkgs.lib.nixosSystem {
       system = config.system;
       modules = [
+        ../machines
         ../settings/nixos/configs
         ../settings/nixos/services
         ../settings/nixos/users/martin.nix

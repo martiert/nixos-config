@@ -8,7 +8,6 @@ rec {
       ../../settings/nixos/users/martin.nix
       ../../settings/nixos/users/root.nix
       ../../machines/wsl.nix
-      ../../machines/mountpoints.nix
     ];
     nix.settings.trusted-users = [
       "root"
@@ -36,7 +35,7 @@ rec {
     age.secrets."dns_servers".file = ../../secrets/dns_servers.age;
 
     martiert = {
-      system.type = "desktop";
+      system.type = "wsl";
       dnsproxy.enable = true;
       printing.enable = true;
       services.xserver.enable = true;

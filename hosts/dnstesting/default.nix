@@ -9,7 +9,6 @@
       "${modulesPath}/profiles/qemu-guest.nix"
       ./networking.nix
       ./blocking.nix
-      ../../machines/nixos-cache.nix
     ];
 
     boot = {
@@ -26,7 +25,6 @@
 
     martiert = {
       system.type = "server";
-      audio.enable = false;
       sshd = {
         enable = true;
         authorizedKeyFiles = [

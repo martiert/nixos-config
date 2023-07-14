@@ -42,7 +42,6 @@ in {
     imports = [
       ./networkRestart.nix
       ./nginx
-      ../../machines/x86_64.nix
       ../../machines/amdgpu.nix
     ];
 

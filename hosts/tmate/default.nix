@@ -8,7 +8,6 @@
     imports = [
       "${modulesPath}/profiles/qemu-guest.nix"
       ./networking.nix
-      ../../machines/nixos-cache.nix
     ];
 
     boot = {

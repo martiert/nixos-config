@@ -4,20 +4,8 @@ with lib;
 
 let
   martiert = config.martiert;
-  isPersonalPC = builtins.elem martiert.system.type [ "desktop" "laptop" ];
+  isPersonalPC = builtins.elem martiert.system.type [ "desktop" "laptop" "wsl" ];
 in {
-  options = {
-    martiert.audio.enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Should we enable sound";
-    };
-    martiert.system.type = mkOption {
-      type = types.enum [ "server" "desktop" "laptop" ];
-      description = "What type of system are we building?";
-    };
-  };
-
   imports = [
     ./xorg.nix
     ./printing.nix

@@ -41,10 +41,6 @@ let
 in {
   inherit system;
   nixos = {
-    imports = [
-      ../../machines/x86_64.nix
-    ];
-
     networking.networkmanager = {
       enable = true;
       unmanaged = [ "enp0s20f0u3" ];

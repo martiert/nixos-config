@@ -28,9 +28,6 @@ let
 in {
   inherit system;
   nixos = ({ config, ... }: {
-    imports = [
-      ../../machines/x86_64.nix
-    ];
     networking.useDHCP = false;
     networking.resolvconf.enable = true;
     networking.dhcpcd.extraConfig = "resolv.conf";

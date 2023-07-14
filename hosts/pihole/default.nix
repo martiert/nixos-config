@@ -9,7 +9,6 @@
       "${modulesPath}/profiles/qemu-guest.nix"
       ./networking.nix
       ./pihole
-      ../../machines/nixos-cache.nix
     ];
 
     boot = {

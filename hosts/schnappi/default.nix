@@ -8,7 +8,6 @@ in {
   nixos = {
     imports = [
       ../../machines/sc8280xp
-      ../../machines/mountpoints.nix
     ];
     nix.settings.trusted-users = [
       "root"
