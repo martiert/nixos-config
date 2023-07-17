@@ -55,10 +55,6 @@ in {
     };
   
     home-manager.users.martin = {
-      imports = [
-        ../../settings/home-manager/all.nix
-      ];
-  
       xsession.windowManager.i3.config = {
         startup = [
           { command = "alacritty"; }

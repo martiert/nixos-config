@@ -5,7 +5,7 @@ let
   modifier = config.wayland.windowManager.sway.config.modifier;
   lockCmd = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
 in {
-  wayland.windowManager.sway = {
+  wayland.windowManager.sway = lib.mkIf (config.martiert.system.type != "server") {
     enable = true;
     extraSessionCommands = ''
       export QT_QPA_PLATFORM=wayland

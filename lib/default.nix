@@ -73,6 +73,7 @@ in rec {
             users.martin = { lib, config, osConfig, ... }: {
               imports = [
                 ../options
+                ../settings/home-manager
               ];
               config = {
                 martiert = lib.mkDefault osConfig.martiert;

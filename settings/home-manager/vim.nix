@@ -1,6 +1,6 @@
-{config, pkgs, ...}:
+{ pkgs, lib, config, ...}:
 
-{
+lib.mkIf (config.martiert.system.type != "server") {
   programs.neovim = {
     enable = true;
 

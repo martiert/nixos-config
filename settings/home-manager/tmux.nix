@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ lib, config, ...}:
 
 let
   tmuxp_config = {
@@ -57,7 +57,7 @@ let
       }
     ];
   };
-in {
+in lib.mkIf (config.martiert.system.type != "server") {
   programs.tmux = {
     tmuxp.enable = true;
     enable = true;

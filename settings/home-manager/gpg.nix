@@ -1,6 +1,6 @@
-{ ... }:
+{ lib, config, ... }:
 
-{
+lib.mkIf (config.martiert.system.type != "server") {
   programs.gpg = {
     enable = true;
     settings = {

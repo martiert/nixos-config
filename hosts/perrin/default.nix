@@ -152,11 +152,6 @@ in {
     };
 
     home-manager.users.martin = {
-      imports = [
-        ../../settings/home-manager/all.nix
-        ../../settings/home-manager/x86_64-linux.nix
-      ];
-
       xsession.windowManager.i3.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "DisplayPort-1" //
         {
           assigns = {

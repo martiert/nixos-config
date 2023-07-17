@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 {
-  programs.zsh = {
+  programs.zsh = lib.mkIf (config.martiert.system.type != "server") {
     enable = true;
     sessionVariables = {
       EDITOR = "vim";

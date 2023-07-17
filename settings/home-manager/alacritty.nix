@@ -1,9 +1,9 @@
-{ config, ... }:
+{ lib, config, ... }:
 
 let
   cfg = config.martiert.alacritty;
-in {
-  config.programs.alacritty = {
+in lib.mkIf (config.martiert.system.type != "server") {
+  programs.alacritty = {
     enable = true;
     settings = {
       window.decorations = "none";

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   weechatSetup = pkgs.weechat.override {
@@ -9,7 +9,7 @@ let
       ];
     };
   };
-in {
+in lib.mkIf (config.martiert.system.type != "server") {
   home.packages = [
     weechatSetup
   ];

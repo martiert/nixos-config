@@ -117,11 +117,6 @@ in {
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.users.martin = {
-      imports = [
-        ../../settings/home-manager/all.nix
-        ../../settings/home-manager/x86_64-linux.nix
-      ];
-
       xsession.windowManager.i3.config = swayi3Config "DP-2-2" "DP-2-1" "DP-1";
       wayland.windowManager.sway.config = (swayi3Config "DP-4" "DP-3" "DP-1") //
         {
