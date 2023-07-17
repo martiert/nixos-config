@@ -4,10 +4,6 @@
 rec {
   system = "x86_64-linux";
   nixos = ({ config, ... }: {
-    imports = [
-      ../../settings/nixos/users/martin.nix
-      ../../settings/nixos/users/root.nix
-    ];
     nix.settings.trusted-users = [
       "root"
       "martin"
@@ -52,8 +48,6 @@ rec {
         ../../settings/home-manager/all.nix
         ../../settings/home-manager/x86_64-linux.nix
       ];
-
-      home.stateVersion = "22.05";
     };
   });
 }

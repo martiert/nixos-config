@@ -157,8 +157,6 @@ in {
         ../../settings/home-manager/x86_64-linux.nix
       ];
 
-      home.stateVersion = "22.05";
-
       xsession.windowManager.i3.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "DisplayPort-1" //
         {
           assigns = {

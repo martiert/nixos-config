@@ -59,7 +59,6 @@ in {
         ../../settings/home-manager/all.nix
       ];
   
-      home.stateVersion = "22.05";
       xsession.windowManager.i3.config = {
         startup = [
           { command = "alacritty"; }

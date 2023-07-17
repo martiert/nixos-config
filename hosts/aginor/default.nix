@@ -99,8 +99,6 @@ in {
         ../../settings/home-manager/x86_64-linux.nix
       ];
 
-      home.stateVersion = "22.05";
-
       martiert = {
         i3status = {
           enable = true;

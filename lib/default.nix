@@ -76,7 +76,7 @@ in rec {
               ];
               config = {
                 martiert = lib.mkDefault osConfig.martiert;
-                home.stateVersion = "22.05";
+                home.stateVersion = osConfig.system.stateVersion;
               };
             };
           };
