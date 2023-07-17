@@ -94,8 +94,8 @@ in {
 
     home-manager.users.martin = {
       imports = [
+        ./beltsearch.nix
         ../../settings/home-manager/all.nix
-        ../../settings/home-manager/beltsearch.nix
         ../../settings/home-manager/x86_64-linux.nix
       ];
 
