@@ -7,7 +7,6 @@ rec {
     imports = [
       ../../settings/nixos/users/martin.nix
       ../../settings/nixos/users/root.nix
-      ../../machines/wsl.nix
     ];
     nix.settings.trusted-users = [
       "root"

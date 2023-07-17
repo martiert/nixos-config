@@ -31,5 +31,6 @@ in {
     ./x86_64.nix
     ./amdgpu.nix
     ./nvidia.nix
+    ./wsl.nix
   ];
 }
