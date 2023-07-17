@@ -6,9 +6,6 @@ let
 in {
   inherit system;
   nixos = {
-    imports = [
-      ../../machines/sc8280xp
-    ];
     nix.settings.trusted-users = [
       "root"
       "martin"
@@ -32,7 +29,10 @@ in {
     age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
 
     martiert = {
-      system.type = "laptop";
+      system = {
+        type = "laptop";
+        aarch64.arch = "sc8280xp";
+      };
       hardware.hidpi.enable = true;
       services.xserver.enable = true;
       mountpoints = {

@@ -1,9 +1,10 @@
 { pkgs, lib, config, ... }:
 
 let
+  martiert = config.martiert;
   dtbName = "sc8280xp-lenovo-thinkpad-x13s.dtb";
   firmware = pkgs.callPackages ./firmware {};
-in {
+in lib.mkIf (martiert.system.aarch64.arch == "sc8280xp") {
   boot.kernelPackages = pkgs.callPackage ./kernel {};
   boot.kernelParams = [
     "efi=novamap,noruntime"

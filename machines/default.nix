@@ -17,6 +17,13 @@ in {
           default = null;
           description = "GPU to use for this device";
         };
+        aarch64 = {
+          arch = mkOption {
+            type = types.nullOr (types.enum [ "rpi3" "sc8280xp" ]);
+            default = null;
+            description = "AArch64 architecture";
+          };
+        };
       };
       hardware.nvidia = {
         openDriver = lib.mkEnableOption "Enable using the open nvidia driver";
@@ -32,5 +39,7 @@ in {
     ./amdgpu.nix
     ./nvidia.nix
     ./wsl.nix
+    ./rpi3.nix
+    ./sc8280xp
   ];
 }

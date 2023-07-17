@@ -7,7 +7,6 @@
   nixos = ({modulesPath, pkgs, config, ...}: {
     imports = [
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
-      ../../machines/rpi3.nix
       ./octoprint
     ];
 
@@ -15,7 +14,12 @@
     networking.firewall.allowedTCPPorts = [ 3001 ];
 
     martiert = {
-      system.type = "server";
+      system = {
+        type = "server";
+        aarch64 = {
+          arch = "rpi3";
+        };
+      };
       sshd = {
         enable = true;
         authorizedKeyFiles = [
