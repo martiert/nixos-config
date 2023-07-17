@@ -1,19 +1,8 @@
-{ config, lib, ... }:
-
-with lib;
+{ config, ... }:
 
 let
   cfg = config.martiert.alacritty;
 in {
-  options.martiert.alacritty = {
-    fontSize = mkOption {
-      type = types.int;
-      default = 10;
-      description = "Fontsize to use";
-    };
-  };
-
-
   config.programs.alacritty = {
     enable = true;
     settings = {

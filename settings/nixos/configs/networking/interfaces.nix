@@ -75,50 +75,10 @@ let
   };
   bridgeConfig = builtins.mapAttrs makeBridge (lib.filterAttrs (_: value: value.bridgedInterfaces != []) enabled_interfaces);
 in {
-  options = with lib; {
-    martiert.networking = {
-      interfaces = mkOption {
-        default = {};
-        description = "Config for network interface";
-        type = types.attrsOf (types.submodule {
-          options = {
-            enable = mkEnableOption "interface";
-            useDHCP = mkEnableOption "dhcp for this interface";
-            bridgedInterfaces = mkOption {
-              default = [];
-              type = types.listOf types.string;
-              description = "Interfaces to add to the bridge";
-            };
-            staticRoutes = mkEnableOption "static routes";
-            supplicant = mkOption {
-              default = {};
-              type = types.submodule {
-                options = {
-                  enable = mkEnableOption "wpa_supplicant for this interface";
-                  wired = mkEnableOption "wired supplicant config";
-                };
-              };
-            };
-          };
-        });
-      };
-      dhcpcd = mkOption {
-        default = {};
-        description = "Configurations for dhcp";
-        type = types.submodule {
-          options = {
-            leaveResolveConf = mkEnableOption "turning off messing with resolve conf";
-          };
-        };
-      };
-    };
-  };
-  config = {
-    networking.useDHCP = false;
-    networking.interfaces = interface_config;
-    networking.supplicant = supplicant_config;
+  networking.useDHCP = false;
+  networking.interfaces = interface_config;
+  networking.supplicant = supplicant_config;
 
-    networking.dhcpcd.extraConfig = extraDHCPConfig;
-    networking.bridges = bridgeConfig;
-  };
+  networking.dhcpcd.extraConfig = extraDHCPConfig;
+  networking.bridges = bridgeConfig;
 }

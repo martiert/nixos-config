@@ -26,41 +26,17 @@ ${generateRecords values.ttl values.records}
   generateZones = zones:
     builtins.mapAttrs makeZone (lib.filterAttrs (_: value: value.enable) zones);
 in {
-  options = with lib; {
-    martiert.zones = mkOption {
-      default = {};
-      description = "Config for sinkholing dns entries";
-      type = types.attrsOf (types.submodule {
-        options = {
-          enable = mkEnableOption "Enable this zone";
-          ttl = mkOption {
-            default = 60;
-            description = "DNS ttl for all zone records";
-            type = types.int;
-          };
-          records = mkOption {
-            default = {};
-            description = "DNS name entry records";
-            type = types.attrsOf (types.attrsOf types.str);
-          };
-        };
-      });
-    };
+  services.bind = {
+    enable = true;
+    ipv4Only = true;
+    cacheNetworks = [
+      "0.0.0.0/0"
+    ];
+    forwarders = [
+      "8.8.8.8"
+      "1.1.1.1"
+    ];
+    zones = generateZones config.martiert.zones;
   };
-
-  config = {
-    services.bind = {
-      enable = true;
-      ipv4Only = true;
-      cacheNetworks = [
-        "0.0.0.0/0"
-      ];
-      forwarders = [
-        "8.8.8.8"
-        "1.1.1.1"
-      ];
-      zones = generateZones config.martiert.zones;
-    };
-    networking.firewall.allowedUDPPorts = [ 53 ];
-  };
+  networking.firewall.allowedUDPPorts = [ 53 ];
 }

@@ -50,6 +50,7 @@ in rec {
     nixpkgs.lib.nixosSystem {
       system = config.system;
       modules = [
+        ../options
         ../machines
         ../settings/nixos
         config.nixos
@@ -66,8 +67,19 @@ in rec {
 
           networking.hostName = name;
 
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.martin = { lib, config, osConfig, ... }: {
+              imports = [
+                ../options
+              ];
+              config = {
+                martiert = lib.mkDefault osConfig.martiert;
+                home.stateVersion = "22.05";
+              };
+            };
+          };
 
           nix.registry.nixpkgs.flake = nixpkgs;
           nixpkgs.overlays = [

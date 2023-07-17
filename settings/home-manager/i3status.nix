@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 with lib;
 
@@ -41,71 +41,38 @@ let
     in entries:
       mapAttrsToList makeDiskEntry entries;
 in {
-  options = {
-    martiert.i3status = {
-      enable = mkOption {
-        type = types.bool;
-        default = false;
-      };
-      networks = mkOption {
-        default = {
-          ethernet = [];
-          wireless = [];
-        };
-        type = types.submodule {
-          options = {
-            ethernet = mkOption {
-              type = types.listOf types.str;
-              default = [];
-            };
-            wireless = mkOption {
-              type = types.listOf types.str;
-              default = [];
-            };
-          };
-        };
-      };
-      extraDisks = mkOption {
-        type = types.attrsOf types.str;
-        default = {};
-      };
-    };
-  };
-
-  config = {
-    programs.i3status-rust = let
-      diskEntries = { "/" = "/"; } // cfg.extraDisks;
-    in {
-      enable = cfg.enable;
-      bars.bottom = {
-        icons = "awesome4";
-        blocks = networkBlocks cfg.networks ++ [
-          {
-            block = "battery";
-            format = "$icon $percentage $time";
-            driver = "upower";
-            missing_format = "";
-          }
-          {
-            block = "memory";
-            format = "$icon $mem_used/$mem_total";
-          }
-          {
-            block = "cpu";
-            format = "$icon $utilization";
-          }
-          {
-            block = "temperature";
-            format = "$icon $max";
-          }
-        ] ++ extraDiskEntries diskEntries ++ [
-          {
-            block = "time";
-            format = "$timestamp.datetime(f:'%Y-%m-%d %H:%M:%S')";
-            interval = 1;
-          }
-        ];
-      };
+  programs.i3status-rust = let
+    diskEntries = { "/" = "/"; } // cfg.extraDisks;
+  in {
+    enable = cfg.enable;
+    bars.bottom = {
+      icons = "awesome4";
+      blocks = networkBlocks cfg.networks ++ [
+        {
+          block = "battery";
+          format = "$icon $percentage $time";
+          driver = "upower";
+          missing_format = "";
+        }
+        {
+          block = "memory";
+          format = "$icon $mem_used/$mem_total";
+        }
+        {
+          block = "cpu";
+          format = "$icon $utilization";
+        }
+        {
+          block = "temperature";
+          format = "$icon $max";
+        }
+      ] ++ extraDiskEntries diskEntries ++ [
+        {
+          block = "time";
+          format = "$timestamp.datetime(f:'%Y-%m-%d %H:%M:%S')";
+          interval = 1;
+        }
+      ];
     };
   };
 }
