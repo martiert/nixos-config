@@ -27,9 +27,6 @@ let
 in {
   inherit system;
   nixos = {
-    imports = [
-      ../../machines/nvidia.nix
-    ];
     virtualisation = {
       docker.enableNvidia = true;
     };
@@ -52,7 +49,10 @@ in {
     };
 
     martiert = {
-      system.type = "desktop";
+      system = {
+        type = "desktop";
+        gpu = "nvidia";
+      };
       printing.enable = true;
       networking = {
         interfaces = {

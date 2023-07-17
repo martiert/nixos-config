@@ -42,7 +42,6 @@ in {
     imports = [
       ./networkRestart.nix
       ./nginx
-      ../../machines/amdgpu.nix
     ];
 
     services.xserver = {
@@ -77,7 +76,10 @@ in {
     };
 
     martiert = {
-      system.type = "desktop";
+      system = {
+        type = "desktop";
+        gpu = "amd";
+      };
       dnsproxy.enable = true;
       printing.enable = true;
       services.xserver.enable = true;

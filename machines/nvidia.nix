@@ -1,18 +1,14 @@
 { config, lib, ... }:
 
-let
-  cfg = config.martiert.hardware.nvidia;
-  nvidiaPkgs = config.boot.kernelPackages.nvidiaPackages;
-in {
-  options.martiert.hardware.nvidia = {
-    openDriver = lib.mkEnableOption "Enable using the open nvidia driver";
-  };
+with lib;
 
-  config = {
-    hardware.nvidia = {
-      package = nvidiaPkgs.beta;
-      open = cfg.openDriver;
-    };
-    services.xserver.videoDrivers = [ "nvidia" ];
+let
+  martiert = config.martiert;
+  nvidiaPkgs = config.boot.kernelPackages.nvidiaPackages;
+in mkIf (martiert.system.gpu == "nvidia") {
+  hardware.nvidia = {
+    package = nvidiaPkgs.beta;
+    open = martiert.hardware.nvidia.openDriver;
   };
+  services.xserver.videoDrivers = [ "nvidia" ];
 }

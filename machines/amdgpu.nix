@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
-{
+with lib;
+
+let
+  martiert = config.martiert;
+in mkIf (martiert.system.gpu == "amd") {
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];
   systemd.tmpfiles.rules = [
