@@ -149,6 +149,20 @@ in {
           ./public_keys/mattrim.pub
         ];
       };
+      alacritty.fontSize = 14;
+      i3status = {
+        enable = true;
+        extraDisks = {
+          "Cisco" = "/home/martin/Cisco";
+          "/storage" = "/storage";
+          "/boot" = "/boot";
+        };
+      };
+      i3 = {
+        enable = true;
+        barSize = 12.0;
+      };
+      email.enable = true;
     };
 
     home-manager.users.martin = {
@@ -170,29 +184,6 @@ in {
             "10" = [{ app_id = "^gimp$"; }];
           };
         };
-
-      martiert = {
-        alacritty.fontSize = 14;
-        i3status = {
-          enable = true;
-          networks = {
-            ethernet = [
-              "eno1"
-              "enp6s0"
-            ];
-          };
-          extraDisks = {
-            "Cisco" = "/home/martin/Cisco";
-            "/storage" = "/storage";
-            "/boot" = "/boot";
-          };
-        };
-        i3 = {
-          enable = true;
-          barSize = 12.0;
-        };
-        email.enable = true;
-      };
     };
   };
 }

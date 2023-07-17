@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.martiert.i3status;
+  cfg = config.martiert;
 
   networkBlocks = let
       createWifiBlock = iface: {
@@ -23,9 +23,18 @@ let
         map createWifiBlock ifaces;
       ethernetNetworkBlocks = ifaces:
         map createEthernetBlock ifaces;
+
+      isWireless = _: value: value.supplicant.enable && !value.supplicant.wired;
+      isWired = name: value: !(isWireless name value);
+
+      wirelessInterfaces = interfaces:
+        attrNames (filterAttrs isWireless interfaces);
+      ethernetInterfaces = interfaces:
+        attrNames (filterAttrs isWired interfaces);
+
     in
       networks:
-        wifiNetworkBlocks networks.wireless ++ ethernetNetworkBlocks networks.ethernet;
+        wifiNetworkBlocks (wirelessInterfaces networks) ++ ethernetNetworkBlocks (ethernetInterfaces networks);
 
 
   extraDiskEntries = let
@@ -42,12 +51,12 @@ let
       mapAttrsToList makeDiskEntry entries;
 in {
   programs.i3status-rust = let
-    diskEntries = { "/" = "/"; } // cfg.extraDisks;
+    diskEntries = { "/" = "/"; } // cfg.i3status.extraDisks;
   in {
-    enable = cfg.enable;
+    enable = cfg.i3status.enable;
     bars.bottom = {
       icons = "awesome4";
-      blocks = networkBlocks cfg.networks ++ [
+      blocks = networkBlocks cfg.networking.interfaces ++ [
         {
           block = "battery";
           format = "$icon $percentage $time";

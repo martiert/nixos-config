@@ -112,6 +112,10 @@ in {
           };
         };
       };
+      alacritty.fontSize = 14;
+      i3status.enable = true;
+      i3.enable = true;
+      email.enable = true;
     };
 
     home-manager.useGlobalPkgs = true;
@@ -131,23 +135,6 @@ in {
             };
           };
         };
-
-      martiert = {
-        alacritty.fontSize = 14;
-        i3status = {
-          enable = true;
-          networks = {
-            ethernet = [
-              "eno1"
-              "enp0s20f0u3"
-            ];
-          };
-        };
-        i3 = {
-          enable = true;
-        };
-        email.enable = true;
-      };
     };
   };
 }

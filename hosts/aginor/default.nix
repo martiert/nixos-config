@@ -90,6 +90,18 @@ in {
           ./public_keys/schnappi.pub
         ];
       };
+      i3status = {
+        enable = true;
+        extraDisks = {
+          "Cisco" = "/home/martin/Cisco";
+          "/boot" = "/boot";
+        };
+      };
+      i3 = {
+        enable = true;
+        barSize = 12.0;
+      };
+      email.enable = true;
     };
 
     home-manager.users.martin = {
@@ -97,25 +109,6 @@ in {
         ./beltsearch.nix
       ];
 
-      martiert = {
-        i3status = {
-          enable = true;
-          networks = {
-            ethernet = [
-              "eno2"
-            ];
-          };
-          extraDisks = {
-            "Cisco" = "/home/martin/Cisco";
-            "/boot" = "/boot";
-          };
-        };
-        i3 = {
-          enable = true;
-          barSize = 12.0;
-        };
-        email.enable = true;
-      };
       xsession.windowManager.i3.config = swayi3Config // {
         assigns = {
           "2" = [{ class = "^webex$"; }];

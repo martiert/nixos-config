@@ -52,6 +52,8 @@ in {
           };
         };
       };
+      i3status.enable = true;
+      i3.enable = true;
     };
   
     home-manager.users.martin = {
@@ -83,19 +85,6 @@ in {
         ];
         assigns = {
           "2" = [{ app_id = "^firefox$"; }];
-        };
-      };
-      martiert = {
-        i3status = {
-          enable = true;
-          networks = {
-            wireless = [
-              "wlan0"
-            ];
-          };
-        };
-        i3 = {
-          enable = true;
         };
       };
     };

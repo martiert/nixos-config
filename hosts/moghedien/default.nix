@@ -60,6 +60,11 @@ in {
           useDHCP = true;
         };
       };
+      i3status.enable = true;
+      i3 = {
+        enable = true;
+        barSize = 10.0;
+      };
     };
 
     home-manager.users.martin = {
@@ -85,21 +90,6 @@ in {
             "10" = [{ class = "^Gimp$"; }];
           };
         };
-
-      martiert = {
-        i3status = {
-          enable = true;
-          networks = {
-            wireless = [
-              "wlp1s0"
-            ];
-          };
-        };
-        i3 = {
-          enable = true;
-          barSize = 10.0;
-        };
-      };
     };
   });
 }
