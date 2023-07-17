@@ -51,10 +51,7 @@ in rec {
       system = config.system;
       modules = [
         ../machines
-        ../settings/nixos/configs
-        ../settings/nixos/services
-        ../settings/nixos/users/martin.nix
-        ../settings/nixos/users/root.nix
+        ../settings/nixos
         config.nixos
         nixos-wsl.nixosModules.wsl
         agenix.nixosModules.default
