@@ -1,0 +1,7 @@
+{
+  imports = [
+    ./options
+    ./machines
+    ./nixos
+  ];
+}

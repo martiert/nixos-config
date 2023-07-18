@@ -50,9 +50,7 @@ in rec {
     nixpkgs.lib.nixosSystem {
       system = config.system;
       modules = [
-        ../options
-        ../machines
-        ../settings/nixos
+        ../module
         config.nixos
         nixos-wsl.nixosModules.wsl
         agenix.nixosModules.default
@@ -72,8 +70,8 @@ in rec {
             useUserPackages = true;
             users.martin = { lib, config, osConfig, ... }: {
               imports = [
-                ../options
-                ../settings/home-manager
+                ../module/options
+                ../module/home-manager
               ];
               config = {
                 martiert = lib.mkDefault osConfig.martiert;
