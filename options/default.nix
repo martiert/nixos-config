@@ -32,18 +32,16 @@ with lib;
           default = false;
           description = "Install boot loader as removable";
         };
-        initrd = mkOption {
-          type = types.submodule {
-            options = {
-              extraAvailableKernelModules = mkOption {
-                type = types.listOf types.str;
-                default = [];
-                description = "Extra kernel module to make available";
-              };
-            };
+        initrd = {
+          extraAvailableKernelModules = mkOption {
+            type = types.listOf types.str;
+            default = [];
+            description = "Extra kernel module to make available";
           };
-          default = {
-            extraAvailableKernelModules = [];
+          kernelModules = mkOption {
+            type = types.listOf types.string;
+            default = [ "uas" "usbcore" "usb_storage" "ext4" "nls_cp437" "nls_iso8859_1" ];
+            description = "Kernel modules to load as default for initrd";
           };
         };
         kernelModules = mkOption {
@@ -84,7 +82,6 @@ with lib;
           default = null;
         };
       };
-      printing.enable = lib.mkEnableOption "Enable printing for this device";
       sshd = {
         enable = mkEnableOption "Enable sshd";
         authorizedKeyFiles = mkOption {

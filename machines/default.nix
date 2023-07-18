@@ -9,5 +9,10 @@
     ./wsl.nix
     ./rpi3.nix
     ./sc8280xp
+    ./boot.nix
+  ];
+  nix.settings.trusted-users = [
+    "root"
+    "martin"
   ];
 }

@@ -53,7 +53,6 @@ in {
         type = "desktop";
         gpu = "nvidia";
       };
-      printing.enable = true;
       networking = {
         interfaces = {
           "eno2" = {
@@ -74,10 +73,8 @@ in {
         boot = "/dev/disk/by-label/boot";
       };
       boot.initrd.extraAvailableKernelModules = [ "usbhid" "rtsx_pci_sdmmc" ];
-      hardware.hidpi.enable = true;
       hardware.nvidia.openDriver = true;
       services.xserver = {
-        enable = true;
         defaultSession = "none+i3";
       };
       sshd = {
@@ -90,18 +87,16 @@ in {
           ./public_keys/schnappi.pub
         ];
       };
-      i3status = {
-        enable = true;
-        extraDisks = {
-          "Cisco" = "/home/martin/Cisco";
-          "/boot" = "/boot";
-        };
-      };
       i3 = {
         enable = true;
         barSize = 12.0;
+        statusBar = {
+          extraDisks = {
+            "Cisco" = "/home/martin/Cisco";
+            "/boot" = "/boot";
+          };
+        };
       };
-      email.enable = true;
     };
 
     home-manager.users.martin = {

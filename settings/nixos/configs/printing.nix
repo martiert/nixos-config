@@ -1,10 +1,11 @@
 { pkgs, config, lib, ... }:
 
 let
-  cfg = config.martiert;
+  martiert = config.martiert;
+  printing = martiert.system.type != "server" && pkgs.system == "x86_64-linux";
 in {
   services.printing = {
-    enable = cfg.printing.enable;
+    enable = printing;
     drivers = [ pkgs.cnijfilter2 ];
   };
 }

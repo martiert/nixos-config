@@ -32,8 +32,6 @@ rec {
     martiert = {
       system.type = "wsl";
       dnsproxy.enable = true;
-      printing.enable = true;
-      services.xserver.enable = true;
       sshd.enable = true;
       networking.interfaces = {
         "eth0" = {

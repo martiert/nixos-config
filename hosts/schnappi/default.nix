@@ -16,15 +16,8 @@ in {
       dhcpcd.extraConfig = "resolv.conf";
     };
     services.rsyslogd.enable = true;
-    boot.loader = {
-      efi.canTouchEfiVariables = false;
-      grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
-        efiInstallAsRemovable = false;
-      };
-    };
+
+    boot.loader.efi.canTouchEfiVariables = false;
 
     age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
 
@@ -33,8 +26,6 @@ in {
         type = "laptop";
         aarch64.arch = "sc8280xp";
       };
-      hardware.hidpi.enable = true;
-      services.xserver.enable = true;
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/294031c9-eb35-4151-b78b-fb54af2162bb";
@@ -52,7 +43,6 @@ in {
           };
         };
       };
-      i3status.enable = true;
       i3.enable = true;
     };
   

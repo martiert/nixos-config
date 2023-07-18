@@ -51,9 +51,9 @@ let
       mapAttrsToList makeDiskEntry entries;
 in {
   programs.i3status-rust = let
-    diskEntries = { "/" = "/"; } // cfg.i3status.extraDisks;
+    diskEntries = { "/" = "/"; } // cfg.i3.statusBar.extraDisks;
   in {
-    enable = cfg.i3status.enable;
+    enable = cfg.i3.enable;
     bars.bottom = {
       icons = "awesome4";
       blocks = networkBlocks cfg.networking.interfaces ++ [

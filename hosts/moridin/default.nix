@@ -61,9 +61,7 @@ in {
 
     martiert = {
       system.type = "desktop";
-      printing.enable = true;
       dnsproxy.enable = true;
-      services.xserver.enable = true;
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/4ea0a56f-90d0-48ad-a5f2-80befab4b826";
@@ -73,7 +71,6 @@ in {
         swap = "/dev/disk/by-partuuid/54830ffa-cb0b-4a6f-b79b-ab162f4bd009";
       };
       boot.initrd.extraAvailableKernelModules = [ "usbhid" "rtsx_pci_sdmmc" ];
-      hardware.hidpi.enable = true;
       services.xserver = {
         defaultSession = "none+i3";
       };
@@ -113,13 +110,9 @@ in {
         };
       };
       alacritty.fontSize = 14;
-      i3status.enable = true;
       i3.enable = true;
-      email.enable = true;
     };
 
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
     home-manager.users.martin = {
       xsession.windowManager.i3.config = swayi3Config "DP-2-2" "DP-2-1" "DP-1";
       wayland.windowManager.sway.config = (swayi3Config "DP-4" "DP-3" "DP-1") //

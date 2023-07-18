@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.martiert.services.xserver;
-  hwCfg = config.martiert.hardware;
-in {
-  services.xserver = mkIf cfg.enable {
-    enable = cfg.enable;
+  martiert = config.martiert;
+  guiEnabled = builtins.elem martiert.system.type [ "desktop" "laptop" "wsl" ];
+in mkIf guiEnabled {
+  services.xserver = {
+    enable = true;
     layout = "us";
     xkbOptions = "caps:none,compose:lwin";
 
@@ -15,9 +15,9 @@ in {
     displayManager = {
       sddm = {
         enable = true;
-        enableHidpi = hwCfg.hidpi.enable;
+        enableHidpi = builtins.elem martiert.system.type [ "desktop" "laptop" ];
       };
-      defaultSession = cfg.defaultSession;
+      defaultSession = martiert.services.xserver.defaultSession;
     };
 
     windowManager.i3.enable = true;
@@ -25,8 +25,8 @@ in {
     wacom.enable = true;
   };
 
-  programs.sway.enable = cfg.enable;
+  programs.sway.enable = true;
   hardware.opengl = mkIf (pkgs.system == "x86_64-linux") {
-    driSupport32Bit = cfg.enable;
+    driSupport32Bit = true;
   };
 }

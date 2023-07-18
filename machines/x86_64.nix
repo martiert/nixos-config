@@ -15,29 +15,10 @@ in mkIf (pkgs.system == "x86_64-linux" && builtins.elem martiert.system.type [ "
     "sd_mod"
   ] ++ martiert.boot.initrd.extraAvailableKernelModules;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  boot.initrd.kernelModules = [ "uas" "usbcore" "usb_storage" "ext4" "nls_cp437" "nls_iso8859_1" ];
-  boot.kernelModules = martiert.boot.kernelModules;
-  boot.extraModulePackages = [ ];
-
   boot.tmp.useTmpfs = true;
-
-  boot.loader = {
-    efi.canTouchEfiVariables = !martiert.boot.efi.removable;
-    grub = {
-      enable = true;
-      device = "nodev";
-      efiSupport = true;
-      efiInstallAsRemovable = martiert.boot.efi.removable;
-    };
-  };
-
-  services.pcscd.enable = true;
-
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  hardware.enableRedistributableFirmware = true;
+  services.pcscd.enable = true;
   powerManagement.cpuFreqGovernor = mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = mkDefault true;
 
@@ -71,11 +52,6 @@ in mkIf (pkgs.system == "x86_64-linux" && builtins.elem martiert.system.type [ "
   };
 
   services.udev.packages = [ pkgs.projecteur ];
-
-  nix.settings.trusted-users = [
-    "root"
-    "martin"
-  ];
 
   programs.adb.enable = true;
   networking.firewall.allowedTCPPortRanges = [

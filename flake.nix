@@ -106,17 +106,6 @@
               };
             };
             martiert = {
-              i3status = {
-                enable = true;
-                networks = {
-                  wireless = [
-                    "wlan0"
-                  ];
-                  ethernet = [
-                    "enu1u2"
-                  ];
-                };
-              };
               i3 = {
                 enable = true;
               };

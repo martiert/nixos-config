@@ -5,7 +5,6 @@ with lib;
 {
   options = {
     martiert.email = {
-      enable = mkEnableOption "Enable email sync";
       address = mkOption {
         type = types.str;
         default = "";

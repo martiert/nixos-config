@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.martiert.email;
+  martiert = config.martiert;
 
   # Disable JavaFX to use the simple pop-up
   jre = pkgs.openjdk.override {
@@ -18,7 +18,7 @@ let
   };
 
 in {
-  config = mkIf cfg.enable {
+  config = mkIf (martiert.system.type == "desktop") {
     home.packages = [
       davmail
     ];
@@ -52,14 +52,14 @@ in {
       log4j.logger.httpclient.wire=WARN
       log4j.logger.org.apache.commons.httpclient=WARN
       log4j.rootLogger=INFO
-    '' + (if ! cfg.davmail.o365.enable then "" else ''
+    '' + (if ! martiert.email.davmail.o365.enable then "" else ''
         davmail.mode=O365Interactive
         davmail.url=https://outlook.office365.com/EWS/Exchange.asmx
-        davmail.oauth.clientId=${cfg.davmail.o365.clientId}
-        davmail.oauth.redirectUri=${cfg.davmail.o365.redirectUri}
+        davmail.oauth.clientId=${martiert.email.davmail.o365.clientId}
+        davmail.oauth.redirectUri=${martiert.email.davmail.o365.redirectUri}
         davmail.oauth.persistToken=true
-        davmail.imapPort=${toString cfg.davmail.imapPort}
-        davmail.caldavPort=${toString cfg.davmail.caldavPort}
+        davmail.imapPort=${toString martiert.email.davmail.imapPort}
+        davmail.caldavPort=${toString martiert.email.davmail.caldavPort}
       '');
 
     systemd.user.services.davmail = {

@@ -5,16 +5,6 @@ with lib;
 {
   options = {
     martiert = {
-      i3status = {
-        enable = mkOption {
-          type = types.bool;
-          default = false;
-        };
-        extraDisks = mkOption {
-          type = types.attrsOf types.str;
-          default = {};
-        };
-      };
       i3 = {
         enable = mkEnableOption "Enable i3";
         lockCmd = mkOption {
@@ -26,6 +16,12 @@ with lib;
           type = types.float;
           default = 14.0;
           description = "Font size for bars";
+        };
+        statusBar = {
+          extraDisks = mkOption {
+            type = types.attrsOf types.str;
+            default = {};
+          };
         };
       };
     };

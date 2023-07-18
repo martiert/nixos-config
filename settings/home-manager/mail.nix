@@ -3,13 +3,13 @@
 with lib;
 
 let
-  cfg = config.martiert.email;
+  martiert = config.martiert;
 in {
   imports = [
     ./davmail.nix
   ];
 
-  config = mkIf cfg.enable {
+  config = mkIf (martiert.system.type == "desktop") {
     martiert.email = {
       address = "mertsas@cisco.com";
       smtp = {
@@ -31,21 +31,21 @@ in {
         primary = true;
         passwordCommand = "echo bogus";
         realName = "Martin Ertsås";
-        userName = cfg.address;
-        address = cfg.address;
+        userName = martiert.email.address;
+        address = martiert.email.address;
         imap = {
-          host = cfg.imap.host;
-          port = cfg.imap.port;
-          tls.enable = cfg.imap.tls;
+          host = martiert.email.imap.host;
+          port = martiert.email.imap.port;
+          tls.enable = martiert.email.imap.tls;
         };
         smtp = {
-          tls.enable = cfg.smtp.tls;
-          host = cfg.smtp.host;
+          tls.enable = martiert.email.smtp.tls;
+          host = martiert.email.smtp.host;
         };
         neomutt = {
           enable = true;
           extraConfig = ''
-            set smtp_url = smtp://${cfg.smtp.host}
+            set smtp_url = smtp://${martiert.email.smtp.host}
             set folder = /home/martin/.mail/cisco
             set spoolfile = +Inbox
             set record = +Sent

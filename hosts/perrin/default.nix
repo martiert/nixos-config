@@ -81,8 +81,6 @@ in {
         gpu = "amd";
       };
       dnsproxy.enable = true;
-      printing.enable = true;
-      services.xserver.enable = true;
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/34185190-271f-464b-91aa-d6707835ab60";
@@ -100,11 +98,7 @@ in {
         initrd.extraAvailableKernelModules = [ "usbhid" ];
         efi.removable = true;
       };
-      hardware.hidpi.enable = true;
-      # hardware.nvidia.openDriver = false;
-      services.xserver = {
-        defaultSession = "none+i3";
-      };
+      services.xserver.defaultSession = "none+i3";
       networking = {
         dhcpcd.leaveResolveConf = true;
         interfaces = {
@@ -150,19 +144,17 @@ in {
         ];
       };
       alacritty.fontSize = 14;
-      i3status = {
-        enable = true;
-        extraDisks = {
-          "Cisco" = "/home/martin/Cisco";
-          "/storage" = "/storage";
-          "/boot" = "/boot";
-        };
-      };
       i3 = {
         enable = true;
         barSize = 12.0;
+        statusBar = {
+          extraDisks = {
+            "Cisco" = "/home/martin/Cisco";
+            "/storage" = "/storage";
+            "/boot" = "/boot";
+          };
+        };
       };
-      email.enable = true;
     };
 
     home-manager.users.martin = {
