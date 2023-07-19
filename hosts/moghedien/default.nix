@@ -64,29 +64,37 @@ in {
       };
     };
 
-    home-manager.users.martin = {
-      xsession.windowManager.i3.config = swayi3Config //
-        {
-          assigns = {
-            "2" = [{ class = "^Firefox$"; }];
-            "3" = [{ class = "^webex$"; }];
-            "10" = [{ class = "^Gimp$"; }];
-          };
-        };
+    home-manager.users.martin = { pkgs, config, ... }: {
+      config = {
+        home.packages = [
+          pkgs.vysor
+          pkgs.teamctl
+          pkgs.roomctl
+        ];
 
-      wayland.windowManager.sway.config = swayi3Config //
-        {
-          input = {
-            "type:tablet_tool" = {
-              map_to_output = "HDMI-A-1";
+        xsession.windowManager.i3.config = swayi3Config //
+          {
+            assigns = {
+              "2" = [{ class = "^Firefox$"; }];
+              "3" = [{ class = "^webex$"; }];
+              "10" = [{ class = "^Gimp$"; }];
             };
           };
-          assigns = {
-            "2" = [{ app_id = "^firefox$"; }];
-            "3" = [{ app_id = "^webex$"; }];
-            "10" = [{ class = "^Gimp$"; }];
+
+        wayland.windowManager.sway.config = swayi3Config //
+          {
+            input = {
+              "type:tablet_tool" = {
+                map_to_output = "HDMI-A-1";
+              };
+            };
+            assigns = {
+              "2" = [{ app_id = "^firefox$"; }];
+              "3" = [{ app_id = "^webex$"; }];
+              "10" = [{ class = "^Gimp$"; }];
+            };
           };
-        };
+      };
     };
   });
 }

@@ -46,35 +46,43 @@ in {
       i3.enable = true;
     };
   
-    home-manager.users.martin = {
-      xsession.windowManager.i3.config = {
-        startup = [
-          { command = "alacritty"; }
-          { command = "firefox"; }
+    home-manager.users.martin = { pkgs, config, ... }: {
+      config = {
+        home.packages = [
+          pkgs.vysor
+          pkgs.teamctl
+          pkgs.roomctl
         ];
-        workspaceOutputAssign = [
-          {
-            output = "eDP-1";
-            workspace = "1";
-          }
-        ];
-        assigns = {
-          "2" = [{ class = "^firefox$"; }];
+
+        xsession.windowManager.i3.config = {
+          startup = [
+            { command = "alacritty"; }
+            { command = "firefox"; }
+          ];
+          workspaceOutputAssign = [
+            {
+              output = "eDP-1";
+              workspace = "1";
+            }
+          ];
+          assigns = {
+            "2" = [{ class = "^firefox$"; }];
+          };
         };
-      };
-      wayland.windowManager.sway.config = {
-        startup = [
-          { command = "alacritty"; }
-          { command = "firefox"; }
-        ];
-        workspaceOutputAssign = [
-          {
-            output = "eDP-1";
-            workspace = "1";
-          }
-        ];
-        assigns = {
-          "2" = [{ app_id = "^firefox$"; }];
+        wayland.windowManager.sway.config = {
+          startup = [
+            { command = "alacritty"; }
+            { command = "firefox"; }
+          ];
+          workspaceOutputAssign = [
+            {
+              output = "eDP-1";
+              workspace = "1";
+            }
+          ];
+          assigns = {
+            "2" = [{ app_id = "^firefox$"; }];
+          };
         };
       };
     };

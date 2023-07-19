@@ -15,7 +15,6 @@ in self: super: {
   roomctl = cisco.outputs.packages."${system}".roomctl;
 
   mutt-ics = callPackage ./mutt-ics.nix {};
-  generate_ssh_key = callPackage ./generate_ssh_key {};
   flashPrint = callPackage ./flashPrint.nix {};
 
   beltsearch = beltsearch.outputs.packages."${system}".beltsearch;

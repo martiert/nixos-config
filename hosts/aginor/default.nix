@@ -99,21 +99,28 @@ in {
       };
     };
 
-    home-manager.users.martin = {
+    home-manager.users.martin = { pkgs, config, ... }: {
       imports = [
         ./beltsearch.nix
       ];
 
-      xsession.windowManager.i3.config = swayi3Config // {
-        assigns = {
-          "2" = [{ class = "^webex$"; }];
-          "9" = [{ class = "^Firefox$"; }];
+      config = {
+        home.packages = [
+          pkgs.vysor
+          pkgs.teamctl
+          pkgs.roomctl
+        ];
+        xsession.windowManager.i3.config = swayi3Config // {
+          assigns = {
+            "2" = [{ class = "^webex$"; }];
+            "9" = [{ class = "^Firefox$"; }];
+          };
         };
-      };
-      wayland.windowManager.sway.config = swayi3Config // {
-        assigns = {
-          "9" = [{ app_id = "^firefox$"; }];
-          "2" = [{ app_id = "^webex$"; }];
+        wayland.windowManager.sway.config = swayi3Config // {
+          assigns = {
+            "9" = [{ app_id = "^firefox$"; }];
+            "2" = [{ app_id = "^webex$"; }];
+          };
         };
       };
     };

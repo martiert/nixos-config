@@ -157,25 +157,33 @@ in {
       };
     };
 
-    home-manager.users.martin = {
-      xsession.windowManager.i3.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "DisplayPort-1" //
-        {
-          assigns = {
-            "9" = [{ class = "^Firefox$"; }];
-            "2" = [{ class = "^webex$"; }];
-            "10" = [{ class = "^Gimp$"; }];
+    home-manager.users.martin = { pkgs, config, ... }: {
+      config = {
+        home.packages = [
+          pkgs.vysor
+          pkgs.teamctl
+          pkgs.roomctl
+        ];
+
+        xsession.windowManager.i3.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "DisplayPort-1" //
+          {
+            assigns = {
+              "9" = [{ class = "^Firefox$"; }];
+              "2" = [{ class = "^webex$"; }];
+              "10" = [{ class = "^Gimp$"; }];
+            };
           };
-        };
 
 
-      wayland.windowManager.sway.config = swayi3Config "HDMI-A-1" "DP-1" "DP-2" //
-        {
-          assigns = {
-            "9" = [{ app_id = "^firefox$"; }];
-            "2" = [{ app_id = "^webex$"; }];
-            "10" = [{ app_id = "^gimp$"; }];
+        wayland.windowManager.sway.config = swayi3Config "HDMI-A-1" "DP-1" "DP-2" //
+          {
+            assigns = {
+              "9" = [{ app_id = "^firefox$"; }];
+              "2" = [{ app_id = "^webex$"; }];
+              "10" = [{ app_id = "^gimp$"; }];
+            };
           };
-        };
+      };
     };
   };
 }
