@@ -42,6 +42,7 @@ in {
     imports = [
       ./networkRestart.nix
       ./nginx
+      ./networking.nix
     ];
 
     services.xserver = {
@@ -99,40 +100,6 @@ in {
         efi.removable = true;
       };
       services.xserver.defaultSession = "none+i3";
-      networking = {
-        dhcpcd.leaveResolveConf = true;
-        interfaces = {
-          "eno1" = {
-            enable = true;
-            useDHCP = true;
-          };
-          "enp6s0" = {
-            enable = true;
-            useDHCP = true;
-            staticRoutes = true;
-            supplicant = {
-              enable = true;
-              wired = true;
-            };
-          };
-        };
-        tables = {
-          cisco = {
-            number = 42;
-            enable = true;
-            rules = [
-              {
-                from = "192.168.1.1/24";
-              }
-            ];
-            routes = {
-              default = {
-                value = "via 192.168.1.1";
-              };
-            };
-          };
-        };
-      };
       sshd = {
         enable = true;
         authorizedKeyFiles = [
