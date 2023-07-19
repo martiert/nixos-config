@@ -1,7 +1,0 @@
-{
-  imports = [
-    ./configs
-    ./services
-    ./users
-  ];
-}

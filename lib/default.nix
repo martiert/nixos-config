@@ -1,4 +1,5 @@
 { nixpkgs
+, module
 , nixos-wsl
 , lib
 , agenix
@@ -50,7 +51,7 @@ in rec {
     nixpkgs.lib.nixosSystem {
       system = config.system;
       modules = [
-        ../module
+        module.nixosModules.default
         config.nixos
         nixos-wsl.nixosModules.wsl
         agenix.nixosModules.default
@@ -70,8 +71,7 @@ in rec {
             useUserPackages = true;
             users.martin = { lib, config, osConfig, ... }: {
               imports = [
-                ../module/options
-                ../module/home-manager
+                module.nixosModules.home-manager
               ];
               config = {
                 martiert = lib.mkDefault osConfig.martiert;

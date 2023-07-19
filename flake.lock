@@ -279,6 +279,26 @@
         "type": "github"
       }
     },
+    "module": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1689749940,
+        "narHash": "sha256-EEYFEZjAcXurv91wrzjQ6MrGhVe96CFlpz62QIV1RYQ=",
+        "owner": "martiert",
+        "repo": "nixos-module",
+        "rev": "bd8c0a1269cea13ce05cdfbcea008c261721d8de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "martiert",
+        "repo": "nixos-module",
+        "type": "github"
+      }
+    },
     "nixlib": {
       "locked": {
         "lastModified": 1687654967,
@@ -458,6 +478,7 @@
         "deploy-rs": "deploy-rs",
         "flake-utils": "flake-utils_4",
         "home-manager": "home-manager_2",
+        "module": "module",
         "nixos-generators": "nixos-generators",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_5",
