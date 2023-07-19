@@ -41,6 +41,9 @@ let
 in {
   inherit system;
   nixos = {
+    imports = [
+      ./networking.nix
+    ];
     networking.networkmanager = {
       enable = true;
       unmanaged = [ "enp0s20f0u3" ];
@@ -75,40 +78,6 @@ in {
         defaultSession = "none+i3";
       };
       sshd.enable = true;
-      networking = {
-        dhcpcd.leaveResolveConf = true;
-        interfaces = {
-          "eno1" = {
-            enable = true;
-            useDHCP = true;
-          };
-          "enp0s20f0u3" = {
-            enable = true;
-            useDHCP = true;
-            staticRoutes = true;
-            supplicant = {
-              enable = true;
-              wired = true;
-            };
-          };
-        };
-        tables = {
-          cisco = {
-            number = 42;
-            enable = true;
-            rules = [
-              {
-                from = "192.168.1.1/24";
-              }
-            ];
-            routes = {
-              default = {
-                value = "via 192.168.1.1";
-              };
-            };
-          };
-        };
-      };
       alacritty.fontSize = 14;
       i3.enable = true;
     };

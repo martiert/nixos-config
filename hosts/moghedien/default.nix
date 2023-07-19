@@ -54,6 +54,7 @@ in {
           enable = true;
           supplicant = {
             enable = true;
+            configFile = config.age.secrets.wpa_supplicant_wlp1s0.path;
           };
           useDHCP = true;
         };

@@ -5,7 +5,7 @@ let
   system = "aarch64-linux";
 in {
   inherit system;
-  nixos = {
+  nixos = ({ config, ... }: {
     nix.settings.trusted-users = [
       "root"
       "martin"
@@ -38,7 +38,10 @@ in {
         interfaces = {
           "wlan0" = {
             enable = true;
-            supplicant.enable = true;
+            supplicant = {
+              enable = true;
+              configFile = config.age.secrets."wpa_supplicant_wlan0".path;
+            };
             useDHCP = true;
           };
         };
@@ -86,5 +89,5 @@ in {
         };
       };
     };
-  };
+  });
 }

@@ -34,6 +34,7 @@
           enable = true;
           supplicant = {
             enable = true;
+            configFile = config.age.secrets.wpa_supplicant_wlan0.path;
           };
           useDHCP = true;
         };

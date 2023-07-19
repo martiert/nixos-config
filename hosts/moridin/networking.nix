@@ -1,6 +1,8 @@
 { config, ... }:
 
-{
+let
+  secrets = config.age.secrets;
+in {
   martiert.networking = {
     dhcpcd.leaveResolveConf = true;
     interfaces = {
@@ -8,14 +10,14 @@
         enable = true;
         useDHCP = true;
       };
-      "enp6s0" = {
+      "enp0s20f0u3" = {
         enable = true;
         useDHCP = true;
         staticRoutes = true;
         supplicant = { config, ... }: {
           enable = true;
           wired = true;
-          configFile = config.age.secrets.wpa_supplicant_enp6s0.path;
+          configFile = secrets.wpa_supplicant_enp0s20f0u3.path;
         };
       };
     };
