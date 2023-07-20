@@ -28,10 +28,10 @@ in {
       };
       mountpoints = {
         root = {
-          encryptedDevice = "/dev/disk/by-uuid/294031c9-eb35-4151-b78b-fb54af2162bb";
+          encryptedDevice = "/dev/disk/by-uuid/2a70888f-653f-4ac0-9af3-b7174dd2ee24";
           device = "/dev/mapper/root";
         };
-        boot = "/dev/disk/by-uuid/8E25-35C9";
+        boot = "/dev/disk/by-uuid/CB01-CD14";
       };
       sshd.enable = true;
       networking = {
