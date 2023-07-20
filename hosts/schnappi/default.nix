@@ -30,6 +30,12 @@ in {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/2a70888f-653f-4ac0-9af3-b7174dd2ee24";
           device = "/dev/mapper/root";
+          credentials = [
+            "8ec94f82dc8eb3382933bda8306cd06c"
+            "37e9d565bc83eb158b1b86bfb80a361e"
+            "f79486f3c55f7a1c2af32cb8cf1df06f"
+            "406c581bcfe4de3e83462b310dfc876c"
+          ];
         };
         boot = "/dev/disk/by-uuid/CB01-CD14";
       };
