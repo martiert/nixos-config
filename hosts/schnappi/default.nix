@@ -5,7 +5,7 @@ let
   system = "aarch64-linux";
 in {
   inherit system;
-  nixos = ({ config, ... }: {
+  nixos = ({ pkgs, config, ... }: {
     nix.settings.trusted-users = [
       "root"
       "martin"
@@ -16,6 +16,16 @@ in {
       dhcpcd.extraConfig = "resolv.conf";
     };
     services.rsyslogd.enable = true;
+
+    environment.systemPackages = [ pkgs.modemmanager ];
+    services.udev.packages = [ pkgs.modemmanager ];
+    services.dbus.packages = [ pkgs.modemmanager ];
+    systemd.packages = [ pkgs.modemmanager ];
+    systemd.units.ModemManager.enable = true;
+    networking.networkmanager = {
+      unmanaged = [ "wlan0" ];
+      enable = true;
+    };
 
     boot.loader.efi.canTouchEfiVariables = false;
 
