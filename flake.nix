@@ -57,6 +57,38 @@
         };
     in {
       nixosConfigurations = lib.forAllNixHosts lib.makeNixosConfig;
+      homeConfigurations."mertsas" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs { system = "x86_64-linux"; };
+        modules = [
+          module.nixosModules.home-manager
+          {
+            nixpkgs.overlays = [
+              (import ./overlay { inherit nixpkgs cisco vysor beltsearch blocklist; system = "x86_64-linux"; })
+              (import ./overlay/dummy.nix)
+            ];
+
+            home = {
+              stateVersion = "23.05";
+              username = "mertsas";
+              homeDirectory = "/home/mertsas";
+            };
+            martiert = {
+              system.type = "laptop";
+              i3 = {
+                enable = true;
+              };
+            };
+            nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+              "google-chrome"
+              "zoom"
+              "webex"
+              "spotify"
+              "steam"
+              "steam-original"
+            ];
+          }
+        ];
+      };
       deploy.nodes = 
         lib.forNixHostsWhere
           (config: builtins.hasAttr "deployTo" config)

@@ -1,5 +1,8 @@
 self: super: {
   generate_ssh_key = super.callPackage ./generate_ssh_key {};
+  webex = super.writeShellScriptBin "webex" ''
+    exec /opt/Webex/bin/CiscoCollabHost
+  '';
 } // (
 let
   useSystemApplicationFor = application: {
