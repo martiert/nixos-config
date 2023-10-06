@@ -142,6 +142,7 @@ in {
           ./public_keys/moridin.pub
           ./public_keys/schnappi.pub
           ./public_keys/mattrim.pub
+          ./public_keys/mertsas-l-PF3K63V3.pub
         ];
       };
       alacritty.fontSize = 14;
