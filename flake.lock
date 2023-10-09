@@ -83,6 +83,27 @@
         "url": "ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay"
       }
     },
+    "cisco-module": {
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1696835157,
+        "narHash": "sha256-pDEPjQKnwc2Aq3amqACF8JwWWo53bBKAHDMZC7a/axE=",
+        "ref": "refs/heads/main",
+        "rev": "929a1f9505fd5c03e0f651b67c562b574096f851",
+        "revCount": 5,
+        "type": "git",
+        "url": "ssh://git@sqbu-github.cisco.com/mertsas/nix-cisco"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@sqbu-github.cisco.com/mertsas/nix-cisco"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -238,6 +259,24 @@
         "type": "github"
       }
     },
+    "flake-utils_6": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -338,7 +377,7 @@
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat_2",
-        "flake-utils": "flake-utils_5",
+        "flake-utils": "flake-utils_6",
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
@@ -475,8 +514,9 @@
         "beltsearch": "beltsearch",
         "blocklist": "blocklist",
         "cisco": "cisco",
+        "cisco-module": "cisco-module",
         "deploy-rs": "deploy-rs",
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_5",
         "home-manager": "home-manager_2",
         "module": "module",
         "nixos-generators": "nixos-generators",
@@ -501,6 +541,21 @@
       }
     },
     "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

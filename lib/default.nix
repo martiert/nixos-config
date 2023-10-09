@@ -1,5 +1,6 @@
 { nixpkgs
 , module
+, cisco-module
 , nixos-wsl
 , lib
 , agenix
@@ -52,6 +53,7 @@ in rec {
       system = config.system;
       modules = [
         module.nixosModules.default
+        cisco-module.nixosModules.default
         config.nixos
         nixos-wsl.nixosModules.wsl
         agenix.nixosModules.default

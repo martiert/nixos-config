@@ -9,6 +9,10 @@
       url = "github:martiert/nixos-module";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    cisco-module = {
+      url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-cisco";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,10 +41,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, module, nixos-wsl, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, cisco, vysor, beltsearch, blocklist, ... }@inputs:
+  outputs = { self, nixpkgs, module, cisco-module, nixos-wsl, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, cisco, vysor, beltsearch, blocklist, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
-        inherit nixpkgs module nixos-wsl home-manager agenix cisco vysor beltsearch blocklist;
+        inherit nixpkgs module cisco-module nixos-wsl home-manager agenix cisco vysor beltsearch blocklist;
         lib = super;
       });
 
