@@ -3,22 +3,12 @@
 {
   networking = {
     usePredictableInterfaceNames = lib.mkForce false;
-    dhcpcd.enable = false;
 
     nameservers = [ "8.8.8.8" ];
-    defaultGateway = "139.59.160.1";
 
     interfaces = {
-      eth0 = {
-        ipv4.addresses = [
-          { address="139.59.160.195"; prefixLength=20; }
-        ];
-      };
-      eth1 = {
-        ipv4.addresses = [
-          { address="10.106.0.4"; prefixLength=20; }
-        ];
-      };
+      eth0.useDHCP = true;
+      eth1.useDHCP = true;
     };
   };
   services.udev.extraRules = ''
