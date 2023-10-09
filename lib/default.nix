@@ -1,6 +1,5 @@
 { nixpkgs
 , module
-, cisco-module
 , nixos-wsl
 , lib
 , agenix
@@ -53,7 +52,7 @@ in rec {
       system = config.system;
       modules = [
         module.nixosModules.default
-        cisco-module.nixosModules.default
+        cisco.nixosModules.default
         config.nixos
         nixos-wsl.nixosModules.wsl
         agenix.nixosModules.default
@@ -84,7 +83,8 @@ in rec {
 
           nix.registry.nixpkgs.flake = nixpkgs;
           nixpkgs.overlays = [
-            (import ../overlay { inherit nixpkgs cisco vysor beltsearch blocklist; system = config.system; })
+            cisco.overlays."${config.system}".default
+            (import ../overlay { inherit nixpkgs vysor beltsearch blocklist; system = config.system; })
           ];
         }
       ];

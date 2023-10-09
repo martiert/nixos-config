@@ -1,5 +1,4 @@
 { nixpkgs
-, cisco
 , vysor
 , beltsearch
 , blocklist
@@ -11,8 +10,6 @@ let
   inherit (pkgs.libsForQt5) callPackage;
 in self: super: {
   vysor = super.callPackage vysor {};
-  teamctl = cisco.outputs.packages."${system}".teamctl;
-  roomctl = cisco.outputs.packages."${system}".roomctl;
 
   mutt-ics = callPackage ./mutt-ics.nix {};
   flashPrint = callPackage ./flashPrint.nix {};

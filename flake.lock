@@ -62,6 +62,7 @@
     "cisco": {
       "inputs": {
         "flake-utils": "flake-utils_3",
+        "gomod2nix": "gomod2nix",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -69,33 +70,11 @@
         "teamctl": "teamctl"
       },
       "locked": {
-        "lastModified": 1665988777,
-        "narHash": "sha256-sRCVJTGJGtV1JyfP/4qC4Fxz1mywLSAjDHmWJEbuJQo=",
-        "ref": "main",
-        "rev": "202f73b1a08bfcaad4c2727fef8613413e192d50",
-        "revCount": 21,
-        "type": "git",
-        "url": "ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay"
-      }
-    },
-    "cisco-module": {
-      "inputs": {
-        "flake-utils": "flake-utils_4",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1696835157,
-        "narHash": "sha256-pDEPjQKnwc2Aq3amqACF8JwWWo53bBKAHDMZC7a/axE=",
+        "lastModified": 1696841942,
+        "narHash": "sha256-jkVFSkaabzJ4/XsvkaywVg8f9E9xqIpdb86XnSkAAV4=",
         "ref": "refs/heads/main",
-        "rev": "929a1f9505fd5c03e0f651b67c562b574096f851",
-        "revCount": 5,
+        "rev": "4b82afed0d73bec88dbd4b934ae782168d8d14af",
+        "revCount": 6,
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/mertsas/nix-cisco"
       },
@@ -209,21 +188,6 @@
       }
     },
     "flake-utils_3": {
-      "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_4": {
       "inputs": {
         "systems": "systems"
       },
@@ -241,7 +205,7 @@
         "type": "github"
       }
     },
-    "flake-utils_5": {
+    "flake-utils_4": {
       "inputs": {
         "systems": "systems_2"
       },
@@ -259,7 +223,7 @@
         "type": "github"
       }
     },
-    "flake-utils_6": {
+    "flake-utils_5": {
       "inputs": {
         "systems": "systems_3"
       },
@@ -274,6 +238,46 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_6": {
+      "inputs": {
+        "systems": "systems_4"
+      },
+      "locked": {
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "gomod2nix": {
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": [
+          "cisco",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1694616124,
+        "narHash": "sha256-c49BVhQKw3XDRgt+y+uPAbArtgUlMXCET6VxEBmzHXE=",
+        "owner": "nix-community",
+        "repo": "gomod2nix",
+        "rev": "f95720e89af6165c8c0aa77f180461fe786f3c21",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "gomod2nix",
         "type": "github"
       }
     },
@@ -495,11 +499,11 @@
     "roomctl": {
       "flake": false,
       "locked": {
-        "lastModified": 1646917117,
-        "narHash": "sha256-NlavpKbL0lkPnMMsQuf16VDtNiec9SEpTkibmU217oA=",
+        "lastModified": 1673604223,
+        "narHash": "sha256-N4/TM7QyTH1DFV/Zejc/IkTkq1SCuKMI1LdUInhGl40=",
         "ref": "refs/heads/master",
-        "rev": "270bed25b47459cc6c14c932fa1fcafd423aae96",
-        "revCount": 61,
+        "rev": "324c16d60e76042b733de70c9a5eafa451e5c1f9",
+        "revCount": 62,
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/oslo-cloud/roomctl"
       },
@@ -514,7 +518,6 @@
         "beltsearch": "beltsearch",
         "blocklist": "blocklist",
         "cisco": "cisco",
-        "cisco-module": "cisco-module",
         "deploy-rs": "deploy-rs",
         "flake-utils": "flake-utils_5",
         "home-manager": "home-manager_2",
@@ -570,19 +573,34 @@
         "type": "github"
       }
     },
+    "systems_4": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "teamctl": {
       "flake": false,
       "locked": {
-        "lastModified": 1663359041,
-        "narHash": "sha256-sgzj+JfT55bel+LpH+aR6rAfCFoE3jnqyxdYgLVchQQ=",
-        "ref": "refs/tags/v1.7.0",
-        "rev": "5d07eba291adb41e7e72c6af01729142b6614f48",
-        "revCount": 907,
+        "lastModified": 1694986689,
+        "narHash": "sha256-NWx6CjBQjK/kt11X+IAk625Pv5QYjv81uVM4N7utkaw=",
+        "ref": "refs/tags/v2.8.0",
+        "rev": "9442afb3765e8a0d6e5cade5efff7a00c4387876",
+        "revCount": 1099,
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/WebexSquared/teamctl"
       },
       "original": {
-        "ref": "refs/tags/v1.7.0",
+        "ref": "refs/tags/v2.8.0",
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/WebexSquared/teamctl"
       }

@@ -9,7 +9,7 @@
       url = "github:martiert/nixos-module";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    cisco-module = {
+    cisco = {
       url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-cisco";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -26,10 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs.url = "github:serokell/deploy-rs";
-    cisco = {
-      url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-overlay?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     vysor = {
       url = "git+ssh://git@sqbu-github.cisco.com/CE/vysor";
       flake = false;
@@ -41,10 +37,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, module, cisco-module, nixos-wsl, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, cisco, vysor, beltsearch, blocklist, ... }@inputs:
+  outputs = { self, nixpkgs, module, nixos-wsl, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, cisco, vysor, beltsearch, blocklist, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
-        inherit nixpkgs module cisco-module nixos-wsl home-manager agenix cisco vysor beltsearch blocklist;
+        inherit nixpkgs module nixos-wsl home-manager agenix cisco vysor beltsearch blocklist;
         lib = super;
       });
 
@@ -67,7 +63,8 @@
           module.nixosModules.home-manager
           {
             nixpkgs.overlays = [
-              (import ./overlay { inherit nixpkgs cisco vysor beltsearch blocklist; system = "x86_64-linux"; })
+              cisco.overlays.x86_64-linux.default
+              (import ./overlay { inherit nixpkgs vysor beltsearch blocklist; system = "x86_64-linux"; })
               (import ./overlay/dummy.nix)
             ];
 
