@@ -70,11 +70,11 @@
         "teamctl": "teamctl"
       },
       "locked": {
-        "lastModified": 1696841942,
-        "narHash": "sha256-jkVFSkaabzJ4/XsvkaywVg8f9E9xqIpdb86XnSkAAV4=",
+        "lastModified": 1697100973,
+        "narHash": "sha256-T8zQ3YPh021lYoNPKcHgdT8JNdGmosF0aRUHHAB2tsM=",
         "ref": "refs/heads/main",
-        "rev": "4b82afed0d73bec88dbd4b934ae782168d8d14af",
-        "revCount": 6,
+        "rev": "2c85a5e298f0a8ed87d0d1edb4fe4e9127a5e24b",
+        "revCount": 7,
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/mertsas/nix-cisco"
       },

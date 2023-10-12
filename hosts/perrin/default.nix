@@ -39,6 +39,11 @@ let
 in {
   inherit system;
   nixos = ({ config, ... }: {
+    cisco.services.amp = {
+      enable = true;
+      overrideKernelVersion = false;
+    };
+
     imports = [
       ./networkRestart.nix
       ./nginx
