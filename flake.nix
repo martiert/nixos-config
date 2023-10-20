@@ -73,6 +73,9 @@
               username = "mertsas";
               homeDirectory = "/home/mertsas";
             };
+            programs.zsh.envExtra = "PATH=/home/mertsas/.nix-profile/bin:$PATH";
+            # programs.tmux.shell = "$SHELL";
+            targets.genericLinux.enable = true;
             martiert = {
               system.type = "laptop";
               i3 = {
