@@ -61,7 +61,7 @@ in {
     age.secrets."wpa_supplicant_enp6s0".file = ../../secrets/wpa_supplicant_wired.age;
     age.secrets."dns_servers".file = ../../secrets/dns_servers.age;
 
-    fileSystems."/home/martin/Cisco" = {
+    fileSystems."/home/martin/src/Cisco" = {
       device = "/dev/disk/by-uuid/e2e37fd7-4a01-4386-90e0-20ea8f37fc64";
       encrypted = {
         enable = true;
