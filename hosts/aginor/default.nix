@@ -43,7 +43,7 @@ in {
       ];
     };
 
-    fileSystems."/home/martin/Cisco" = {
+    fileSystems."/home/martin/src/Cisco" = {
       device = "/dev/disk/by-uuid/bb99b78e-bb87-4a60-af06-de8a9fd87952";
       encrypted = {
         enable = true;
