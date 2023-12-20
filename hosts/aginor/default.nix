@@ -32,6 +32,10 @@ in {
       overrideKernelVersion = false;
     };
 
+    imports = [
+      ./citrix
+    ];
+
     virtualisation = {
       docker.enableNvidia = true;
     };
@@ -41,6 +45,11 @@ in {
         "USB-C-0"
         "DP-0"
       ];
+    };
+
+    age.secrets.citrix = {
+      file = ../../secrets/citrix.age;
+      owner = "martin";
     };
 
     fileSystems."/home/martin/src/Cisco" = {
