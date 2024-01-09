@@ -6,7 +6,7 @@ let
   mattrim = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0jcSi9N1xUK9BHLthykIgI8Wj8/yFdMLdqk5KwL1Hp root@mattrim";
   schnappi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDA40XbaYVw5sQN25PuEnfahpb4OO3XChh53jk18zkIg root@schnappi";
 
-  octoprint = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKU1fdUX2EF8GAH6e6K9gp42XgBjhtrUNYz6kKfHwPpD root@octoprint";
+  octoprint = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUplHY8ALir2FCM4dTQlH0L17dhkjxiNhq6p79h1nP5 root@octoprint";
   pihole = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMizRj3YEyAbCL3T9S8Fa2IvSN2Ia/U1hD2ItEzALhZI root@pihole";
   tmate = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBtQnvgjC+fwdv9mLJiWa+PrapWmFvOidO0pxVUPnPm5 root@tmate";
   foundry = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBSzOZjEk6huvgwj3K+ycCTgSBxYKaxQVHpLd/cRTwH root@foundry";
