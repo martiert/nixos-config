@@ -25,6 +25,12 @@ in {
     networking.networkmanager = {
       unmanaged = [ "wlan0" ];
       enable = true;
+      fccUnlockScripts = [
+        {
+          id = "105b:e0c3";
+          path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/105b";
+        }
+      ];
     };
 
     boot.loader.efi.canTouchEfiVariables = false;
