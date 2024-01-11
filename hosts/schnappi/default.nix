@@ -70,6 +70,9 @@ in {
             };
             useDHCP = true;
           };
+          "wwan0" = {
+            enable = false; # WWAN0 is a wan interface, not managed by supplicant
+          };
         };
       };
       i3.enable = true;
