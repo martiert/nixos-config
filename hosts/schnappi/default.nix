@@ -21,7 +21,10 @@ in {
     services.udev.packages = [ pkgs.modemmanager ];
     services.dbus.packages = [ pkgs.modemmanager ];
     systemd.packages = [ pkgs.modemmanager ];
+
     systemd.units.ModemManager.enable = true;
+    systemd.services.ModemManager.path = [ pkgs.libqmi ];
+
     networking.networkmanager = {
       unmanaged = [ "wlan0" ];
       enable = true;
@@ -51,6 +54,7 @@ in {
             "37e9d565bc83eb158b1b86bfb80a361e"
             "f79486f3c55f7a1c2af32cb8cf1df06f"
             "406c581bcfe4de3e83462b310dfc876c"
+            "02c67d78ab67b9caa6caa6ce9cf22c6d"
           ];
         };
         boot = "/dev/disk/by-uuid/CB01-CD14";
