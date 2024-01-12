@@ -10,6 +10,7 @@
     plugins = plugins: with plugins; [
       firmwareupdater
       bedlevelvisualizer
+      flashforge
     ];
     extraConfig = {
       plugins = {
