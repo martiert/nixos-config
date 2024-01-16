@@ -29,4 +29,5 @@ in self: super: {
       cp -r * $out/
     '';
   };
+  tmuxp = self.callPackage ./tmuxp.nix { tmuxp = super.tmuxp; };
 }
