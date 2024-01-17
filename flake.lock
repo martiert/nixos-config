@@ -23,22 +23,6 @@
         "type": "github"
       }
     },
-    "blocklist": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1687788647,
-        "narHash": "sha256-nKNz9ux1FPxoL14VZtH/1tfnn67LeXmdVQJz7I9+Srk=",
-        "owner": "notracking",
-        "repo": "hosts-blocklists",
-        "rev": "2ab426e806985d0d3d1c3eb447d7e772a836e10d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "notracking",
-        "repo": "hosts-blocklists",
-        "type": "github"
-      }
-    },
     "cisco": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -415,7 +399,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "blocklist": "blocklist",
         "cisco": "cisco",
         "deploy-rs": "deploy-rs",
         "flake-utils": "flake-utils_3",
