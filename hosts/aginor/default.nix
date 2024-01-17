@@ -27,9 +27,12 @@ let
 in {
   inherit system;
   nixos = {
-    cisco.services.amp = {
-      enable = true;
-      overrideKernelVersion = false;
+    cisco.services = {
+      amp = {
+        enable = true;
+        overrideKernelVersion = false;
+      };
+      duo.enable = true;
     };
 
     imports = [

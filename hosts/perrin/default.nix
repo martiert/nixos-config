@@ -39,10 +39,13 @@ let
 in {
   inherit system;
   nixos = ({ config, ... }: {
-    cisco.services.amp = {
-      enable = true;
-      overrideKernelVersion = false;
-    };
+    cisco.services = {
+      amp = {
+        enable = true;
+        overrideKernelVersion = false;
+      };
+      duo.enable = true;
+  };
 
     imports = [
       ./networkRestart.nix
