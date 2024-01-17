@@ -5,7 +5,6 @@
 , agenix
 , home-manager
 , cisco
-, vysor
 , ...}:
 
 let
@@ -82,7 +81,7 @@ in rec {
           nix.registry.nixpkgs.flake = nixpkgs;
           nixpkgs.overlays = [
             cisco.overlays."${config.system}".default
-            (import ../overlay { inherit nixpkgs vysor; system = config.system; })
+            (import ../overlay { inherit nixpkgs; system = config.system; })
           ];
         }
       ];
