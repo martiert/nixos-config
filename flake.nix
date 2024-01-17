@@ -5,9 +5,16 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     flake-utils.url = "github:numtide/flake-utils";
+    blocklist = {
+      url = "github:hagezi/dns-blocklists";
+      flake = false;
+    };
     module = {
       url = "github:martiert/nixos-module";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        blocklist.follows = "blocklist";
+      };
     };
     cisco = {
       url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-cisco";

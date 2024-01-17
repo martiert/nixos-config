@@ -23,6 +23,22 @@
         "type": "github"
       }
     },
+    "blocklist": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705481155,
+        "narHash": "sha256-8oZNMZ/e4Xoaz7ZQL8uO71M22paCFw0R6IL49H7cBFg=",
+        "owner": "hagezi",
+        "repo": "dns-blocklists",
+        "rev": "5335ff067955080a56fc93e9aab74afc1dcc31a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hagezi",
+        "repo": "dns-blocklists",
+        "type": "github"
+      }
+    },
     "cisco": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -277,17 +293,20 @@
     },
     "module": {
       "inputs": {
+        "blocklist": [
+          "blocklist"
+        ],
         "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1705487076,
-        "narHash": "sha256-1I/+oV9+FdWtMAV3Abrzb/Jg5DIHq1l5oRq0WT1c1sA=",
+        "lastModified": 1705488075,
+        "narHash": "sha256-jSTr3NV7/6SWTMIKQkxI1Jy8ymOROAJq6wC9RJFNIx4=",
         "owner": "martiert",
         "repo": "nixos-module",
-        "rev": "c82bf919c5f51188f959b152f748648c01fb307e",
+        "rev": "a8ee481741e8348d4491dd83bf293603bbe3c919",
         "type": "github"
       },
       "original": {
@@ -419,6 +438,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "blocklist": "blocklist",
         "cisco": "cisco",
         "deploy-rs": "deploy-rs",
         "flake-utils": "flake-utils_3",
