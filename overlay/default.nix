@@ -1,6 +1,5 @@
 { nixpkgs
 , vysor
-, beltsearch
 , blocklist
 , system
 }:
@@ -13,8 +12,6 @@ in self: super: {
 
   mutt-ics = callPackage ./mutt-ics.nix {};
   flashPrint = callPackage ./flashPrint.nix {};
-
-  beltsearch = beltsearch.outputs.packages."${system}".beltsearch;
 
   dns_blocklist = super.stdenv.mkDerivation {
     pname = "blocklist";

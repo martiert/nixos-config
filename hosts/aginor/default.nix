@@ -115,10 +115,6 @@ in {
     };
 
     home-manager.users.martin = { pkgs, config, ... }: {
-      imports = [
-        ./beltsearch.nix
-      ];
-
       config = {
         home.packages = [
           pkgs.vysor
