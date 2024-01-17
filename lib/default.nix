@@ -1,6 +1,5 @@
 { nixpkgs
 , module
-, nixos-wsl
 , lib
 , agenix
 , home-manager
@@ -51,12 +50,10 @@ in rec {
         module.nixosModules.default
         cisco.nixosModules.default
         config.nixos
-        nixos-wsl.nixosModules.wsl
         agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           system.stateVersion = "23.05";
-          wsl.defaultUser = "martin";
 
           environment.variables.EDITOR = "vim";
           environment.variables.MOZ_ENABLE_WAYLAND = "1";
