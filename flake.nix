@@ -55,6 +55,7 @@
           {
             nixpkgs.overlays = [
               cisco.overlays.x86_64-linux.default
+              module.overlays.x86_64-linux.default
               (import ./overlay { inherit nixpkgs; system = "x86_64-linux"; })
               (import ./overlay/dummy.nix)
             ];
