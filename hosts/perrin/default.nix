@@ -45,7 +45,7 @@ in {
         overrideKernelVersion = false;
       };
       duo.enable = true;
-  };
+    };
 
     imports = [
       ./networkRestart.nix
