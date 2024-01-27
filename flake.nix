@@ -33,12 +33,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs.url = "github:serokell/deploy-rs";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, module, nixos-wsl, flake-utils, agenix, home-manager, nixos-generators, deploy-rs, cisco, ... }@inputs:
+  outputs = { self, nixpkgs, module, nixos-wsl, flake-utils, agenix, home-manager, nixos-generators, nixos-hardware, deploy-rs, cisco, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
-        inherit nixpkgs module nixos-wsl home-manager agenix cisco;
+        inherit nixpkgs module nixos-hardware nixos-wsl home-manager agenix cisco;
         lib = super;
       });
 

@@ -2,6 +2,7 @@
 , module
 , lib
 , agenix
+, nixos-hardware
 , home-manager
 , cisco
 , ...}:
@@ -19,9 +20,9 @@ let
   importConfig = name:
     let
       filename = ../hosts/${name};
-      config = import filename {
-        inherit nixpkgs home-manager;
-      };
+      config = { hw_modules = []; } // (import filename {
+        inherit nixpkgs home-manager nixos-hardware;
+      });
     in {
       name = name;
       config = config;
@@ -46,10 +47,10 @@ in rec {
   makeNixosConfig = name: filename: config:
     nixpkgs.lib.nixosSystem {
       system = config.system;
-      modules = [
+      modules = config.hw_modules ++ [
+        config.nixos
         module.nixosModules.default
         cisco.nixosModules.default
-        config.nixos
         agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         {
