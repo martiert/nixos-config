@@ -44,7 +44,6 @@ in {
       virtualbox.host = {
         enable = true;
         headless = true;
-
       };
     };
 

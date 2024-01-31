@@ -98,5 +98,20 @@
           mkDeploy;
 
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-    };
+    } //
+    flake-utils.lib.eachDefaultSystem (system: {
+      packages = {
+        virtualbox = nixos-generators.nixosGenerate {
+          inherit system;
+          format = "virtualbox";
+
+          modules = [
+            {
+              nix.registry.nixpkgs.flake = nixpkgs;
+              imports = [ ./virtualbox ];
+            }
+          ];
+        };
+      };
+    });
 }
