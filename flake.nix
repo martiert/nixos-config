@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
     flake-utils.url = "github:numtide/flake-utils";
     blocklist = {
       url = "github:hagezi/dns-blocklists";
@@ -39,10 +38,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, module, nixos-wsl, flake-utils, agenix, home-manager, nixos-generators, nixos-hardware, deploy-rs, cisco, ... }@inputs:
+  outputs = { self, nixpkgs, module, flake-utils, agenix, home-manager, nixos-generators, nixos-hardware, deploy-rs, cisco, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
-        inherit nixpkgs module nixos-hardware nixos-wsl home-manager agenix cisco;
+        inherit nixpkgs module nixos-hardware home-manager agenix cisco;
         lib = super;
       });
 
