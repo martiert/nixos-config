@@ -32,10 +32,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs.url = "github:serokell/deploy-rs";
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs = { self, nixpkgs, module, flake-utils, agenix, home-manager, nixos-generators, nixos-hardware, deploy-rs, cisco, ... }@inputs:

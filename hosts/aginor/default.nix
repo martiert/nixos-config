@@ -41,6 +41,11 @@ in {
 
     virtualisation = {
       docker.enableNvidia = true;
+      virtualbox.host = {
+        enable = true;
+        headless = true;
+
+      };
     };
 
     services.xserver = {
