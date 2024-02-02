@@ -107,6 +107,7 @@ in {
           ./public_keys/perrin.pub
           ./public_keys/schnappi.pub
           ./public_keys/mertsas-l-PF3K63V3.pub
+          ./public_keys/pinarello.pub
         ];
       };
       i3 = {
