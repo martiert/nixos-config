@@ -5,6 +5,7 @@ let
   moghedien = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAlDQcKcShLLVDXOLzzHKx7D6gNetKxC2nL7nFz6SWtu root@moghedien";
   mattrim = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFeYhxfQEqydAEBn9Dw8REkAcBYLc7h+l7CW9QtLjDl+ root@mattrim";
   schnappi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDA40XbaYVw5sQN25PuEnfahpb4OO3XChh53jk18zkIg root@schnappi";
+  pinarello = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA10qn5s07V/Jd/GyohfiqoJ/wCyulUQJSNGF8DFjkdW root@pinarello";
 
   octoprint = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUplHY8ALir2FCM4dTQlH0L17dhkjxiNhq6p79h1nP5 root@octoprint";
   pihole = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMizRj3YEyAbCL3T9S8Fa2IvSN2Ia/U1hD2ItEzALhZI root@pihole";
@@ -18,10 +19,11 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKHTWbjpb92qz5YurxsbdV2PzjdN8TZh4S91AXqYCU1s martin@moghedien"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILuFi4JSDhCe/aqTxoL5zt8r45laYRq+kEvGNRDd8REW martin@aginor"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIRw8XCxKsXXpmEvWGdP/edHvfcNhRTnmj/rrdNp+cqM martin@schnappi"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVZ0SDtC9spMJSAvPyhTfemoqBM3BWstsp5HxmWvXUI martin@pinarello"
   ];
 in {
   "secrets/wpa_supplicant_wired.age".publicKeys = [ perrin moridin ] ++ editKeys;
-  "secrets/wpa_supplicant_wireless.age".publicKeys = [ moghedien octoprint schnappi ] ++ editKeys;
+  "secrets/wpa_supplicant_wireless.age".publicKeys = [ moghedien octoprint schnappi pinarello ] ++ editKeys;
   "secrets/dns_servers.age".publicKeys = [ perrin moridin ] ++ editKeys;
   "secrets/citrix.age".publicKeys = [ perrin aginor ] ++ editKeys;
   "secrets/mattrim_dropbear_key.age".publicKeys = [ mattrim ] ++ editKeys;
