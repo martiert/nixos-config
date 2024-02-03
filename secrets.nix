@@ -5,7 +5,7 @@ let
   moghedien = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAlDQcKcShLLVDXOLzzHKx7D6gNetKxC2nL7nFz6SWtu root@moghedien";
   mattrim = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFeYhxfQEqydAEBn9Dw8REkAcBYLc7h+l7CW9QtLjDl+ root@mattrim";
   schnappi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDA40XbaYVw5sQN25PuEnfahpb4OO3XChh53jk18zkIg root@schnappi";
-  pinarello = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA10qn5s07V/Jd/GyohfiqoJ/wCyulUQJSNGF8DFjkdW root@pinarello";
+  pinarello = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEzO9jNL7DNqmz5WPUWe+PceGFUxQV0svBo4uSiacr6b root@pinarello";
 
   octoprint = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUplHY8ALir2FCM4dTQlH0L17dhkjxiNhq6p79h1nP5 root@octoprint";
   pihole = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMizRj3YEyAbCL3T9S8Fa2IvSN2Ia/U1hD2ItEzALhZI root@pihole";
