@@ -5,8 +5,13 @@
   hw_modules = [ nixos-hardware.nixosModules.pine64-pinebook-pro ];
 
   nixos = ({ pkgs, config, ... }: {
+    imports = [
+      ./kernel
+    ];
+
     boot.kernelPackages = pkgs.linuxPackages_latest;
     boot.kernelParams = [ "console=tty0" ];
+
     nixpkgs.config.allowUnfree = true;
     hardware = {
       deviceTree.enable = true;

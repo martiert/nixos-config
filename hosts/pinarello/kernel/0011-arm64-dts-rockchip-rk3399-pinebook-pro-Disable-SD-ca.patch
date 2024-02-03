@@ -1,0 +1,42 @@
+From 200b3c7d49f31db3889580d2e0364d2aadc763df Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Martin=20Erts=C3=A5s?= <martiert@gmail.com>
+Date: Sat, 3 Feb 2024 21:41:37 +0100
+Subject: [PATCH 11/11] arm64: dts: rockchip: rk3399-pinebook-pro: Disable SD
+ card power when suspended
+
+---
+ arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index c68576e581ff..f0af69efbff4 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -275,8 +275,8 @@ vcc3v0_sd: vcc3v0-sd {
+ 		gpio = <&gpio0 RK_PA1 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&sdmmc0_pwr_h_pin>;
++		regulator-boot-on;
+ 		regulator-name = "vcc3v0_sd";
+-		regulator-always-on;
+ 		regulator-min-microvolt = <3000000>;
+ 		regulator-max-microvolt = <3000000>;
+ 		vin-supply = <&vcc3v3_sys>;
+@@ -545,13 +545,12 @@ regulator-state-mem {
+ 
+ 			vcc_sdio: LDO_REG4 {
+ 				regulator-name = "vcc_sdio";
+-				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3000000>;
+ 
+ 				regulator-state-mem {
+-					regulator-on-in-suspend;
++					regulator-off-in-suspend;
+ 					regulator-suspend-microvolt = <3000000>;
+ 				};
+ 			};
+-- 
+2.43.0
+
