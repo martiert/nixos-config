@@ -22,22 +22,58 @@
       })
     ];
 
+    networking.nftables = {
+      enable = true;
+      tables.nat = {
+        enable = true;
+        family = "ip";
+        content = ''
+          chain postrouting {
+            type nat hook postrouting priority 100; policy accept;
+            oifname "eth0" masquerade
+          }
+        '';
+      };
+    };
+    networking.firewall = {
+      filterForward = true;
+      extraForwardRules = ''
+        iifname { "wlan0" } oifname { "eth0" } accept comment "Allow LAN to WAN"
+        iifname { "eth0" } oifname { "wlan0" } ct state established, related accept comment "Allow established trafic back to LAN"
+      '';
+      interfaces.wlan0 = {
+        allowedUDPPortRanges = [ { from = 0; to = 65535; } ];
+        allowedTCPPortRanges = [ { from = 0; to = 65535; } ];
+      };
+    };
+    boot.kernel.sysctl = {
+      "net.ipv4.conf.all.forwarding" = true;
+      "net.ipv6.conf.all.forwarding" = true;
+    };
+    networking.interfaces.wlan0 = {
+      ipv4.addresses = [{
+        address = "10.8.8.1";
+        prefixLength = 24;
+      }];
+    };
     services.hostapd = {
       enable = true;
       radios.wlan0 = {
         countryCode = "NO";
+        channel = 48;
         band = "5g";
-        channel = 0;
         networks.wlan0 = {
-          ssid = "test";
-          authentication = {
-            saePasswords = [
-              {
-                password = "some test password":
-              }
-            ];
-          }:
+          ssid = "martiert testing";
+          authentication.mode = "none";
         };
+      };
+    };
+    services.dnsmasq = {
+      enable = true;
+      resolveLocalQueries = false;
+      settings = {
+        dhcp-range = [ "10.8.8.1,10.8.8.20,24h" ];
+        interface = "wlan0";
       };
     };
 
