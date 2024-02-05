@@ -52,6 +52,7 @@
         enable = true;
         authorizedKeyFiles = [
           ./public_keys/schnappi.pub
+          ./public_keys/perrin.pub
         ];
       };
       networking.interfaces = {
