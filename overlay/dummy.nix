@@ -5,11 +5,27 @@ self: super: {
   '';
 } // (
 let
-  useSystemApplicationFor = application: {
-    name = application;
-    value = super.writeShellScriptBin application ''
+  useSystemApplicationFor = application: 
+  let
+    runscript = super.writeShellScriptBin application ''
       exec /usr/bin/${application}
     '';
+  in {
+    name = application;
+    value = super.stdenv.mkDerivation {
+      name = application;
+      version = super."${application}".version;
+
+      src = ./.;
+
+      buildPhase = ''
+        cp --recursive ${runscript}/bin bin
+      '';
+      installPhase = ''
+        mkdir $out
+        cp --recursive bin $out/bin
+      '';
+    };
   };
   useSystemApplications = names:
     builtins.listToAttrs (builtins.map useSystemApplicationFor names);
