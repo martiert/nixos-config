@@ -23,15 +23,13 @@ in {
     systemd.packages = [ pkgs.modemmanager ];
 
     systemd.units.ModemManager.enable = true;
-    systemd.services.ModemManager.path = [ pkgs.libqmi ];
-
     networking.networkmanager = {
       unmanaged = [ "wlan0" ];
       enable = true;
       fccUnlockScripts = [
         {
           id = "105b:e0c3";
-          path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/105b";
+          path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/105b:e0c3";
         }
       ];
     };
