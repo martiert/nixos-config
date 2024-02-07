@@ -12,6 +12,7 @@ let
   tmate = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBtQnvgjC+fwdv9mLJiWa+PrapWmFvOidO0pxVUPnPm5 root@tmate";
   foundry = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBSzOZjEk6huvgwj3K+ycCTgSBxYKaxQVHpLd/cRTwH root@foundry";
   vpnrouter = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAPN3+YyY/rqzCAa8PZUf4au4ZkzG5QlN+TJQ8xxzxSe root@vpnrouter";
+  hydra = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwwGaFWQiFilcX2kYjPZWpr/6ORZ8dyMzYcwL+sLFWP root@virtualbox";
 
   editKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIElUoVKWA9hI7T4WIRZZfwZl8+u86/PsewtRJc25ZhKK martin@moridin"
@@ -29,4 +30,5 @@ in {
   "secrets/mattrim_dropbear_key.age".publicKeys = [ mattrim ] ++ editKeys;
   "secrets/vpn_passphrase.age".publicKeys = [ vpnrouter ] ++ editKeys;
   "secrets/nordvpn_credentials.age".publicKeys = [ vpnrouter ] ++ editKeys;
+  "secrets/hydra_private_key.age".publicKeys = [ hydra ] ++ editKeys;
 }
