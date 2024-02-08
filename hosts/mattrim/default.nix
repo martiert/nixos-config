@@ -5,6 +5,14 @@
   deployTo = "mattrim";
 
   nixos = ({ config, pkgs, ... }: {
+    nix = {
+      package = pkgs.nixUnstable;
+      extraOptions = ''
+        keep-outputs = true
+        keep-derivations = true
+        experimental-features = nix-command flakes
+      '';
+    };
     age.secrets."dropbear_key".file = ../../secrets/mattrim_dropbear_key.age;
     boot = {
       loader = {
@@ -15,27 +23,29 @@
           efiSupport = true;
         };
       };
+      kernelPackages = pkgs.linuxPackages_latest;
+      kernelParams = [ "ip=dhcp" ];
       initrd = {
-        secrets = {
-          "/etc/dropbear/dropbear_key" = config.age.secrets."dropbear_key".path;
-        };
+        availableKernelModules = [ "e1000e" ];
         network = {
+          enable = true;
           udhcpc.enable = true;
           ssh = {
             enable = true;
+            port = 22;
+            shell = "/bin/cryptsetup-askpass";
             authorizedKeys = [
-              ./public_keys/schnappi.pub
-              ./public_keys/perrin.pub
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIkKVvJA4/LzY+NNG6bj7R25IBlCUKd3JK0Ac6oHnIRk martin@schnappi"
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJdBILiiWeGKOYfrwjhfjZagB7T2h5Piawv4B1dDoEY3 martin@perrin"
             ];
             hostKeys = [
-              "/etc/dropbear/dropbear_key"
+              config.age.secrets."dropbear_key".path
             ];
           };
         };
       };
     };
     hardware.enableRedistributableFirmware = true;
-    boot.kernelPackages = pkgs.linuxPackages_latest;
     martiert = {
       system.type = "server";
       mountpoints = {
