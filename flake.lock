@@ -268,11 +268,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1707124016,
-        "narHash": "sha256-cJRCxubnIG89HJU9nIfCsQjTR4+hg0EqvMRZL1Jql7w=",
+        "lastModified": 1707400822,
+        "narHash": "sha256-08/pQsd8EmLZSwI30YmwJi2bO/71pd3KG1hxUuePvw8=",
         "owner": "martiert",
         "repo": "nixos-module",
-        "rev": "0812fcfbb7a8a4be8359fe2a32f374768c3da956",
+        "rev": "85f8d657b08515001bcf1ad9e0144d5337c9fea1",
         "type": "github"
       },
       "original": {

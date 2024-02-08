@@ -172,6 +172,17 @@ in {
         };
       };
     };
+    users = {
+      users.hydra = {
+        isNormalUser = true;
+        openssh.authorizedKeys.keyFiles = [
+          ./hydra.pub
+        ];
+      };
+      groups = {
+        hydra = {};
+      };
+    };
 
     home-manager.users.martin = { pkgs, config, ... }: {
       config = {
