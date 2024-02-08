@@ -4,7 +4,7 @@
   system = "x86_64-linux";
   deployTo = "mattrim";
 
-  nixos = ({ config, pkgs, ... }: {
+  nixos = ({ config, pkgs, lib, ... }: {
     nix = {
       package = pkgs.nixUnstable;
       extraOptions = ''
@@ -34,10 +34,7 @@
             enable = true;
             port = 22;
             shell = "/bin/cryptsetup-askpass";
-            authorizedKeys = [
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIkKVvJA4/LzY+NNG6bj7R25IBlCUKd3JK0Ac6oHnIRk martin@schnappi"
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJdBILiiWeGKOYfrwjhfjZagB7T2h5Piawv4B1dDoEY3 martin@perrin"
-            ];
+            authorizedKeys = lib.mapAttrsToList (name: type: builtins.readFile "${toString ./public_keys}/${name}") (builtins.readDir ./public_keys);
             hostKeys = [
               config.age.secrets."dropbear_key".path
             ];
