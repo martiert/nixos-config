@@ -5,15 +5,10 @@
   deployTo = "mattrim";
 
   nixos = ({ config, pkgs, lib, ... }: {
-    nix = {
-      package = pkgs.nixUnstable;
-      extraOptions = ''
-        keep-outputs = true
-        keep-derivations = true
-        experimental-features = nix-command flakes
-      '';
+    age.secrets = {
+      "dropbear_key".file = ../../secrets/mattrim_dropbear_key.age;
+      "hydra_keyfile".file = ../../secrets/hydra_private_key.age;
     };
-    age.secrets."dropbear_key".file = ../../secrets/mattrim_dropbear_key.age;
     boot = {
       loader = {
         efi.canTouchEfiVariables = true;
@@ -64,5 +59,35 @@
         useDHCP = true;
       };
     };
+
+    services.hydra = {
+      enable = true;
+      buildMachinesFiles = [];
+      hydraURL = "https://[::]:3000";
+      notificationSender = "hydra@hydra.martiert.com";
+      useSubstitutes = true;
+    };
+    networking.firewall.allowedTCPPorts = [ 3000 ];
+    settings.allowed-uris = [
+      "github:"
+    ];
+    nix = {
+      package = pkgs.nixUnstable;
+      extraOptions = ''
+        keep-outputs = true
+        keep-derivations = true
+        experimental-features = nix-command flakes
+      '';
+    };
+    buildMachines = [
+      {
+        hostName = "home.martiert.com";
+        system = "x86_64-linux";
+        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+        sshUser = "hydra";
+        sshKey = config.age.secrets."hydra_keyfile".path;
+        maxJobs = 3;
+      }
+    ];
   });
 }

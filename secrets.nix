@@ -30,5 +30,5 @@ in {
   "secrets/mattrim_dropbear_key.age".publicKeys = [ mattrim ] ++ editKeys;
   "secrets/vpn_passphrase.age".publicKeys = [ vpnrouter ] ++ editKeys;
   "secrets/nordvpn_credentials.age".publicKeys = [ vpnrouter ] ++ editKeys;
-  "secrets/hydra_private_key.age".publicKeys = [ hydra ] ++ editKeys;
+  "secrets/hydra_private_key.age".publicKeys = [ hydra mattrim ] ++ editKeys;
 }
