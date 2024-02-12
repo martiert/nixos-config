@@ -94,6 +94,17 @@ in
         };
       };
 
+      virtualHosts."hydra.martiert.com" = {
+        forceSSL = true;
+        enableACME = true;
+
+        extraConfig = hstsConfig;
+
+        locations."/" = {
+          proxyPass = "http://192.168.1.239:3000";
+        };
+      };
+
       virtualHosts."training.martiert.com" = {
         forceSSL = true;
         enableACME = true;

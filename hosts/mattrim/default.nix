@@ -37,6 +37,7 @@
         };
       };
     };
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
     hardware.enableRedistributableFirmware = true;
     martiert = {
       system.type = "server";
@@ -63,14 +64,12 @@
     services.hydra = {
       enable = true;
       buildMachinesFiles = [];
-      hydraURL = "https://[::]:3000";
+      hydraURL = "https://hydra.martiert.com";
       notificationSender = "hydra@hydra.martiert.com";
       useSubstitutes = true;
+      port = 3000;
     };
     networking.firewall.allowedTCPPorts = [ 3000 ];
-    settings.allowed-uris = [
-      "github:"
-    ];
     nix = {
       package = pkgs.nixUnstable;
       extraOptions = ''
@@ -78,16 +77,19 @@
         keep-derivations = true
         experimental-features = nix-command flakes
       '';
+      buildMachines = [
+        {
+          hostName = "home.martiert.com";
+          systems = [ "x86_64-linux" "aarch64-linux" ];
+          supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+          sshUser = "hydra";
+          sshKey = config.age.secrets."hydra_keyfile".path;
+          maxJobs = 3;
+        }
+      ];
+      settings.allowed-uris = [
+        "github:"
+      ];
     };
-    buildMachines = [
-      {
-        hostName = "home.martiert.com";
-        system = "x86_64-linux";
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-        sshUser = "hydra";
-        sshKey = config.age.secrets."hydra_keyfile".path;
-        maxJobs = 3;
-      }
-    ];
   });
 }
