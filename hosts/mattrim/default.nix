@@ -24,11 +24,9 @@
         availableKernelModules = [ "e1000e" ];
         network = {
           enable = true;
-          udhcpc.enable = true;
           ssh = {
             enable = true;
             port = 22;
-            shell = "/bin/cryptsetup-askpass";
             authorizedKeys = lib.mapAttrsToList (name: type: builtins.readFile "${toString ./public_keys}/${name}") (builtins.readDir ./public_keys);
             hostKeys = [
               config.age.secrets."dropbear_key".path
@@ -36,6 +34,10 @@
           };
         };
       };
+    };
+    boot.initrd.systemd = {
+      network.enable = true;
+      users.root.shell = "/bin/cryptsetup-askpass";
     };
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
     hardware.enableRedistributableFirmware = true;

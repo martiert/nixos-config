@@ -11,6 +11,13 @@
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
     ];
 
+    nixpkgs.overlays = [
+      (final: super: {
+        makeModulesClosure = x:
+          super.makeModulesClosure (x // { allowMissing = true; });
+      })
+    ];
+
     martiert = {
       system = {
         type = "server";

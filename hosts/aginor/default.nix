@@ -64,7 +64,7 @@ in {
       encrypted = {
         enable = true;
         blkDev = "/dev/disk/by-uuid/67ab45c6-1231-4ebe-b518-f3d0b8ffb1b0";
-        keyFile = "/mnt-root/etc/keys/cisco.key";
+        keyFile = "/sysroot/etc/keys/cisco.key";
         label = "cisco";
       };
     };
