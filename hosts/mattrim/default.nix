@@ -37,7 +37,7 @@
     };
     boot.initrd.systemd = {
       network.enable = true;
-      users.root.shell = "/bin/cryptsetup-askpass";
+      users.root.shell = "${pkgs.systemd}/bin/systemd-tty-ask-password-agent";
     };
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
     hardware.enableRedistributableFirmware = true;
