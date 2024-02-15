@@ -85,11 +85,6 @@ in {
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/cd5f221d-597c-4c35-b95a-8194a672859d";
-          device = "/dev/disk/by-label/rootfs";
-          credentials = [
-            "e65c251fd417d92e856dd2c161cd804f"
-            "1dc9dfa64910dae1f48bda53b81ab719"
-          ];
         };
         boot = "/dev/disk/by-label/boot";
       };

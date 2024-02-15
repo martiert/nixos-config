@@ -68,7 +68,6 @@ in {
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/4ea0a56f-90d0-48ad-a5f2-80befab4b826";
-          device = "/dev/disk/by-label/nixos";
         };
         boot = "/dev/disk/by-label/boot";
         swap = "/dev/disk/by-partuuid/54830ffa-cb0b-4a6f-b79b-ab162f4bd009";

@@ -98,7 +98,6 @@ in {
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/1ade4779-c634-4797-b499-7f956920dfe9";
-          device = "/dev/mapper/root";
         };
         boot = "/dev/disk/by-uuid/2A5B-0C42";
         swap = "/dev/disk/by-partuuid/1bc95ed3-d38e-d64e-9410-43067e6cd4d5";

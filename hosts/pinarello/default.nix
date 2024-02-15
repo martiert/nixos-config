@@ -30,7 +30,6 @@
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/8f0d0007-42c0-4690-95e3-b0ae57bebd39";
-          device = "/dev/mapper/root";
         };
         boot = "/dev/disk/by-uuid/FA77-0FEC";
       };
