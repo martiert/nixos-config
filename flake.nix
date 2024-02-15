@@ -42,7 +42,7 @@
         lib = super;
       });
 
-      mkDeploy = name: filename: config:
+      mkDeploy = name: config:
         {
           hostname = config.deployTo;
           profiles.system = {
@@ -98,11 +98,10 @@
           mkDeploy;
 
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-    } //
-    flake-utils.lib.eachDefaultSystem (system: {
-      packages = {
+      
+      packages.x86_64-linux = {
         virtualbox = nixos-generators.nixosGenerate {
-          inherit system;
+          system = "x86_64-linux";
           format = "virtualbox";
 
           modules = [
@@ -113,5 +112,5 @@
           ];
         };
       };
-    });
+    };
 }

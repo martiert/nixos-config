@@ -26,7 +26,6 @@ let
     in {
       name = name;
       config = config;
-      filename = filename;
     };
 in rec {
   forNixHostsWhere = predicate: func:
@@ -34,7 +33,7 @@ in rec {
       predicateCheck = entry: predicate entry.config;
       makeAttr = entry: {
         name = entry.name;
-        value = func entry.name entry.filename entry.config;
+        value = func entry.name entry.config;
       };
 
       configs = builtins.map importConfig hosts;
@@ -44,7 +43,7 @@ in rec {
 
   forAllNixHosts = forNixHostsWhere (_: true);
 
-  makeNixosConfig = name: filename: config:
+  makeNixosConfig = name: config:
     nixpkgs.lib.nixosSystem {
       system = config.system;
       modules = config.hw_modules ++ [
@@ -79,7 +78,7 @@ in rec {
           nix.registry.nixpkgs.flake = nixpkgs;
           nixpkgs.overlays = [
             cisco.overlays."${config.system}".default
-            module.overlays."${config.system}".default
+            module.overlays.default
             (import ../overlay { inherit nixpkgs; system = config.system; })
           ];
         }
