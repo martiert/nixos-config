@@ -146,7 +146,7 @@ in {
           ./public_keys/pinarello.pub
         ];
       };
-      alacritty.fontSize = 14;
+      terminal.fontSize = 14;
       i3 = {
         enable = true;
         barSize = 12.0;

@@ -39,6 +39,7 @@ in {
       ./citrix
     ];
 
+
     virtualisation = {
       docker.enableNvidia = true;
       virtualbox.host = {

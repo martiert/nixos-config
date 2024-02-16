@@ -33,6 +33,7 @@
         };
         boot = "/dev/disk/by-uuid/FA77-0FEC";
       };
+      terminal.default = "foot";
       boot.efi.removable = true;
       networking = {
         interfaces.wlan0 = {
