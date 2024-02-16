@@ -85,6 +85,7 @@ in {
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/cd5f221d-597c-4c35-b95a-8194a672859d";
+          useTpm2Device = true;
         };
         boot = "/dev/disk/by-label/boot";
       };
