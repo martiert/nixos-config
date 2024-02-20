@@ -46,6 +46,7 @@
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/76fe6c3a-1d87-4078-9cc0-c0dcba6b4be5";
+          useTpm2Device = true;
         };
         boot = "/dev/disk/by-uuid/98E4-83D6";
       };
