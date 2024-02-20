@@ -47,10 +47,9 @@
           hostname = config.deployTo;
           profiles.system = {
             sshUser = "martin";
-            sshOpts = [ "-t" ];
-            magicRollback = false;
-            path = deploy-rs.lib."${config.system}".activate.nixos self.nixosConfigurations."${name}";
             user = "root";
+            interactiveSudo = true;
+            path = deploy-rs.lib."${config.system}".activate.nixos self.nixosConfigurations."${name}";
           };
         };
     in {
