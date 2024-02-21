@@ -9,8 +9,6 @@ let
 
   octoprint = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUplHY8ALir2FCM4dTQlH0L17dhkjxiNhq6p79h1nP5 root@octoprint";
   pihole = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMizRj3YEyAbCL3T9S8Fa2IvSN2Ia/U1hD2ItEzALhZI root@pihole";
-  tmate = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBtQnvgjC+fwdv9mLJiWa+PrapWmFvOidO0pxVUPnPm5 root@tmate";
-  foundry = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBSzOZjEk6huvgwj3K+ycCTgSBxYKaxQVHpLd/cRTwH root@foundry";
   vpnrouter = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAPN3+YyY/rqzCAa8PZUf4au4ZkzG5QlN+TJQ8xxzxSe root@vpnrouter";
   hydra = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwwGaFWQiFilcX2kYjPZWpr/6ORZ8dyMzYcwL+sLFWP root@virtualbox";
 
