@@ -77,8 +77,8 @@ in rec {
 
           nix.registry.nixpkgs.flake = nixpkgs;
           nixpkgs.overlays = [
-            cisco.overlays."${config.system}".default
-            module.overlays.default
+            cisco.overlays."${config.system}"
+            module.overlays."${config.system}"
           ];
         }
       ];

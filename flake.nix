@@ -60,8 +60,8 @@
           module.nixosModules.home-manager
           {
             nixpkgs.overlays = [
-              cisco.overlays.x86_64-linux.default
-              module.overlays.x86_64-linux.default
+              cisco.overlays.x86_64-linux
+              module.overlays.x86_64-linux
               (import ./overlay/dummy.nix)
             ];
 
