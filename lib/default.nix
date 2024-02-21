@@ -79,7 +79,6 @@ in rec {
           nixpkgs.overlays = [
             cisco.overlays."${config.system}".default
             module.overlays.default
-            (import ../overlay { inherit nixpkgs; system = config.system; })
           ];
         }
       ];
