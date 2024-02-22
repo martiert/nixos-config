@@ -51,11 +51,11 @@
         "vysor_src": "vysor_src"
       },
       "locked": {
-        "lastModified": 1708517122,
-        "narHash": "sha256-0E4e566an3x1RuIUGzbmhlpvjqq5fZ6kt0yIuLlawA0=",
+        "lastModified": 1708597844,
+        "narHash": "sha256-mouoBLKBR+VEr9+RMutckOuWypWECdlk6TN5skuF7Zw=",
         "ref": "refs/heads/main",
-        "rev": "94b0ebba47f85c436f5dc1ef3eee4bdd03f628ec",
-        "revCount": 15,
+        "rev": "608054f81eebfd6e994a23fba51ae6fe1ef520ce",
+        "revCount": 16,
         "type": "git",
         "url": "ssh://git@sqbu-github.cisco.com/mertsas/nix-cisco"
       },
