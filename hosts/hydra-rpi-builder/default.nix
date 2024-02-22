@@ -2,7 +2,7 @@
 
 {
   system = "aarch64-linux";
-  deployTo = "hydra-rpi-worker";
+  deployTo = "hydra-rpi-builder";
 
   hw_modules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
 
@@ -10,6 +10,10 @@
     imports = [
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
     ];
+
+    hardware.raspberry-pi."4" = {
+      poe-plus-hat.enable = true;
+    };
 
     nixpkgs.overlays = [
       (final: super: {
@@ -30,6 +34,7 @@
         authorizedKeyFiles = [
           ./public_keys/schnappi.pub
           ./public_keys/perrin.pub
+          ./public_keys/hydra.pub
         ];
       };
       networking.interfaces = {
