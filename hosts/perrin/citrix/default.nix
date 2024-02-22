@@ -3,7 +3,7 @@
 {
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "citrix" ''
-      ${pkgs.citrix_workspace}/bin/wfica -icaroot ${pkgs.citrix_workspace}/opt/citrix-icaclient ${config.age.secrets.citrix.path}
+      ${pkgs.citrix_workspace}/bin/wfica $@
     '')
   ];
 
