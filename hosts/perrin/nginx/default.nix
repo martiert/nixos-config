@@ -101,7 +101,7 @@ in
         extraConfig = hstsConfig;
 
         locations."/" = {
-          proxyPass = "http://192.168.1.239:3000";
+          proxyPass = "http://mattrim.localdomain:3000";
         };
       };
 
