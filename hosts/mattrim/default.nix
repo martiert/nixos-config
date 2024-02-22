@@ -6,8 +6,10 @@
 
   nixos = ({ config, pkgs, lib, ... }: {
     age.secrets = {
-      "dropbear_key".file = ../../secrets/mattrim_dropbear_key.age;
-      "hydra_keyfile".file = ../../secrets/hydra_private_key.age;
+      "hydra_keyfile" = {
+        file = ../../secrets/hydra_private_key.age;
+        owner = "hydra-queue-runner";
+      };
     };
     boot = {
       loader = {
@@ -19,25 +21,6 @@
         };
       };
       kernelPackages = pkgs.linuxPackages_latest;
-      kernelParams = [ "ip=dhcp" ];
-      initrd = {
-        availableKernelModules = [ "e1000e" ];
-        network = {
-          enable = true;
-          ssh = {
-            enable = true;
-            port = 22;
-            authorizedKeys = lib.mapAttrsToList (name: type: builtins.readFile "${toString ./public_keys}/${name}") (builtins.readDir ./public_keys);
-            hostKeys = [
-              config.age.secrets."dropbear_key".path
-            ];
-          };
-        };
-      };
-    };
-    boot.initrd.systemd = {
-      network.enable = true;
-      users.root.shell = "${pkgs.systemd}/bin/systemd-tty-ask-password-agent";
     };
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
     hardware.enableRedistributableFirmware = true;
@@ -69,7 +52,6 @@
 
     services.hydra = {
       enable = true;
-      buildMachinesFiles = [];
       hydraURL = "https://hydra.martiert.com";
       notificationSender = "hydra@hydra.martiert.com";
       useSubstitutes = true;
