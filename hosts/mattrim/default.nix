@@ -63,6 +63,10 @@
       };
     };
 
+    networking.resolvconf.extraConfig = ''
+      name_servers='192.168.1.1'
+    '';
+
     services.hydra = {
       enable = true;
       buildMachinesFiles = [];
@@ -88,6 +92,14 @@
           sshKey = config.age.secrets."hydra_keyfile".path;
           maxJobs = 3;
         }
+        {
+          hostName = "hydra-rpi-builder.localdomain";
+          systems = [ "aarch64-linux" ];
+          sshUser = "martin";
+          sshKey = config.age.secrets."hydra_keyfile".path;
+          maxJobs = 3;
+        }
+
       ];
       settings.allowed-uris = [
         "github:"
