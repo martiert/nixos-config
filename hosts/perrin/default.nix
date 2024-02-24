@@ -171,6 +171,10 @@ in {
     };
 
     home-manager.users.martin = { pkgs, config, ... }: {
+      imports = [
+        ./nix-updater
+      ];
+
       config = {
         home.packages = [
           pkgs.vysor
