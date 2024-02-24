@@ -64,6 +64,7 @@
         keep-outputs = true
         keep-derivations = true
         experimental-features = nix-command flakes
+        secret-key-files = /var/lib/hydra/keys/hydra_key
       '';
       buildMachines = [
         {
