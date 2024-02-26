@@ -74,6 +74,7 @@
           sshUser = "hydra";
           sshKey = config.age.secrets."hydra_keyfile".path;
           maxJobs = 3;
+          speedFactor = 4;
         }
         {
           hostName = "hydra-rpi-builder.localdomain";
@@ -81,6 +82,7 @@
           sshUser = "martin";
           sshKey = config.age.secrets."hydra_keyfile".path;
           maxJobs = 3;
+          speedFactor = 1;
         }
 
       ];
