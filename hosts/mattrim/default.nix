@@ -6,9 +6,14 @@
 
   nixos = ({ config, pkgs, lib, ... }: {
     age.secrets = {
-      "hydra_keyfile" = {
+      hydra_keyfile = {
         file = ../../secrets/hydra_private_key.age;
         owner = "hydra-queue-runner";
+      };
+      hydra_signing_key = {
+        file = ../../secrets/hydra_signing_key.age;
+        group = "hydra";
+        mode = "440";
       };
     };
     boot = {
@@ -64,7 +69,7 @@
         keep-outputs = true
         keep-derivations = true
         experimental-features = nix-command flakes
-        secret-key-files = /var/lib/hydra/keys/hydra_key
+        secret-key-files = ${config.age.secrets.hydra_signing_key.path}
       '';
       buildMachines = [
         {

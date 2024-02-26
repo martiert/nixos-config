@@ -75,7 +75,17 @@ in rec {
             };
           };
 
-          nix.registry.nixpkgs.flake = nixpkgs;
+          nix = {
+            registry.nixpkgs.flake = nixpkgs;
+            settings = {
+              trusted-public-keys = [
+                "hydra.martiert.com:+bsrgpsujBGQ/LzA6ixlmB7RFUuEd1b3zY9wAxxLAYE="
+              ];
+              substituters = [
+                "https://hydra.martiert.com"
+              ];
+            };
+          };
           nixpkgs.overlays = [
             cisco.overlays."${config.system}"
             module.overlays."${config.system}"
