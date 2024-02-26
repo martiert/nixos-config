@@ -12,7 +12,7 @@
   };
   systemd.user.timers.nix-updater = {
     Unit.Description = "nix config updater";
-    Timer.OnCalendar = "23:00";
+    Timer.OnCalendar = "20:00";
     Install.WantedBy = [ "timers.target" ];
   };
 
