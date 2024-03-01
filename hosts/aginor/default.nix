@@ -35,11 +35,6 @@ in {
       duo.enable = true;
     };
 
-    imports = [
-      ./citrix
-    ];
-
-
     virtualisation = {
       docker.enableNvidia = true;
       virtualbox.host = {
@@ -117,6 +112,7 @@ in {
           };
         };
       };
+      citrix.enable = true;
     };
 
     home-manager.users.martin = { pkgs, config, ... }: {

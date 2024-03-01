@@ -50,7 +50,6 @@ in {
     imports = [
       ./networkRestart.nix
       ./nginx
-      ./citrix
     ];
 
     services.xserver = {
@@ -146,6 +145,7 @@ in {
         ];
       };
       terminal.fontSize = 14;
+      citrix.enable = true;
       i3 = {
         enable = true;
         barSize = 12.0;
