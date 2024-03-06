@@ -2,7 +2,7 @@
 
 {
   system = "x86_64-linux";
-  deployTo = "mattrim";
+  deployTo = "mattrim.localdomain";
 
   nixos = ({ config, pkgs, lib, ... }: {
     age.secrets = {
