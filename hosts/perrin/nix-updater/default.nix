@@ -1,4 +1,21 @@
-{
+{ pkgs, ... }:
+
+let
+  nix-update = pkgs.stdenv.mkDerivation {
+    pname = "nix-update";
+    version = "1.0.0";
+
+    src = ./.;
+
+    doConfigure = false;
+    doBuild = false;
+
+    installPhase = ''
+      mkdir --parent $out/bin
+      cp nix-update.sh $out/bin/nix-update
+    '';
+  };
+in {
   systemd.user.services.nix-updater = {
     Unit = {
       Description = "nix config updater";
@@ -6,7 +23,7 @@
     };
     Service = {
       Type = "oneshot";
-      ExecStart = ./nix-update.sh;
+      ExecStart = "${nix-update}/bin/nix-update";
     };
     Install.WantedBy = [ "default.target" ];
   };
