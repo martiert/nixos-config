@@ -15,6 +15,10 @@
         group = "hydra";
         mode = "440";
       };
+      hydra_aws_credentials = {
+        file = ../../secrets/hydra_aws_credentials.age;
+        owner = "hydra-queue-runner";
+      };
     };
     boot = {
       loader = {
@@ -62,10 +66,19 @@
       useSubstitutes = true;
       port = 3000;
       extraConfig = ''
-        store_uri = daemon?secret-key=${config.age.secrets.hydra_signing_key.path}
+        store_uri = s3://martiert-nix-cache?region=eu-north-1&secret-key=${config.age.secrets.hydra_signing_key.path}
       '';
     };
     networking.firewall.allowedTCPPorts = [ 3000 ];
+    systemd.services."hydra-queue-runner" = {
+      environment = {
+        AWS_SHARED_CREDENTIALS_FILE = config.age.secrets.hydra_aws_credentials.path;
+        AWS_CONFIG_FILE = "/etc/aws_config";
+      };
+    };
+    environment.etc.aws_config.text = ''[default]
+region = eu-north-1
+output = json'';
     nix = {
       package = pkgs.nixUnstable;
       extraOptions = ''
