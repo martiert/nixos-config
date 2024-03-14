@@ -52,6 +52,8 @@ in {
       ./nginx
     ];
 
+    virtualisation.virtualbox.host.enable = true;
+
     services.xserver = {
       enable = true;
       xrandrHeads = [
