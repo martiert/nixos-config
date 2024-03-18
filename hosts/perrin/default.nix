@@ -53,6 +53,7 @@ in {
     ];
 
     virtualisation.virtualbox.host.enable = true;
+    boot.kernelParams = [ "intel_iommu=on" ];
 
     services.xserver = {
       enable = true;
