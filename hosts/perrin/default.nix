@@ -154,8 +154,7 @@ in {
         barSize = 12.0;
         statusBar = {
           extraDisks = {
-            "Cisco" = "/home/martin/Cisco";
-            "/storage" = "/storage";
+            "Cisco" = "/home/martin/src/Cisco";
             "/boot" = "/boot";
           };
         };
