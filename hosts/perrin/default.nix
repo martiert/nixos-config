@@ -184,6 +184,9 @@ in {
           pkgs.teamctl
           pkgs.roomctl
         ];
+        home.sessionVariables = {
+          LYS_UTILS_CACHE_REMOTE_URL = "rsync://localhost:2226/tandberg-system";
+        };
 
         xsession.windowManager.i3.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "DisplayPort-1" //
           {
