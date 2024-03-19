@@ -48,7 +48,6 @@ in {
     };
 
     imports = [
-      ./networkRestart.nix
       ./nginx
     ];
 
@@ -86,8 +85,6 @@ in {
       ];
     };
 
-    age.secrets."wpa_supplicant_enp6s0".file = ../../secrets/wpa_supplicant_wired.age;
-    age.secrets."dns_servers".file = ../../secrets/dns_servers.age;
     age.secrets.citrix = {
       file = ../../secrets/citrix.age;
       owner = "martin";
@@ -108,7 +105,6 @@ in {
         type = "desktop";
         gpu = "amd";
       };
-      dnsproxy.enable = true;
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/1ade4779-c634-4797-b499-7f956920dfe9";
@@ -123,37 +119,10 @@ in {
       };
       services.xserver.defaultSession = "none+i3";
       networking = {
-        dhcpcd.leaveResolveConf = true;
         interfaces = {
           "eno1" = {
             enable = true;
             useDHCP = true;
-          };
-          "enp6s0" = {
-            enable = true;
-            useDHCP = true;
-            staticRoutes = true;
-            supplicant = {
-              enable = true;
-              wired = true;
-              configFile = config.age.secrets.wpa_supplicant_enp6s0.path;
-            };
-          };
-        };
-        tables = {
-          cisco = {
-            number = 42;
-            enable = true;
-            rules = [
-              {
-                from = "192.168.1.1/24";
-              }
-            ];
-            routes = {
-              default = {
-                value = "via 192.168.1.1";
-              };
-            };
           };
         };
       };
