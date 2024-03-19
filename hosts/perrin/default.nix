@@ -168,6 +168,7 @@ in {
           ./public_keys/mertsas-l-PF3K63V3.pub
           ./public_keys/pinarello.pub
           ./public_keys/cisco-vbox.pub
+          ./public_keys/cisco-qemu.pub
         ];
       };
       terminal.fontSize = 14;
