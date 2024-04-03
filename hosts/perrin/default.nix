@@ -51,31 +51,6 @@ in {
       ./nginx
     ];
 
-    virtualisation = {
-      virtualbox.host.enable = true;
-      libvirtd = {
-        enable = true;
-        qemu = {
-          package = pkgs.qemu_kvm;
-          runAsRoot = true;
-          swtpm.enable = true;
-          ovmf = {
-            enable = true;
-            packages = [ pkgs.OVMFFull.fd ];
-          };
-        };
-      };
-    };
-    environment.etc = {
-      "ovmf/edk2-x86_64-secure-code.fd" = {
-        source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
-      };
-      "ovmf/edk2-i386-vars.fd" = {
-        source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-i386-vars.fd";
-      };
-    };
-    boot.kernelParams = [ "intel_iommu=on" ];
-
     services.xserver = {
       enable = true;
       xrandrHeads = [
@@ -118,6 +93,7 @@ in {
         efi.removable = true;
       };
       services.xserver.defaultSession = "none+i3";
+      virtd.enable = true;
       networking = {
         interfaces = {
           "eno1" = {

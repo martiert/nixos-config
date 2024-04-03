@@ -42,7 +42,6 @@ in {
         headless = true;
       };
     };
-
     services.xserver = {
       xrandrHeads = [
         "USB-C-0"
@@ -70,6 +69,7 @@ in {
         type = "desktop";
         gpu = "nvidia";
       };
+      virtd.enable = true;
       networking = {
         interfaces = {
           "eno2" = {
