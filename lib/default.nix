@@ -82,7 +82,7 @@ in rec {
                 "hydra.martiert.com:+bsrgpsujBGQ/LzA6ixlmB7RFUuEd1b3zY9wAxxLAYE="
               ];
               substituters = [
-                "https://hydra.martiert.com"
+                "s3://martiert-nix-cache?region=eu-north-1"
               ];
             };
           };
