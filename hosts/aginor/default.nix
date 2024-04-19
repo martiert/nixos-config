@@ -90,6 +90,21 @@ in {
       services.xserver = {
         defaultSession = "none+i3";
       };
+      email = {
+        enable = true;
+        address = "mertsas@cisco.com";
+        smtp = {
+          tls = false;
+          host = "outbound.cisco.com";
+        };
+        imap.tls = false;
+        davmail = {
+          o365 = {
+            enable = true;
+            clientId = "953f4ef4-80ac-48d1-b98c-f66f227bb094";
+          };
+        };
+      };
       sshd = {
         enable = true;
         authorizedKeyFiles = [

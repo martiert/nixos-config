@@ -75,6 +75,10 @@ in {
       };
     };
 
+    networking.hosts = {
+      "127.0.0.1" = [ "outbound.cisco.com" ];
+    };
+
     martiert = {
       system = {
         type = "desktop";
@@ -99,6 +103,21 @@ in {
           "eno1" = {
             enable = true;
             useDHCP = true;
+          };
+        };
+      };
+      email = {
+        enable = true;
+        address = "mertsas@cisco.com";
+        smtp = {
+          tls = false;
+          host = "outbound.cisco.com:2525";
+        };
+        imap.tls = false;
+        davmail = {
+          o365 = {
+            enable = true;
+            clientId = "953f4ef4-80ac-48d1-b98c-f66f227bb094";
           };
         };
       };
