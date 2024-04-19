@@ -5,10 +5,6 @@
   hw_modules = [ nixos-hardware.nixosModules.pine64-pinebook-pro ];
 
   nixos = ({ pkgs, config, ... }: {
-    imports = [
-      ./kernel
-    ];
-
     boot.kernelPackages = pkgs.linuxPackages_latest;
     boot.kernelParams = [ "console=tty0" ];
 
