@@ -82,6 +82,7 @@ in rec {
                 "hydra.martiert.com:+bsrgpsujBGQ/LzA6ixlmB7RFUuEd1b3zY9wAxxLAYE="
               ];
               substituters = [
+                "https://cache.nixos.org"
                 "s3://martiert-nix-cache?region=eu-north-1"
               ];
             };
