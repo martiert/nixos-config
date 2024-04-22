@@ -9,7 +9,7 @@
         interface = [ "0.0.0.0" ];
         access-control = "0.0.0.0/0 allow";
       };
-      include = "${pkgs.dns_blocklist}/tif.normal.blacklist.conf";
+      include = "${pkgs.dns_blocklist}/tif.blacklist.conf";
       forward-zone = [
         {
           name = ".";
