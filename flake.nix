@@ -111,4 +111,10 @@
         };
       };
     };
+    nixConfig = {
+      substituters = [
+        "https://cache.nixos.org"
+        "s3://martiert-nix-cache?region=eu-north-1"
+      ];
+    };
 }
