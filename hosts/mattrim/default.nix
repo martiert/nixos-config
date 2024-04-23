@@ -66,8 +66,14 @@
       useSubstitutes = true;
       port = 3000;
       extraConfig = ''
-        store_uri = s3://martiert-nix-cache?region=eu-north-1&secret-key=${config.age.secrets.hydra_signing_key.path}
+        store_uri = daemon?priority=100&want-mass-query=true
       '';
+    };
+    services.nix-serve = {
+      enable = true;
+      port = 5000;
+      openFirewall = true;
+      secretKeyFile = config.age.secrets.hydra_signing_key.path;
     };
     networking.firewall.allowedTCPPorts = [ 3000 ];
     systemd.services."hydra-queue-runner" = {
