@@ -101,7 +101,18 @@ in
         extraConfig = hstsConfig;
 
         locations."/" = {
-          proxyPass = "http://192.168.1.160:3000";
+          proxyPass = "http://mattrim.localdomain:3000";
+        };
+      };
+
+      virtualHosts."cache.martiert.com" = {
+        forceSSL = true;
+        enableACME = true;
+
+        extraConfig = hstsConfig;
+
+        locations."/" = {
+          proxyPass = "http://mattrim.localdomain:5000";
         };
       };
 
