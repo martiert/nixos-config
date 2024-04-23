@@ -78,6 +78,7 @@ in rec {
           nix = {
             registry.nixpkgs.flake = nixpkgs;
             settings = {
+              substituters = [ "https://cache.martiert.com" ];
               trusted-public-keys = [
                 "hydra.martiert.com:+bsrgpsujBGQ/LzA6ixlmB7RFUuEd1b3zY9wAxxLAYE="
               ];
