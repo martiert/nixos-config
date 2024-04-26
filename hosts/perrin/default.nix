@@ -175,6 +175,36 @@ in {
           LYS_UTILS_CACHE_REMOTE_URL = "rsync://localhost:2226/tandberg-system";
         };
 
+        programs.khal.enable = true;
+        services.vdirsyncer.enable = true;
+        programs.vdirsyncer.enable = true;
+        accounts.calendar = {
+          basePath = ".calendars";
+          accounts."cisco" = {
+            khal = {
+              addresses = [ "mertsas@cisco.com" ];
+              enable = true;
+              type = "discover";
+            };
+            local = {
+              type = "filesystem";
+            };
+            remote = {
+              type = "caldav";
+              url = "http://localhost:1080/users/mertsas@cisco.com/calendar/";
+              userName = "mertsas@cisco.com";
+              passwordCommand = ["echo" "bogus"];
+            };
+            vdirsyncer = {
+              enable = true;
+              auth = "basic";
+              metadata = ["color" "displayname"];
+              collections = ["from a" "from b"];
+              conflictResolution = "remote wins";
+            };
+          };
+        };
+
         xsession.windowManager.i3.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "DisplayPort-1" //
           {
             assigns = {
