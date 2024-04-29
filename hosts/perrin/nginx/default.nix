@@ -57,6 +57,7 @@ in
 
       setXauthrequest = true;
       reverseProxy = true;
+      nginx.domain = "martiert.com";
 
       cookie = {
         domain = "training.martiert.com";
