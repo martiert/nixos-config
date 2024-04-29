@@ -51,6 +51,10 @@ in {
       ./nginx
     ];
 
+    i18n.extraLocaleSettings = {
+      LC_TIME = "en_DK.UTF-8";
+    };
+
     services.xserver = {
       enable = true;
       xrandrHeads = [
