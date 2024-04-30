@@ -5,6 +5,7 @@
 , nixos-hardware
 , home-manager
 , cisco
+, notify
 , ...}:
 
 let
@@ -87,6 +88,9 @@ in rec {
           nixpkgs.overlays = [
             cisco.overlays."${config.system}"
             module.overlays."${config.system}"
+            (self: super: {
+              khal_notify = notify.packages."${config.system}".default;
+            })
           ];
         }
       ];

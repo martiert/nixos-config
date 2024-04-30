@@ -174,9 +174,37 @@ in {
           pkgs.vysor
           pkgs.teamctl
           pkgs.roomctl
+          pkgs.khal_notify
         ];
         home.sessionVariables = {
           LYS_UTILS_CACHE_REMOTE_URL = "rsync://localhost:2226/tandberg-system";
+        };
+
+        services.dunst = {
+          enable = true;
+          settings.global = {
+            width = 600;
+            offset = "50x50";
+            origin = "top-right";
+            font = "Noto Fonts 22";
+            background = "#777777";
+            frame_color = "#777777";
+          };
+        };
+        systemd.user.services.khal-notify = {
+          Unit = {
+            Description = "Khal calendar notifications";
+            After = [ "network.target" ];
+          };
+          Service = {
+            Type = "oneshot";
+            ExecStart = "${pkgs.khal_notify}/bin/khal-notify";
+          };
+        };
+        systemd.user.timers.khal-notify = {
+          Unit.Description = "Khal calendar notifications";
+          Timer.OnCalendar = "*:0/1";
+          Install.WantedBy = [ "timers.target" ];
         };
 
         programs.khal.enable = true;

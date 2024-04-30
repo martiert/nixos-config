@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    notify = {
+      url = "github:martiert/khal_notifications";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     blocklist = {
       url = "github:hagezi/dns-blocklists";
       flake = false;
@@ -35,10 +39,10 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
-  outputs = { self, nixpkgs, module, flake-utils, agenix, home-manager, nixos-generators, nixos-hardware, deploy-rs, cisco, ... }@inputs:
+  outputs = { self, nixpkgs, module, flake-utils, agenix, home-manager, nixos-generators, nixos-hardware, deploy-rs, notify, cisco, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
-        inherit nixpkgs module nixos-hardware home-manager agenix cisco;
+        inherit nixpkgs module nixos-hardware home-manager agenix cisco notify;
         lib = super;
       });
 
