@@ -40,10 +40,13 @@ let
 in
 {
   config = {
-    users.users.oauth2_proxy.group = "oauth2_proxy";
+    users.users.oauth2_proxy = {
+      group = "oauth2_proxy";
+      isSystemUser = true;
+    };
     users.groups.oauth2_proxy = {};
 
-    services.oauth2_proxy = {
+    services.oauth2-proxy = {
       enable = true;
 
       clientID = "Training";

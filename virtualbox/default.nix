@@ -5,7 +5,7 @@
   environment.variables.EDITOR = "vim";
   networking.hostName = "virtualbox";
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     extraOptions = ''
       keep-outputs = true
       keep-derivations = true

@@ -53,7 +53,7 @@
         "git+ssh://sqbu-github.cisco.com/"
         "git+https://sqbu-github.cisco.com/"
       ];
-      package = pkgs.nixUnstable;
+      package = pkgs.nixVersions.latest;
       extraOptions = ''
         keep-outputs = true
         keep-derivations = true

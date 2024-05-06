@@ -9,7 +9,7 @@
       "${toString modulesPath}/virtualisation/virtualbox-image.nix"
     ];
     nix = {
-      package = pkgs.nixUnstable;
+      package = pkgs.nixVersions.latest;
       extraOptions = ''
         keep-outputs = true
         keep-derivations = true

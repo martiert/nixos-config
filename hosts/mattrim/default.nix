@@ -86,7 +86,7 @@
 region = eu-north-1
 output = json'';
     nix = {
-      package = pkgs.nixUnstable;
+      package = pkgs.nixVersions.latest;
       extraOptions = ''
         keep-outputs = true
         keep-derivations = true
