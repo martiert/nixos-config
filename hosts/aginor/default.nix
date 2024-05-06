@@ -137,6 +137,64 @@ in {
           pkgs.teamctl
           pkgs.roomctl
         ];
+
+        services.dunst = {
+          enable = true;
+          settings.global = {
+            width = 600;
+            offset = "50x50";
+            origin = "top-right";
+            font = "Noto Fonts 22";
+            background = "#777777";
+            frame_color = "#777777";
+          };
+        };
+        systemd.user.services.khal-notify = {
+          Unit = {
+            Description = "Khal calendar notifications";
+            After = [ "network.target" ];
+          };
+          Service = {
+            Type = "oneshot";
+            ExecStart = "${pkgs.khal_notify}/bin/khal-notify";
+          };
+        };
+        systemd.user.timers.khal-notify = {
+          Unit.Description = "Khal calendar notifications";
+          Timer.OnCalendar = "*:0/1";
+          Install.WantedBy = [ "timers.target" ];
+        };
+
+        programs.khal.enable = true;
+        services.vdirsyncer.enable = true;
+        programs.vdirsyncer.enable = true;
+        accounts.calendar = {
+          basePath = ".calendars";
+          accounts."cisco" = {
+            khal = {
+              addresses = [ "mertsas@cisco.com" ];
+              enable = true;
+              type = "discover";
+            };
+            local = {
+              type = "filesystem";
+            };
+            remote = {
+              type = "caldav";
+              url = "http://localhost:1080/users/mertsas@cisco.com/calendar/";
+              userName = "mertsas@cisco.com";
+              passwordCommand = ["echo" "bogus"];
+            };
+            vdirsyncer = {
+              enable = true;
+              auth = "basic";
+              metadata = ["color" "displayname"];
+              collections = ["from a" "from b"];
+              conflictResolution = "remote wins";
+            };
+          };
+        };
+
         xsession.windowManager.i3.config = swayi3Config // {
           assigns = {
             "2" = [{ class = "^webex$"; }];
