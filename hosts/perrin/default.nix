@@ -83,6 +83,18 @@ in {
       "127.0.0.1" = [ "outbound.cisco.com" ];
     };
 
+    hardware.printers = {
+      ensurePrinters = [
+        {
+          name = "Canon_Pixma_TS8350";
+          location = "Home";
+          deviceUri = "ipps://192.168.1.218";
+          model = "canonts8300.ppd";
+        }
+      ];
+      ensureDefaultPrinter = "Canon_Pixma_TS8350";
+    };
+
     martiert = {
       system = {
         type = "desktop";
