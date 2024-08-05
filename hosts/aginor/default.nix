@@ -35,9 +35,6 @@ in {
       duo.enable = true;
     };
 
-    virtualisation = {
-      docker.enableNvidia = true;
-    };
     services.xserver = {
       xrandrHeads = [
         "USB-C-0"
