@@ -19,10 +19,6 @@
         blocklist.follows = "blocklist";
       };
     };
-    cisco = {
-      url = "git+ssh://git@sqbu-github.cisco.com/mertsas/nix-cisco";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,10 +35,10 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
-  outputs = { self, nixpkgs, module, flake-utils, agenix, home-manager, nixos-generators, nixos-hardware, deploy-rs, notify, cisco, ... }@inputs:
+  outputs = { self, nixpkgs, module, flake-utils, agenix, home-manager, nixos-generators, nixos-hardware, deploy-rs, notify, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
-        inherit nixpkgs module nixos-hardware home-manager agenix cisco notify;
+        inherit nixpkgs module nixos-hardware home-manager agenix notify;
         lib = super;
       });
 
@@ -64,7 +60,6 @@
           module.nixosModules.home-manager
           {
             nixpkgs.overlays = [
-              cisco.overlays.x86_64-linux
               module.overlays.x86_64-linux
               (import ./overlay/dummy.nix)
             ];

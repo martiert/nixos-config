@@ -62,12 +62,6 @@ in {
 
     home-manager.users.martin = { pkgs, config, ... }: {
       config = {
-        home.packages = [
-          pkgs.vysor
-          pkgs.teamctl
-          pkgs.roomctl
-        ];
-
         xsession.windowManager.i3.config = swayi3Config //
           {
             assigns = {

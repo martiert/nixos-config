@@ -27,14 +27,6 @@ let
 in {
   inherit system;
   nixos = {
-    cisco.services = {
-      amp = {
-        enable = true;
-        overrideKernelVersion = false;
-      };
-      duo.enable = true;
-    };
-
     services.xserver = {
       xrandrHeads = [
         "USB-C-0"
@@ -80,8 +72,9 @@ in {
       };
       boot.initrd.extraAvailableKernelModules = [ "usbhid" "rtsx_pci_sdmmc" ];
       hardware.nvidia.openDriver = true;
-      services.xserver = {
-        defaultSession = "none+i3";
+      services = {
+        xserver.defaultSession = "none+i3";
+        duo.enable = true;
       };
       email = {
         enable = true;
@@ -125,12 +118,6 @@ in {
 
     home-manager.users.martin = { pkgs, config, ... }: {
       config = {
-        home.packages = [
-          pkgs.vysor
-          pkgs.teamctl
-          pkgs.roomctl
-        ];
-
         services.dunst = {
           enable = true;
           settings.global = {

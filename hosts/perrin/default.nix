@@ -39,14 +39,6 @@ let
 in {
   inherit system;
   nixos = ({ config, pkgs, lib, ... }: {
-    cisco.services = {
-      amp = {
-        enable = true;
-        overrideKernelVersion = false;
-      };
-      duo.enable = true;
-    };
-
     imports = [
       ./nginx
     ];
@@ -112,7 +104,10 @@ in {
         initrd.extraAvailableKernelModules = [ "usbhid" ];
         efi.removable = true;
       };
-      services.xserver.defaultSession = "none+i3";
+      services = {
+        duo.enable = true;
+        xserver.defaultSession = "none+i3";
+      };
       virtd.enable = true;
       networking = {
         interfaces = {
@@ -183,9 +178,6 @@ in {
 
       config = {
         home.packages = [
-          pkgs.vysor
-          pkgs.teamctl
-          pkgs.roomctl
           pkgs.khal_notify
         ];
         home.sessionVariables = {
