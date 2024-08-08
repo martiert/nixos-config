@@ -26,11 +26,11 @@
     "blocklist": {
       "flake": false,
       "locked": {
-        "lastModified": 1723001973,
-        "narHash": "sha256-r2VQxDpxJ7rS2ICMoxoO0SNsYwO71rBrSoU9WJ1dCBI=",
+        "lastModified": 1723131654,
+        "narHash": "sha256-wjYo0Glhm+J/QvEQxoanj8TVyL3iY8/kw3djJP1GQxs=",
         "owner": "hagezi",
         "repo": "dns-blocklists",
-        "rev": "97cebb1e398fed6c45f57a728dac1a8ec30cab36",
+        "rev": "b3ebbfa049f8f2798d81d93a7690d27056dfda4c",
         "type": "github"
       },
       "original": {
@@ -222,11 +222,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1722967319,
-        "narHash": "sha256-50dD3f9rP0qg1oTs+Bb0rXpU9uKyqvs+Z7gezKbQLVo=",
+        "lastModified": 1723053701,
+        "narHash": "sha256-Rr0d0XHKClYUsDW4hDEICGdsLs4C0OCz3JFBhPlKorI=",
         "owner": "martiert",
         "repo": "nixos-module",
-        "rev": "d42384d6d3f8af1af0c8c72955735ccfcfd4fd18",
+        "rev": "77897a6b9e69bc3a8dfb0eb9fc4014fbd6a448fc",
         "type": "github"
       },
       "original": {
@@ -280,11 +280,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1722819251,
-        "narHash": "sha256-f99it92NQSZsrZ8AYbiwAUfrtb/ZpZRqUsl4q6rMA5s=",
+        "lastModified": 1723078345,
+        "narHash": "sha256-HSxOQEKNZXiJe9aWnckTTCThOhcRCabwHa32IduDKLk=",
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "c8c3a20b8191819219dba1af79388aa6d555f634",
+        "rev": "d6c5d29f58acc10ea82afff1de2b28f038f572bd",
         "type": "github"
       },
       "original": {
