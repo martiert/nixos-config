@@ -4,16 +4,12 @@
   system = "aarch64-linux";
   deployTo = "hydra-rpi-builder";
 
-  hw_modules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
+  hw_modules = [ nixos-hardware.nixosModules.raspberry-pi-5 ];
 
   nixos = ({modulesPath, pkgs, config, ... }: {
     imports = [
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
     ];
-
-    hardware.raspberry-pi."4" = {
-      poe-plus-hat.enable = true;
-    };
 
     nixpkgs.overlays = [
       (final: super: {
@@ -26,7 +22,7 @@
       system = {
         type = "server";
         aarch64 = {
-          arch = "rpi3";
+          arch = "rpi5";
         };
       };
       sshd = {
