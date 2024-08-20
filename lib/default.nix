@@ -83,12 +83,17 @@ in rec {
               ];
             };
           };
-          nixpkgs.overlays = [
-            module.overlays."${config.system}"
-            (self: super: {
-              khal_notify = notify.packages."${config.system}".default;
-            })
-          ];
+          nixpkgs = {
+            overlays = [
+              module.overlays."${config.system}"
+              (self: super: {
+                khal_notify = notify.packages."${config.system}".default;
+              })
+            ];
+            config.permittedInsecurePackages = [
+              "olm-3.2.16"
+            ];
+          };
         }
       ];
     };
