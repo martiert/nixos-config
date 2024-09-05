@@ -26,10 +26,10 @@
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/8f0d0007-42c0-4690-95e3-b0ae57bebd39";
+          useFido2Device = true;
         };
         boot = "/dev/disk/by-uuid/FA77-0FEC";
       };
-      terminal.default = "foot";
       boot.efi.removable = true;
       networking = {
         interfaces.wlan0 = {
