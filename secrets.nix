@@ -22,7 +22,6 @@ let
 in {
   "secrets/wpa_supplicant_wireless.age".publicKeys = [ moghedien octoprint schnappi pinarello ] ++ editKeys;
   "secrets/dns_servers.age".publicKeys = [ perrin moridin ] ++ editKeys;
-  "secrets/citrix.age".publicKeys = [ perrin aginor ] ++ editKeys;
   "secrets/mattrim_dropbear_key.age".publicKeys = [ mattrim ] ++ editKeys;
   "secrets/vpn_passphrase.age".publicKeys = [ vpnrouter ] ++ editKeys;
   "secrets/nordvpn_credentials.age".publicKeys = [ vpnrouter ] ++ editKeys;

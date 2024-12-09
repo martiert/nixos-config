@@ -56,11 +56,6 @@ in {
       ];
     };
 
-    age.secrets.citrix = {
-      file = ../../secrets/citrix.age;
-      owner = "martin";
-    };
-
     fileSystems."/home/martin/src/Cisco" = {
       device = "/dev/disk/by-uuid/e2e37fd7-4a01-4386-90e0-20ea8f37fc64";
       encrypted = {
@@ -147,7 +142,6 @@ in {
         ];
       };
       terminal.fontSize = 14;
-      citrix.enable = true;
       i3 = {
         enable = true;
         barSize = 12.0;
