@@ -47,6 +47,8 @@ in {
       LC_TIME = "en_DK.UTF-8";
     };
 
+    boot.kernelPackages = pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor pkgs.linux_6_11);
+
     services.xserver = {
       enable = true;
       xrandrHeads = [
