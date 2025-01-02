@@ -26,6 +26,9 @@ in {
     networking.networkmanager = {
       unmanaged = [ "wlan0" ];
       enable = true;
+    };
+    networking.modemmanager = {
+      enable = true;
       fccUnlockScripts = [
         {
           id = "105b:e0c3";

@@ -43,6 +43,10 @@ in {
       ./nginx
     ];
 
+    nixpkgs.overlays = [
+      (import ../../overlay/cnijfilter.nix)
+    ];
+
     i18n.extraLocaleSettings = {
       LC_TIME = "en_DK.UTF-8";
     };
