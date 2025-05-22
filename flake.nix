@@ -85,6 +85,7 @@
               "spotify"
               "steam"
               "steam-original"
+              "steam-unwrapped"
             ];
           }
         ];
