@@ -1,10 +1,13 @@
-{ buildPythonPackage, octoprint, fetchFromGitHub, ... }:
+{ buildPythonPackage, setuptools, octoprint, fetchFromGitHub, ... }:
 
 let
   name = "FirmwareUpdater";
 in buildPythonPackage rec {
   pname = "OctoPrintPlugin-${name}";
   version = "1.14.0";
+  pyproject = true;
+  build-system = [ setuptools ];
+
   propagatedBuildInputs = [
     octoprint
   ];

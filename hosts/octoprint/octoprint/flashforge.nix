@@ -1,8 +1,10 @@
-{ stdenv, lib, fetchFromGitHub, buildPythonPackage, git, octoprint }:
+{ stdenv, lib, fetchFromGitHub, buildPythonPackage, setuptools, git, octoprint, libusb1 }:
 
 buildPythonPackage rec {
   pname = "OctoPrint-Flashforge";
   version = "0.2.6";
+  pyproject = true;
+  build-system = [ setuptools ];
 
   src = fetchFromGitHub {
     owner = "Mrnt";
@@ -13,6 +15,7 @@ buildPythonPackage rec {
 
   propagatedBuildInputs = [
     octoprint
+    libusb1
   ];
 
   doCheck = false;
