@@ -93,6 +93,7 @@ in
         extraConfig = hstsConfig;
 
         locations."/" = {
+          proxyWebsockets = true;
           root = "/var/www/home.martiert.com";
           index = "index.html";
         };
