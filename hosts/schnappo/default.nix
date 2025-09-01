@@ -26,10 +26,10 @@ in {
       };
       mountpoints = {
         root = {
-          encryptedDevice = "/dev/disk/by-uuid/adaa729e-530b-4cc8-9519-572e8178de16";
+          encryptedDevice = "/dev/disk/by-uuid/5399de08-ea02-453f-870c-d9e901a04724";
           useFido2Device = true;
         };
-        boot = "/dev/disk-by-uuid/F170-623B";
+        boot = "/dev/disk/by-uuid/A2EB-BCC6";
       };
       sshd.enable = true;
       networking = {
