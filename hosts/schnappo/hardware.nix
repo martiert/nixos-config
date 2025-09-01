@@ -2,25 +2,10 @@
 
 {
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.t14s-kernel;
     kernelParams = [
       "clk_ignore_unused"
       "pd_ignore_unused"
-    ];
-    kernelPatches = [
-      {
-        name = "snapdragon-config";
-        patch = null;
-        extraConfig = ''
-          TYPEC y
-          PHY_QCOM_QMP y
-          QCOM_CLK_RPM y
-          MFD_QCOM_RPM y
-          REGULATOR_QCOM_RPM y
-          PHY_QCOM_QMP_PCIE y
-          CLK_X1E80100_CAMCC y
-        '';
-      }
     ];
     loader = {
       efi.canTouchEfiVariables = true;
