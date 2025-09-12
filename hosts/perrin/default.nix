@@ -139,6 +139,7 @@ in {
           ./public_keys/pinarello.pub
           ./public_keys/cisco-vbox.pub
           ./public_keys/cisco-qemu.pub
+          ./public_keys/schnappo.pub
         ];
       };
       terminal.fontSize = 14;
