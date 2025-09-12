@@ -27,7 +27,7 @@ in {
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/5399de08-ea02-453f-870c-d9e901a04724";
-          useFido2Device = true;
+          # useFido2Device = true;
         };
         boot = "/dev/disk/by-uuid/A2EB-BCC6";
       };
