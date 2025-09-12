@@ -20,6 +20,8 @@ in {
     };
     services.rsyslogd.enable = true;
 
+    age.secrets."wpa_supplicant_wlP4p1s0".file = ../../secrets/wpa_supplicant_wireless.age;
+
     martiert = {
       system = {
         type = "laptop";
@@ -38,6 +40,7 @@ in {
             enable = true;
             supplicant = {
               enable = true;
+              configFile = config.age.secrets.wpa_supplicant_wlP4p1s0.path;
             };
             useDHCP = true;
           };
