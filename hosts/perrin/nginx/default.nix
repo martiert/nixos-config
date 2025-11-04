@@ -99,6 +99,24 @@ in
         };
       };
 
+      virtualHosts."photos.martiert.com" = {
+        forceSSL = true;
+        enableACME = true;
+
+        extraConfig = hstsConfig;
+
+        locations."/" = {
+          proxyPass = "http://mattrim.localdomain:2283";
+          proxyWebsockets = true;
+          recommendedProxySettings = true;
+          extraConfig = ''
+            client_max_body_size  5000M;
+            proxy_read_timeout    600s;
+            proxy_send_timeout    600s;
+            send_timeout          600s;
+          '';
+        };
+      };
       virtualHosts."hydra.martiert.com" = {
         forceSSL = true;
         enableACME = true;
