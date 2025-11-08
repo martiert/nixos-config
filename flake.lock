@@ -10,11 +10,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1761656077,
-        "narHash": "sha256-lsNWuj4Z+pE7s0bd2OKicOFq9bK86JE0ZGeKJbNqb94=",
+        "lastModified": 1762618334,
+        "narHash": "sha256-wyT7Pl6tMFbFrs8Lk/TlEs81N6L+VSybPfiIgzU8lbQ=",
         "owner": "ryantm",
         "repo": "agenix",
-        "rev": "9ba0d85de3eaa7afeab493fed622008b6e4924f5",
+        "rev": "fcdea223397448d35d9b31f798479227e80183f6",
         "type": "github"
       },
       "original": {
@@ -26,11 +26,11 @@
     "blocklist": {
       "flake": false,
       "locked": {
-        "lastModified": 1762541144,
-        "narHash": "sha256-XCsyS1nHoBEKN6Of0mXdp9lyd2ompJj6dUXbNXLjG7I=",
+        "lastModified": 1762598943,
+        "narHash": "sha256-F/2f6O+x9gmHOJntyL48Tn5507yErApsfe/Nh1uIkNQ=",
         "owner": "hagezi",
         "repo": "dns-blocklists",
-        "rev": "7d0aed969893b87b8110fa107b3b3402cef02c4d",
+        "rev": "7ba3532220fbfebd15a74ffbca8f18aa8f70c9a8",
         "type": "github"
       },
       "original": {
