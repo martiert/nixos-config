@@ -5,7 +5,6 @@ let
   system = "x86_64-linux";
   swayi3Config = left: middle: right: {
     startup = [
-      # { command = "xrandr --output HDMI-A-0 --right-of HDMI-0 --output DP-1 --right-of HDMI-1"; }
       { command = "alacritty"; }
       { command = "firefox"; }
       { command = "webex"; }
@@ -52,7 +51,7 @@ in {
       xrandrHeads = [
         "HDMI-A-0"
         "DisplayPort-0"
-        "DisplayPort-1"
+        "HDMI-A-1"
       ];
     };
 
@@ -236,7 +235,7 @@ in {
           };
         };
 
-        xsession.windowManager.i3.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "DisplayPort-1" //
+        xsession.windowManager.i3.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "HDMI-A-1" //
           {
             assigns = {
               "9" = [{ class = "^Firefox$"; }];
@@ -246,7 +245,7 @@ in {
           };
 
 
-        wayland.windowManager.sway.config = swayi3Config "HDMI-A-1" "DP-1" "DP-2" //
+        wayland.windowManager.sway.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "HDMI-A-1" //
           {
             assigns = {
               "9" = [{ app_id = "^firefox$"; }];
