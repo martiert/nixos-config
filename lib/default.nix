@@ -52,7 +52,7 @@ in rec {
         agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         {
-          system.stateVersion = "23.05";
+          system.stateVersion = "26.05";
 
           environment.variables.EDITOR = "vim";
           environment.variables.MOZ_ENABLE_WAYLAND = "1";
