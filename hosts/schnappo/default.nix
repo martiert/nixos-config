@@ -19,6 +19,7 @@ in {
       dhcpcd.extraConfig = "resolv.conf";
     };
     services.rsyslogd.enable = true;
+    services.upower.enable = true;
 
     age.secrets."wpa_supplicant_wlP4p1s0".file = ../../secrets/wpa_supplicant_wireless.age;
 
