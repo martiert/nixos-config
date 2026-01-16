@@ -5,7 +5,7 @@ let
   system = "aarch64-linux";
 in {
   inherit system;
-  nixos = ({ pkgs, config, ... }: {
+  nixos = ({ pkgs, lib, config, ... }: {
     imports = [
       ./hardware.nix
     ];
@@ -20,13 +20,15 @@ in {
     };
     services.rsyslogd.enable = true;
     services.upower.enable = true;
+    boot.initrd.systemd.tpm2.enable = false;
+    systemd.tpm2.enable = false;
 
     age.secrets."wpa_supplicant_wlP4p1s0".file = ../../secrets/wpa_supplicant_wireless.age;
-
     martiert = {
       system = {
         type = "laptop";
       };
+      services.waylandOnly = true;
       mountpoints = {
         root = {
           encryptedDevice = "/dev/disk/by-uuid/5399de08-ea02-453f-870c-d9e901a04724";
