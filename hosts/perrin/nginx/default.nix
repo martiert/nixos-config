@@ -106,7 +106,7 @@ in
         extraConfig = hstsConfig;
 
         locations."/" = {
-          proxyPass = "http://mattrim.localdomain:2283";
+          proxyPass = "http://unifi.localdomain:2283";
           proxyWebsockets = true;
           recommendedProxySettings = true;
           extraConfig = ''
@@ -124,7 +124,7 @@ in
         extraConfig = hstsConfig;
 
         locations."/" = {
-          proxyPass = "http://mattrim.localdomain:3000";
+          proxyPass = "http://unifi.localdomain:3000";
         };
       };
 
@@ -135,7 +135,7 @@ in
         extraConfig = hstsConfig;
 
         locations."/" = {
-          proxyPass = "http://mattrim.localdomain:5000";
+          proxyPass = "http://unifi.localdomain:5000";
         };
       };
 
