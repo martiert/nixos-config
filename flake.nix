@@ -27,31 +27,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    deploy-rs.url = "github:serokell/deploy-rs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
-  outputs = { self, nixpkgs, module, flake-utils, agenix, home-manager, nixos-generators, nixos-hardware, deploy-rs, notify, ... }@inputs:
+  outputs = { self, nixpkgs, module, flake-utils, agenix, home-manager, nixos-hardware, notify, ... }@inputs:
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
         inherit nixpkgs module nixos-hardware home-manager agenix notify;
         lib = super;
       });
-
-      mkDeploy = name: config:
-        {
-          hostname = config.deployTo;
-          profiles.system = {
-            sshUser = "martin";
-            user = "root";
-            interactiveSudo = true;
-            path = deploy-rs.lib."${config.system}".activate.nixos self.nixosConfigurations."${name}";
-          };
-        };
     in {
       nixosConfigurations = lib.forAllNixHosts lib.makeNixosConfig;
       homeConfigurations."mertsas" = home-manager.lib.homeManagerConfiguration {
@@ -89,26 +73,6 @@
             ];
           }
         ];
-      };
-      deploy.nodes = 
-        lib.forNixHostsWhere
-          (config: builtins.hasAttr "deployTo" config)
-          mkDeploy;
-
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-      
-      packages.x86_64-linux = {
-        virtualbox = nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          format = "virtualbox";
-
-          modules = [
-            {
-              nix.registry.nixpkgs.flake = nixpkgs;
-              imports = [ ./virtualbox ];
-            }
-          ];
-        };
       };
     };
     nixConfig = {

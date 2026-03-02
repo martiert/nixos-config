@@ -46,30 +46,30 @@ in
     };
     users.groups.oauth2_proxy = {};
 
-    services.oauth2-proxy = {
-      enable = true;
+    # services.oauth2-proxy = {
+    #   enable = true;
 
-      clientID = "Training";
-      clientSecret = "gvx7qenSX4Mfcx4TT1y";
-      provider = "oidc";
-      scope = "openid email";
-      profileURL = "https://cloudsso.cisco.com/idp/userinfo.openid";
-      extraConfig = {
-        "oidc-issuer-url" = "https://cloudsso.cisco.com";
-      };
+    #   clientID = "Training";
+    #   clientSecret = "gvx7qenSX4Mfcx4TT1y";
+    #   provider = "oidc";
+    #   scope = "openid email";
+    #   profileURL = "https://cloudsso.cisco.com/idp/userinfo.openid";
+    #   extraConfig = {
+    #     "oidc-issuer-url" = "https://cloudsso.cisco.com";
+    #   };
 
-      setXauthrequest = true;
-      reverseProxy = true;
-      nginx.domain = "martiert.com";
+    #   setXauthrequest = true;
+    #   reverseProxy = true;
+    #   nginx.domain = "martiert.com";
 
-      cookie = {
-        domain = "training.martiert.com";
-        secret = "f.rTbWTR4RyhyZd3!c6xKk8DCRuo7wyb";
-        secure = true;
-        httpOnly = true;
-      };
-      email.domains = [ "cisco.com" ];
-    };
+    #   cookie = {
+    #     domain = "training.martiert.com";
+    #     secret = "f.rTbWTR4RyhyZd3!c6xKk8DCRuo7wyb";
+    #     secure = true;
+    #     httpOnly = true;
+    #   };
+    #   email.domains = [ "cisco.com" ];
+    # };
 
     services.nginx = {
       enable = true;
@@ -139,58 +139,58 @@ in
         };
       };
 
-      virtualHosts."training.martiert.com" = {
-        forceSSL = true;
-        enableACME = true;
-        http2 = true;
+      # virtualHosts."training.martiert.com" = {
+      #   forceSSL = true;
+      #   enableACME = true;
+      #   http2 = true;
 
-        extraConfig = ''
-          error_page 401 = "@signin";
-        '';
+      #   extraConfig = ''
+      #     error_page 401 = "@signin";
+      #   '';
 
 
-        locations = {
-          "/" = {
-            extraConfig = authConfig;
-            proxyWebsockets = true;
-            proxyPass = "http://127.0.0.1:3000";
-          };
+      #   locations = {
+      #     "/" = {
+      #       extraConfig = authConfig;
+      #       proxyWebsockets = true;
+      #       proxyPass = "http://127.0.0.1:3000";
+      #     };
 
-          "/api/v1" = {
-            extraConfig = ''
-              rewrite /api/v1/?(.*) /$1 break;
-            '' + authConfig;
-            proxyPass = "http://127.0.0.1:2222";
-          };
+      #     "/api/v1" = {
+      #       extraConfig = ''
+      #         rewrite /api/v1/?(.*) /$1 break;
+      #       '' + authConfig;
+      #       proxyPass = "http://127.0.0.1:2222";
+      #     };
 
-          "/oauth2/" = {
-            proxyPass = "http://127.0.0.1:4180";
-            extraConfig = ''
-              proxy_set_header X-Scheme                 $scheme;
-              proxy_set_header X-Auth-Request-Redirect  $scheme://$host$request_uri;
-            '';
-          };
+      #     "/oauth2/" = {
+      #       proxyPass = "http://127.0.0.1:4180";
+      #       extraConfig = ''
+      #         proxy_set_header X-Scheme                 $scheme;
+      #         proxy_set_header X-Auth-Request-Redirect  $scheme://$host$request_uri;
+      #       '';
+      #     };
 
-          "@signin" = {
-            extraConfig = ''
-              internal;
-            '';
+      #     "@signin" = {
+      #       extraConfig = ''
+      #         internal;
+      #       '';
 
-            return = "307 $scheme://$host/oauth2/start";
-          };
+      #       return = "307 $scheme://$host/oauth2/start";
+      #     };
 
-          "/oauth2/auth" = {
-            proxyPass = "http://127.0.0.1:4180";
-            extraConfig = ''
-              internal;
-              proxy_set_header X-Scheme                 $scheme;
-              proxy_set_header X-Auth-Request-Redirect  $scheme://$host$request_uri;
-              proxy_set_header Content-Length           "";
-              proxy_pass_request_body off;
-            '';
-          };
-        };
-      };
+      #     "/oauth2/auth" = {
+      #       proxyPass = "http://127.0.0.1:4180";
+      #       extraConfig = ''
+      #         internal;
+      #         proxy_set_header X-Scheme                 $scheme;
+      #         proxy_set_header X-Auth-Request-Redirect  $scheme://$host$request_uri;
+      #         proxy_set_header Content-Length           "";
+      #         proxy_pass_request_body off;
+      #       '';
+      #     };
+      #   };
+      # };
 
       virtualHosts."octoprint.martiert.com" = {
         forceSSL = true;
