@@ -2,7 +2,7 @@
 
 {
   system = "x86_64-linux";
-  deployTo = "mattrim.localdomain";
+  deployTo = "mattrim";
 
   nixos = ({ config, pkgs, lib, ... }: {
     age.secrets = {
@@ -31,6 +31,22 @@
       };
       kernelPackages = pkgs.linuxPackages_latest;
     };
+
+    services.unifi = {
+      enable = true;
+      openFirewall = true;
+      maximumJavaHeapSize = 256;
+      mongodbPackage = pkgs.mongodb;
+    };
+    systemd.services.unifi.environment = {
+      SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+      JAVA_TOOL_OPTIONS = "-Djavax.net.ssl.trustStore=${pkgs.cacert}/etc/ssl/certs/java/cacerts";
+    };
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "unifi-controller"
+      "mongodb"
+    ];
+
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
     hardware.enableRedistributableFirmware = true;
     martiert = {
@@ -75,7 +91,8 @@
       openFirewall = true;
       secretKeyFile = config.age.secrets.hydra_signing_key.path;
     };
-    networking.firewall.allowedTCPPorts = [ 3000 ];
+    networking.firewall.allowedTCPPorts = [ 3000 5349 3478 ];
+    networking.firewall.allowedUDPPorts = [ 3478 ];
     systemd.services."hydra-queue-runner" = {
       environment = {
         AWS_SHARED_CREDENTIALS_FILE = config.age.secrets.hydra_aws_credentials.path;
