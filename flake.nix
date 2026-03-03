@@ -38,42 +38,7 @@
       });
     in {
       nixosConfigurations = lib.forAllNixHosts lib.makeNixosConfig;
-      homeConfigurations."mertsas" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { system = "x86_64-linux"; };
-        modules = [
-          module.nixosModules.home-manager
-          {
-            nixpkgs.overlays = [
-              module.overlays.x86_64-linux
-              (import ./overlay/dummy.nix)
-            ];
-
-            home = {
-              stateVersion = "26.05";
-              username = "mertsas";
-              homeDirectory = "/home/mertsas";
-            };
-            programs.zsh.envExtra = "PATH=/home/mertsas/.nix-profile/bin:$PATH";
-            # programs.tmux.shell = "$SHELL";
-            targets.genericLinux.enable = true;
-            martiert = {
-              system.type = "laptop";
-              i3 = {
-                enable = true;
-              };
-            };
-            nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-              "google-chrome"
-              "zoom"
-              "webex"
-              "spotify"
-              "steam"
-              "steam-original"
-              "steam-unwrapped"
-            ];
-          }
-        ];
-      };
+      homeConfigurations = lib.forAllHomeManagerHosts lib.makeHomeConfiguration;
     };
     nixConfig = {
       substituters = [

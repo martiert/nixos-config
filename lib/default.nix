@@ -97,4 +97,54 @@ in rec {
         }
       ];
     };
+
+  forAllHomeManagerHosts = func:
+    let
+        makeAttr = entry: {
+        name = entry.name;
+        value = func entry.name entry.config;
+      };
+
+      configs = builtins.map importConfig home-manager;
+    in
+      lib.listToAttrs (builtins.map makeAttr configs);
+      
+  makeHomeConfiguration = name: config:
+    home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs { system = "x86_64-linux"; };
+      modules = [
+        module.nixosModules.home-manager
+        config
+        {
+          nixpkgs.overlays = [
+            module.overlays.x86_64-linux
+            (import ./overlay/dummy.nix)
+          ];
+
+          home = {
+            stateVersion = "26.05";
+            username = "mertsas";
+            homeDirectory = "/home/mertsas";
+          };
+          programs.zsh.envExtra = "PATH=/home/mertsas/.nix-profile/bin:$PATH";
+          # programs.tmux.shell = "$SHELL";
+          targets.genericLinux.enable = true;
+          martiert = {
+            system.type = "laptop";
+            i3 = {
+              enable = true;
+            };
+          };
+          nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+            "google-chrome"
+            "zoom"
+            "webex"
+            "spotify"
+            "steam"
+            "steam-original"
+            "steam-unwrapped"
+          ];
+        }
+      ];
+    };
 }
