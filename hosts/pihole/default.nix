@@ -4,6 +4,7 @@
   system = "x86_64-linux";
   deployTo = "pihole.martiert.com";
 
+  hw_modules = [];
   nixos = ({modulesPath, ...}: {
     imports = [
       "${modulesPath}/profiles/qemu-guest.nix"

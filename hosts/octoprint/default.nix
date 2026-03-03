@@ -4,6 +4,7 @@
   system = "aarch64-linux";
   deployTo = "octoprint.localdomain";
 
+  hw_modules = [];
   nixos = ({modulesPath, pkgs, config, ...}: {
     imports = [
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"

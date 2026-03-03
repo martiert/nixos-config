@@ -4,6 +4,7 @@
   system = "x86_64-linux";
   deployTo = "hydra-worker1";
 
+  hw_modules = [];
   nixos = ({ modulesPath, pkgs, ... }: {
     imports = [
       "${toString modulesPath}/virtualisation/virtualbox-image.nix"

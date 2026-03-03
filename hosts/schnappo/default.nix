@@ -5,6 +5,7 @@ let
   system = "aarch64-linux";
 in {
   inherit system;
+  hw_modules = [];
   nixos = ({ pkgs, lib, config, ... }: {
     imports = [
       ./hardware.nix

@@ -27,6 +27,7 @@ let
 
 in {
   inherit system;
+  hw_modules = [];
   nixos = ({ config, ... }: {
     networking.useDHCP = false;
     networking.resolvconf.enable = true;

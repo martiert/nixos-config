@@ -4,6 +4,8 @@
   system = "x86_64-linux";
   deployTo = "dnstesting.martiert.com";
 
+  hw_modules = [];
+
   nixos = ({modulesPath, pkgs, ...}: {
     imports = [
       "${modulesPath}/profiles/qemu-guest.nix"

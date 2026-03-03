@@ -37,6 +37,7 @@ let
   };
 in {
   inherit system;
+  hw_modules = [];
   nixos = ({ config, pkgs, lib, ... }: {
     imports = [
       ./nginx

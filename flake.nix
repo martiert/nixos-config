@@ -38,7 +38,42 @@
       });
     in {
       nixosConfigurations = lib.forAllNixHosts lib.makeNixosConfig;
-      homeConfigurations = lib.forAllHomeManagerHosts lib.makeHomeConfiguration;
+      homeConfigurations = lib.forAllHomeManagerHosts (name: config:
+        let
+          system = config.system;
+          username = lib.getUsername name;
+        in home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { inherit system; };
+          modules = [
+            module.nixosModules.home-manager
+            config.config
+            {
+              nixpkgs.overlays = [
+                module.overlays."${system}"
+                (import ./overlay/dummy.nix)
+              ];
+
+              home = {
+                stateVersion = "26.05";
+                username = username;
+                homeDirectory = "/home/${username}";
+              };
+              programs.zsh.envExtra = "PATH=/home/mertsas/.nix-profile/bin:$PATH";
+
+              # programs.tmux.shell = "$SHELL";
+              targets.genericLinux.enable = true;
+              nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+                "google-chrome"
+                "zoom"
+                "webex"
+                "spotify"
+                "steam"
+                "steam-original"
+                "steam-unwrapped"
+              ];
+            }
+          ];
+        });
     };
     nixConfig = {
       substituters = [

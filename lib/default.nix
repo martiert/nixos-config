@@ -17,9 +17,11 @@ let
     builtins.filter isNixFile contentList;
 
   hosts = builtins.map (x: x.name) (nixFiles ../hosts);
-  importConfig = name:
+  home-manager = builtins.map (x: x.name) (nixFiles ../home-manager);
+
+  importConfig = path: name:
     let
-      filename = ../hosts/${name};
+      filename = "${path}/${name}";
       config = { hw_modules = []; } // (import filename {
         inherit nixpkgs home-manager nixos-hardware;
       });
@@ -36,7 +38,7 @@ in rec {
         value = func entry.name entry.config;
       };
 
-      configs = builtins.map importConfig hosts;
+      configs = builtins.map (importConfig ../hosts) hosts;
       acceptedConfigs = builtins.filter predicateCheck configs;
     in
       lib.listToAttrs (builtins.map makeAttr acceptedConfigs);
@@ -100,51 +102,14 @@ in rec {
 
   forAllHomeManagerHosts = func:
     let
-        makeAttr = entry: {
+      makeAttr = entry: {
         name = entry.name;
         value = func entry.name entry.config;
       };
 
-      configs = builtins.map importConfig home-manager;
+      configs = builtins.map (importConfig ../home-manager) home-manager;
     in
       lib.listToAttrs (builtins.map makeAttr configs);
-      
-  makeHomeConfiguration = name: config:
-    home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
-      modules = [
-        module.nixosModules.home-manager
-        config
-        {
-          nixpkgs.overlays = [
-            module.overlays.x86_64-linux
-            (import ./overlay/dummy.nix)
-          ];
 
-          home = {
-            stateVersion = "26.05";
-            username = "mertsas";
-            homeDirectory = "/home/mertsas";
-          };
-          programs.zsh.envExtra = "PATH=/home/mertsas/.nix-profile/bin:$PATH";
-          # programs.tmux.shell = "$SHELL";
-          targets.genericLinux.enable = true;
-          martiert = {
-            system.type = "laptop";
-            i3 = {
-              enable = true;
-            };
-          };
-          nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-            "google-chrome"
-            "zoom"
-            "webex"
-            "spotify"
-            "steam"
-            "steam-original"
-            "steam-unwrapped"
-          ];
-        }
-      ];
-    };
+  getUsername = str: lib.head (lib.strings.splitString "@" str);
 }

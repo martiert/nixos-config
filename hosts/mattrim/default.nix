@@ -4,6 +4,7 @@
   system = "x86_64-linux";
   deployTo = "mattrim";
 
+  hw_modules = [];
   nixos = ({ config, pkgs, lib, ... }: {
     age.secrets = {
       hydra_keyfile = {
