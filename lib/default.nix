@@ -17,7 +17,7 @@ let
     builtins.filter isNixFile contentList;
 
   hosts = builtins.map (x: x.name) (nixFiles ../hosts);
-  home-manager = builtins.map (x: x.name) (nixFiles ../home-manager);
+  home-manager-files = builtins.map (x: x.name) (nixFiles ../home-manager);
 
   importConfig = path: name:
     let
@@ -52,7 +52,7 @@ in rec {
         config.nixos
         module.nixosModules.default
         agenix.nixosModules.default
-        home-manager.nixosModules.home-manager
+        home-manager.nixosModules.default
         {
           system.stateVersion = "26.05";
 
@@ -107,7 +107,7 @@ in rec {
         value = func entry.name entry.config;
       };
 
-      configs = builtins.map (importConfig ../home-manager) home-manager;
+      configs = builtins.map (importConfig ../home-manager) home-manager-files;
     in
       lib.listToAttrs (builtins.map makeAttr configs);
 
