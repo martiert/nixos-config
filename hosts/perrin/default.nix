@@ -236,7 +236,7 @@ in {
           };
         };
 
-        xsession.windowManager.i3.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "HDMI-A-1" //
+        xsession.windowManager.i3.config = swayi3Config "HDMI-A-1" "DP-1" "HDMI-A-2" //
           {
             assigns = {
               "9" = [{ class = "^Firefox$"; }];
@@ -246,7 +246,7 @@ in {
           };
 
 
-        wayland.windowManager.sway.config = swayi3Config "HDMI-A-0" "DisplayPort-0" "HDMI-A-1" //
+        wayland.windowManager.sway.config = swayi3Config "HDMI-A-1" "DP-1" "HDMI-A-2" //
           {
             assigns = {
               "9" = [{ app_id = "^firefox$"; }];
