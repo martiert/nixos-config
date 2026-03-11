@@ -114,7 +114,7 @@ output = json'';
       buildMachines = [
         {
           hostName = "home.martiert.com";
-          systems = [ "x86_64-linux" "aarch64-linux" ];
+          systems = [ "x86_64-linux" ];
           supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
           sshUser = "hydra";
           sshKey = config.age.secrets."hydra_keyfile".path;
