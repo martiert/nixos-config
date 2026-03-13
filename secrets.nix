@@ -20,6 +20,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIRw8XCxKsXXpmEvWGdP/edHvfcNhRTnmj/rrdNp+cqM martin@schnappi"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVZ0SDtC9spMJSAvPyhTfemoqBM3BWstsp5HxmWvXUI martin@pinarello"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMqAMtAq4+oDKmeEYgUs8XYlgQcZHBnAb45PLOYMsAvA martin@schnappo"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvItyDxfAeYxcu9uxzJrxemowET6Ywr6JKOSmaSgixN mertsas@mertsas-l-26276977"
   ];
 in {
   "secrets/wpa_supplicant_wireless.age".publicKeys = [ moghedien octoprint schnappi pinarello schnappo ] ++ editKeys;
