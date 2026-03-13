@@ -47,6 +47,7 @@
           pkgs = import nixpkgs { inherit system; };
           modules = [
             module.nixosModules.home-manager
+            agenix.homeManagerModules.default
             config.config
             {
               nixpkgs.overlays = [

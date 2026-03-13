@@ -31,4 +31,12 @@ in {
   "secrets/hydra_private_key.age".publicKeys = [ mattrim ] ++ editKeys;
   "secrets/hydra_signing_key.age".publicKeys = [ mattrim ] ++ editKeys;
   "secrets/hydra_aws_credentials.age".publicKeys = [ mattrim ] ++ editKeys;
+  "./home-manager/mertsas@mertsas-l-26276977/private_keys/sqbu-github.cisco.com.age".publicKeys = editKeys;
+  "./home-manager/mertsas@mertsas-l-26276977/private_keys/github.com.age".publicKeys = editKeys;
+  "./home-manager/mertsas@mertsas-l-26276977/private_keys/home.martiert.com.age".publicKeys = editKeys;
+  "./home-manager/mertsas@mertsas-l-26276977/private_keys/lys-git.cisco.com.age".publicKeys = editKeys;
+  "./home-manager/mertsas@mertsas-l-26276977/private_keys/aginor.rd.cisco.com.age".publicKeys = editKeys;
+  "./home-manager/mertsas@mertsas-l-26276977/private_keys/test_sw.age".publicKeys = editKeys;
+  "./home-manager/mertsas@mertsas-l-26276977/private_keys/cebuild.age".publicKeys = editKeys;
+  "./home-manager/mertsas@mertsas-l-26276977/private_keys/nfstool.rd.cisco.com.age".publicKeys = editKeys;
 }
