@@ -5,6 +5,7 @@
 , nixos-hardware
 , home-manager
 , notify
+, secretsDir
 , ...}:
 
 let
@@ -48,6 +49,9 @@ in rec {
   makeNixosConfig = name: config:
     nixpkgs.lib.nixosSystem {
       system = config.system;
+      specialArgs = {
+        inherit secretsDir;
+      };
       modules = config.hw_modules ++ [
         config.nixos
         module.nixosModules.default

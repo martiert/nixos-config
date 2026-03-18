@@ -5,19 +5,19 @@
   deployTo = "mattrim";
 
   hw_modules = [];
-  nixos = ({ config, pkgs, lib, ... }: {
+  nixos = ({ config, pkgs, lib, secretsDir, ... }: {
     age.secrets = {
       hydra_keyfile = {
-        file = ../../secrets/hydra_private_key.age;
+        file = "${secretsDir}/hydra_private_key.age";
         owner = "hydra-queue-runner";
       };
       hydra_signing_key = {
-        file = ../../secrets/hydra_signing_key.age;
+        file = "${secretsDir}/hydra_signing_key.age";
         group = "hydra";
         mode = "440";
       };
       hydra_aws_credentials = {
-        file = ../../secrets/hydra_aws_credentials.age;
+        file = "${secretsDir}/hydra_aws_credentials.age";
         owner = "hydra-queue-runner";
       };
     };

@@ -34,6 +34,7 @@
     let
       lib = nixpkgs.lib.extend(self: super: (import ./lib) { 
         inherit nixpkgs module nixos-hardware home-manager agenix notify;
+        secretsDir = ./secrets;
         lib = super;
       });
     in {
