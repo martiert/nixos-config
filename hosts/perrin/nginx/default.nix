@@ -23,7 +23,7 @@ let
     add_header X-XSS-Protection "1; mode=block";
 
     # This might create errors
-    proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+    # proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
   '';
   authConfig = ''
     auth_request /oauth2/auth;
@@ -114,6 +114,8 @@ in
             proxy_read_timeout    600s;
             proxy_send_timeout    600s;
             send_timeout          600s;
+
+            proxy_set_header X-Forwarded-Host $host;
           '';
         };
       };

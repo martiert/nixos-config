@@ -33,6 +33,14 @@
       kernelPackages = pkgs.linuxPackages_latest;
     };
 
+    services.immich = {
+      enable = true;
+      host = "0.0.0.0";
+      settings = {
+        server.externalDomain = "https://photos.martiert.com";
+      };
+    };
+
     services.unifi = {
       enable = true;
       openFirewall = true;
@@ -92,7 +100,7 @@
       openFirewall = true;
       secretKeyFile = config.age.secrets.hydra_signing_key.path;
     };
-    networking.firewall.allowedTCPPorts = [ 3000 5349 3478 ];
+    networking.firewall.allowedTCPPorts = [ 3000 5349 3478 2283 ];
     networking.firewall.allowedUDPPorts = [ 3478 ];
     systemd.services."hydra-queue-runner" = {
       environment = {
