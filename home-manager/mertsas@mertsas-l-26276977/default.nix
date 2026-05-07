@@ -14,7 +14,7 @@ let
 
 in {
   system = "x86_64-linux";
-  config = { lib, config, ... }: let
+  config = { pkgs, lib, config, ... }: let
     setAuthorizedKeys = files: lib.strings.concatStringsSep "\n" (map builtins.readFile files);
   in {
     home.file.".ssh/authorized_keys" = {
@@ -32,6 +32,15 @@ in {
         file = "${path}/${name}.age";
         mode = "400";
       });
+    };
+
+    programs.opencode = {
+      enable = true;
+      enableMcpIntegration = true;
+      agents = ./ai/agents;
+      extraPackages = [
+        pkgs.bash
+      ];
     };
 
     martiert = {
