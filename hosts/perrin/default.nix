@@ -140,6 +140,7 @@ in {
           ./public_keys/cisco-vbox.pub
           ./public_keys/cisco-qemu.pub
           ./public_keys/schnappo.pub
+          ./public_keys/mertsas-l-26276977.pub
         ];
       };
       terminal.fontSize = 14;

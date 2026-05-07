@@ -64,6 +64,10 @@ in {
           "lys-git.cisco.com".user = "git";
           "home.martiert.com" = {
             addressFamily = "inet";
+            user = "martin";
+          };
+          "aginor.rd.cisco.com" = {
+            user = "martin";
           };
           "sqbu-github.cisco.com" = {
             user = "git";
