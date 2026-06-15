@@ -64,6 +64,7 @@ in {
         keyFile = "/sysroot/etc/keys/cisco.key";
         label = "cisco";
       };
+      fsType = "ext4";
     };
 
     networking.hosts = {
