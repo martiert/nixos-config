@@ -6,7 +6,7 @@ let
 in {
   inherit system;
   hw_modules = [];
-  nixos = ({ pkgs, lib, config, ... }: {
+  nixos = ({ pkgs, lib, config, secretsDir, ... }: {
     imports = [
       ./hardware.nix
     ];
@@ -24,7 +24,7 @@ in {
     boot.initrd.systemd.tpm2.enable = false;
     systemd.tpm2.enable = false;
 
-    age.secrets."wpa_supplicant_wlP4p1s0".file = ../../secrets/wpa_supplicant_wireless.age;
+    age.secrets."wpa_supplicant_wlP4p1s0".file = "${secretsDir}/wpa_supplicant_wireless.age";
     martiert = {
       system = {
         type = "laptop";
