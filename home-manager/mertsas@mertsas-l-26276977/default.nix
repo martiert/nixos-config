@@ -17,11 +17,17 @@ in {
   config = { pkgs, lib, config, ... }: let
     setAuthorizedKeys = files: lib.strings.concatStringsSep "\n" (map builtins.readFile files);
   in {
-    home.file.".ssh/authorized_keys" = {
+    home.file.".ssh/authorized_keys_src" = {
       enable = true;
       text = setAuthorizedKeys [
         ./public_keys/aginor.pub
       ];
+
+      onChange = ''
+        rm -fr "$HOME/.ssh/authorized_keys"
+        cat "$HOME/.ssh/authorized_keys_src" > "$HOME/.ssh/authorized_keys"
+        chmod 600 "$HOME/.ssh/authorized_keys"
+      '';
     };
 
     age = {
