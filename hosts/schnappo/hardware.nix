@@ -2,7 +2,7 @@
 
 {
   boot = {
-    kernelPackages = pkgs.linuxPackagesFor pkgs.t14s-kernel;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "clk_ignore_unused"
       "pd_ignore_unused"
