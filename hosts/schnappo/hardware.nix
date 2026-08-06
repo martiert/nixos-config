@@ -36,6 +36,7 @@
         "i2c_hid_of"
         "i2c_qcom_geni"
         "leds_qcom_lpg"
+        "xhci_hcd"
         "pwm_bl"
         "qrtr"
         "pmic_glink_altmode"
@@ -52,6 +53,8 @@
         "qcom_pbs"
         "qcom_edac"
         "qcom_spmi_pmic"
+        "usbhid"
+        "hid_generic"
       ];
     };
   };

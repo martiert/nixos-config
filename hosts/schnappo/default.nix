@@ -23,6 +23,7 @@ in {
     services.upower.enable = true;
     boot.initrd.systemd.tpm2.enable = false;
     systemd.tpm2.enable = false;
+    hardware.bluetooth.enable = true;
 
     age.secrets."wpa_supplicant_wlP4p1s0".file = "${secretsDir}/wpa_supplicant_wireless.age";
     martiert = {
