@@ -21,6 +21,23 @@ in {
     };
     services.rsyslogd.enable = true;
     services.upower.enable = true;
+
+    # No XCursor theme ships by default, and unlike X11 wlroots has no built-in
+    # fallback cursor, so sway renders no pointer at all. Also needed system
+    # wide for the sddm greeter.
+    environment.systemPackages = [ pkgs.adwaita-icon-theme ];
+    # WLR_NO_HARDWARE_CURSORS=1: Qualcomm MSM cursor planes are unreliable;
+    # software cursor fallback is more robust on this hardware.
+    environment.variables.WLR_NO_HARDWARE_CURSORS = "1";
+    services.displayManager.sddm.settings.Theme.CursorTheme = "Adwaita";
+    home-manager.users.martin.home.pointerCursor = {
+      enable = true;
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+      size = 24;
+      sway.enable = true;
+    };
+
     boot.initrd.systemd.tpm2.enable = false;
     systemd.tpm2.enable = false;
     hardware.bluetooth.enable = true;
