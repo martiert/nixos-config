@@ -92,13 +92,21 @@ in rec {
           nixpkgs = {
             overlays = [
               module.overlays."${config.system}"
+              (import ../overlay/widevine-firefox.nix)
               (self: super: {
                 khal_notify = notify.packages."${config.system}".default;
               })
             ];
-            config.permittedInsecurePackages = [
-              "olm-3.2.16"
-            ];
+            config = {
+              permittedInsecurePackages = [
+                "olm-3.2.16"
+              ];
+              # Allow unfree Widevine CDM for DRM content on ARM64 systems
+              allowUnfreePredicate = pkg:
+                builtins.elem (lib.getName pkg) [
+                  "widevine-cdm"
+                ];
+            };
           };
         }
       ];
