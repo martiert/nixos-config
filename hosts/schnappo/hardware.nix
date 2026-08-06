@@ -73,9 +73,6 @@
       name = "qcom/x1e78100-lenovo-thinkpad-t14s.dtb";
     };
     enableRedistributableFirmware = true;
-    firmware = [
-      pkgs.lenovo-t14s-firmware
-    ];
   };
 
   networking = {
