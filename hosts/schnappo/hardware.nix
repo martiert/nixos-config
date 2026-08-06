@@ -16,45 +16,53 @@
       };
     };
     initrd = {
-      extraFirmwarePaths = [
-          "qcom/x1e80100/LENOVO/21N1/adsp_dtbs.elf"
-          "qcom/x1e80100/LENOVO/21N1/adspr.jsn"
-          "qcom/x1e80100/LENOVO/21N1/adsps.jsn"
-          "qcom/x1e80100/LENOVO/21N1/adspua.jsn"
-          "qcom/x1e80100/LENOVO/21N1/battmgr.jsn"
-          "qcom/x1e80100/LENOVO/21N1/cdsp_dtbs.elf"
-          "qcom/x1e80100/LENOVO/21N1/cdspr.jsn"
-          "qcom/x1e80100/LENOVO/21N1/qcadsp8380.mbn"
-          "qcom/x1e80100/LENOVO/21N1/qccdsp8380.mbn"
-          "qcom/x1e80100/LENOVO/21N1/qcdxkmsuc8380.mbn"
-      ];
       kernelModules = [
+        # Storage
         "nvme"
+
+        # Platform communication
+        "qrtr"
+        "qcom_glink_smem"
+
+        # PHY drivers
         "phy_qcom_qmp_pcie"
         "phy_qcom_qmp_usb"
-        "hid_multitouch"
-        "i2c_hid_of"
-        "i2c_qcom_geni"
-        "leds_qcom_lpg"
-        "xhci_hcd"
-        "pwm_bl"
-        "qrtr"
-        "pmic_glink_altmode"
-        "gpio_sbu_mux"
         "phy_qcom_qmp_combo"
+
+        # Type-C
+        "typec"
+        "typec_ucsi"
+        "ucsi_glink"
+        "gpio_sbu_mux"
+        "pmic_glink_altmode"
+
+        # USB host
+        "xhci_hcd"
+
+        # HID
+        "usbhid"
+        "hid_generic"
+
+        # Display
         "gpucc_sc8280xp"
         "dispcc_sc8280xp"
         "phy_qcom_edp"
         "panel_edp"
         "msm"
-        "qcom_glink_smem"
+
+        # Input devices
+        "hid_multitouch"
+        "i2c_hid_of"
+        "i2c_qcom_geni"
+
+        # Other platform stuff
+        "leds_qcom_lpg"
+        "pwm_bl"
         "phy_qcom_edp"
         "qcom_pon"
         "qcom_pbs"
         "qcom_edac"
         "qcom_spmi_pmic"
-        "usbhid"
-        "hid_generic"
       ];
     };
   };
