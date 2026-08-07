@@ -24,12 +24,15 @@
         "qrtr"
         "qcom_glink_smem"
         "pmic_glink"
+        "qcomtee"
+        "qcom_cpucp_mbox"
 
         # PHY drivers
         "phy_qcom_qmp_pcie"
         "phy_qcom_qmp_usb"
         "phy_qcom_qmp_combo"
         "phy_qcom_eusb2_repeater"
+        "phy_snps_eusb2"
 
         # Mux controllers
         "mux_gpio"
@@ -49,10 +52,6 @@
         # HID
         "usbhid"
         "hid_generic"
-
-        # Clock controllers (needed for USB PHY clock deps)
-        "gpucc_x1e80100"
-        "dispcc_x1e80100"
 
         # Input devices
         "hid_multitouch"
