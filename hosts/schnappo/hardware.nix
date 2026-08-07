@@ -15,59 +15,45 @@
         edk2-uefi-shell.enable = true;
       };
     };
-    initrd = {
-      kernelModules = [
-        # Storage
-        "nvme"
+    initrd.kernelModules = [
+      # Storage
+      "nvme"
 
-        # Platform communication
-        "qrtr"
-        "qcom_glink_smem"
-        "pmic_glink"
-        "qcomtee"
-        "qcom_cpucp_mbox"
+      # Platform communication (SCMI mailbox chain)
+      "qrtr"
+      "qcom_glink_smem"
+      "pmic_glink"
+      "qcom_cpucp_mbox"
 
-        # PHY drivers
-        "phy_qcom_qmp_pcie"
-        "phy_qcom_qmp_usb"
-        "phy_qcom_qmp_combo"
-        "phy_qcom_eusb2_repeater"
-        "phy_snps_eusb2"
+      # PHY drivers
+      "phy_qcom_qmp_pcie"
+      "phy_qcom_qmp_combo"
+      "phy_qcom_eusb2_repeater"
+      "phy_snps_eusb2"
 
-        # Mux controllers
-        "mux_gpio"
+      # Mux controllers
+      "mux_gpio"
 
-        # Type-C
-        "typec"
-        "typec_ucsi"
-        "ucsi_glink"
-        "gpio_sbu_mux"
-        "pmic_glink_altmode"
-        "ps883x"
+      # Type-C
+      "typec"
+      "typec_ucsi"
+      "ucsi_glink"
+      "gpio_sbu_mux"
+      "pmic_glink_altmode"
+      "ps883x"
 
-        # USB host
-        "dwc3"
-        "xhci_hcd"
+      # USB host
+      "dwc3"
+      "xhci_hcd"
 
-        # HID
-        "usbhid"
-        "hid_generic"
+      # HID
+      "usbhid"
+      "hid_generic"
 
-        # Input devices
-        "hid_multitouch"
-        "i2c_hid_of"
-        "i2c_qcom_geni"
-
-        # Other platform stuff
-        "leds_qcom_lpg"
-        "pwm_bl"
-        "phy_nxp_ptn3222"
-        "qcom_pon"
-        "qcom_pbs"
-        "qcom_edac"
-        "qcom_spmi_pmic"
-      ];
-    };
+      # Input devices (keyboard for password fallback)
+      "i2c_hid_of"
+      "i2c_qcom_geni"
+    ];
   };
 
   hardware = {
