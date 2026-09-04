@@ -90,6 +90,7 @@ in rec {
             };
           };
           nixpkgs = {
+            config.allowUnfree = true;
             overlays = [
               module.overlays."${config.system}"
               (import ../overlay/widevine-firefox.nix)

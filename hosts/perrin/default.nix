@@ -66,6 +66,16 @@ in {
       };
       fsType = "ext4";
     };
+    fileSystems."/home/martin/.storage" = {
+      device = "/dev/disk/by-uuid/56f7455f-fbb9-4207-982d-5fae189236da";
+      encrypted = {
+        enable = true;
+        blkDev = "/dev/disk/by-uuid/a551ccf2-835c-40d9-847f-99a0e0eaa36a";
+        keyFile = "/sysroot/etc/keys/games.key";
+        label = "games";
+      };
+      fsType = "ext4";
+    };
 
     networking.hosts = {
       "127.0.0.1" = [ "outbound.cisco.com" ];
