@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:blog.lon.tv)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:patchew.org)",
+      "WebFetch(domain:git.kernel.org)",
+      "WebFetch(domain:lore.kernel.org)",
+      "WebFetch(domain:www.opennet.ru)",
+      "WebFetch(domain:kernelnewbies.org)",
+      "WebFetch(domain:www.cnx-software.com)",
+      "WebFetch(domain:lkml.iu.edu)",
+      "WebFetch(domain:lkml.org)",
+      "Bash(curl -s \"https://api.github.com/search/code?q=hamoa-lenovo-ideacentre+repo:torvalds/linux&type=code\" -H \"Accept: application/vnd.github.v3+json\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('total_count:', d.get\\('total_count'\\)\\); [print\\(i['path']\\) for i in d.get\\('items',[]\\)]\")",
+      "WebFetch(domain:psref.lenovo.com)",
+      "WebFetch(domain:techspecsplus.com)",
+      "Bash(gh api *)",
+      "WebFetch(domain:patchwork.kernel.org)",
+      "WebFetch(domain:linux-commits-search.typesense.org)",
+      "Bash(find /home/mertsas/src/Cisco/os/main/linux/android-vendor/_build/v2/bidroid-mdep-15.aarch64.android/work/android-vendor-15.0.0-security_rNone-cisco.14/vendor/nxp-opensource/kernel_imx/arch/arm64/boot/dts/qcom/ -name *.dtsi)",
+      "Bash(find /home/mertsas/src/Cisco/os/main/linux/android-vendor/_build/v2/bidroid-mdep-15.aarch64.android/work/android-vendor-15.0.0-security_rNone-cisco.14/vendor/nxp-opensource/kernel_imx/drivers/acpi -name *.c)",
+      "Bash(nix build *)",
+      "Bash(find /nix/store/rsgq2z3yki60yzw25qwyicqxjk07rndx-linux-firmware-20260622/lib/firmware/qcom/x1e80100 -iname *ideacentre* -o -iname *91B6* -o -iname *mini*)",
+      "WebFetch(domain:archlinux.org)",
+      "WebFetch(domain:bugs.launchpad.net)",
+      "WebFetch(domain:gitlab.com)",
+      "WebFetch(domain:git.almalinux.org)",
+      "WebFetch(domain:x-lore.kernel.org)",
+      "WebFetch(domain:kernel.googlesource.com)",
+      "WebFetch(domain:patchwork.yoctoproject.org)"
+    ]
+  }
+}

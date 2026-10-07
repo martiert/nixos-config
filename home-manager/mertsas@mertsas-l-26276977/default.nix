@@ -64,7 +64,7 @@ in {
         davmail = {
           o365 = {
             enable = true;
-            clientId = "953f4ef4-80ac-48d1-b98c-f66f227bb094";
+            clientId = "d3590ed6-52b3-4102-aeff-aad2292ab01c";
           };
         };
       };
