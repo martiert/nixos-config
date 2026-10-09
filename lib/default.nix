@@ -65,6 +65,7 @@ in rec {
           environment.systemPackages = [ agenix.packages."${config.system}".default ];
 
           networking.hostName = name;
+          boot.zfs.forceImportRoot = false;
 
           home-manager = {
             useGlobalPkgs = true;
