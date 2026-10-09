@@ -32,7 +32,6 @@
     age.secrets."hydra_keyfile".file = ../../secrets/hydra_private_key.age;
     services.hydra = {
       enable = true;
-      buildMachinesFiles = [];
       hydraURL = "http://0.0.0.0:3000";
       notificationSender = "hydra@localhost";
       useSubstitutes = true;
