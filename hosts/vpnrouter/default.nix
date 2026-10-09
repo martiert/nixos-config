@@ -11,9 +11,10 @@
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
     ];
 
-    hardware.raspberry-pi."4" = {
-      poe-plus-hat.enable = true;
-    };
+    boot.loader.generic-extlinux-compatible.useGenerationDeviceTree = false;
+    hardware.raspberry-pi.configtxt.deviceTreeOverlays.pi4 = [
+      { rpi-poe-plus = {}; }
+    ];
 
     nixpkgs.overlays = [
       (final: super: {
