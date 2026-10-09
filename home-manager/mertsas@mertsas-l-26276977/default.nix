@@ -58,7 +58,7 @@ in {
         address = "mertsas@cisco.com";
         smtp = {
           tls = false;
-          host = "outbound.cisco.com:2525";
+          host = "outbound.cisco.com:25";
         };
         imap.tls = false;
         davmail = {
