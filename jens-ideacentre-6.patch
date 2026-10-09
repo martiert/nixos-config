@@ -1,0 +1,41 @@
+diff --git a/arch/arm64/boot/dts/qcom/x1-lenovo-ideacentre-mini-01q8x10.dtsi b/arch/arm64/boot/dts/qcom/x1-lenovo-ideacentre-mini-01q8x10.dtsi
+--- a/arch/arm64/boot/dts/qcom/x1-lenovo-ideacentre-mini-01q8x10.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1-lenovo-ideacentre-mini-01q8x10.dtsi
+@@ -665,6 +665,10 @@ eusb6_repeater: redriver@4f {
+ 	};
+ };
+ 
++&lpass_vamacro {
++	qcom,dmic-sample-rate = <2400000>;
++};
++
+ &gpu {
+ 	status = "okay";
+ };
+@@ -674,6 +678,8 @@ &mdss {
+ };
+ 
+ &mdss_dp0 {
++	sound-name-prefix = "DisplayPort0";
++
+ 	status = "okay";
+ };
+ 
+@@ -682,6 +688,8 @@ &mdss_dp0_out {
+ };
+ 
+ &mdss_dp1 {
++	sound-name-prefix = "DisplayPort1";
++
+ 	status = "okay";
+ };
+ 
+@@ -690,6 +698,8 @@ &mdss_dp1_out {
+ };
+ 
+ &mdss_dp2 {
++	sound-name-prefix = "DisplayPort2";
++
+ 	status = "okay";
+ };
+ 
