@@ -6,7 +6,7 @@ let
 in {
   inherit system;
   hw_modules = [];
-  nixos = ({ pkgs, config, ... }: {
+  nixos = ({ pkgs, config, secretsDir, ... }: {
     nix.settings.trusted-users = [
       "root"
       "martin"
@@ -40,7 +40,7 @@ in {
 
     boot.loader.efi.canTouchEfiVariables = false;
 
-    age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
+    age.secrets."wpa_supplicant_wlan0".file = "${secretsDir}/wpa_supplicant_wireless.age";
 
     martiert = {
       system = {

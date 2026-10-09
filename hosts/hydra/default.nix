@@ -6,7 +6,7 @@
 
   hw_modules = [];
 
-  nixos = ({ modulesPath, pkgs, config, ... }: {
+  nixos = ({ modulesPath, pkgs, config, secretsDir, ... }: {
     imports = [
       "${toString modulesPath}/virtualisation/virtualbox-image.nix"
     ];
@@ -29,7 +29,7 @@
       };
     };
 
-    age.secrets."hydra_keyfile".file = ../../secrets/hydra_private_key.age;
+    age.secrets."hydra_keyfile".file = "${secretsDir}/hydra_private_key.age";
     services.hydra = {
       enable = true;
       hydraURL = "http://0.0.0.0:3000";

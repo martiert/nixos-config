@@ -28,13 +28,13 @@ let
 in {
   inherit system;
   hw_modules = [];
-  nixos = ({ config, ... }: {
+  nixos = ({ config, secretsDir, ... }: {
     networking.useDHCP = false;
     networking.resolvconf.enable = true;
     networking.dhcpcd.extraConfig = "resolv.conf";
 
     age.identityPaths = [ "/etc/ssh/ssh_host_ed25591_key" ];
-    age.secrets."wpa_supplicant_wlp1s0".file = ../../secrets/wpa_supplicant_wireless.age;
+    age.secrets."wpa_supplicant_wlp1s0".file = "${secretsDir}/wpa_supplicant_wireless.age";
 
     martiert = {
       system.type = "laptop";

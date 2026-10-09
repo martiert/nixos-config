@@ -5,13 +5,13 @@
   deployTo = "octoprint.localdomain";
 
   hw_modules = [];
-  nixos = ({modulesPath, pkgs, config, ...}: {
+  nixos = ({modulesPath, pkgs, config, secretsDir, ...}: {
     imports = [
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
       ./octoprint
     ];
 
-    age.secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
+    age.secrets."wpa_supplicant_wlan0".file = "${secretsDir}/wpa_supplicant_wireless.age";
     networking.firewall.allowedTCPPorts = [ 3001 ];
 
     martiert = {

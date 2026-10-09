@@ -4,7 +4,7 @@
   system = "aarch64-linux";
   hw_modules = [ nixos-hardware.nixosModules.pine64-pinebook-pro ];
 
-  nixos = ({ pkgs, config, ... }: {
+  nixos = ({ pkgs, config, secretsDir, ... }: {
     boot.kernelPackages = pkgs.linuxPackages_latest;
     boot.kernelParams = [ "console=tty0" ];
 
@@ -16,7 +16,7 @@
     services.upower.enable = true;
     age = {
       identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-      secrets."wpa_supplicant_wlan0".file = ../../secrets/wpa_supplicant_wireless.age;
+      secrets."wpa_supplicant_wlan0".file = "${secretsDir}/wpa_supplicant_wireless.age";
     };
 
     martiert = {

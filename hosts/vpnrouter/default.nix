@@ -6,7 +6,7 @@
 
   hw_modules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
 
-  nixos = ({modulesPath, pkgs, config, ... }: {
+  nixos = ({modulesPath, pkgs, config, secretsDir, ... }: {
     imports = [
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
     ];
@@ -60,8 +60,8 @@
       "nordvpn/norway.ovpn".source = ./nordvpn/no231.nordvpn.com.udp.ovpn;
     };
     age.secrets = {
-      vpn_passphrase.file = ../../secrets/vpn_passphrase.age;
-      nordvpn_credentials.file = ../../secrets/nordvpn_credentials.age;
+      vpn_passphrase.file = "${secretsDir}/vpn_passphrase.age";
+      nordvpn_credentials.file = "${secretsDir}/nordvpn_credentials.age";
     };
     services.openvpn.servers.nordvpn = {
       updateResolvConf = true;
